@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+         #
+#    By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:49:03 by fjoestin          #+#    #+#              #
-#    Updated: 2024/05/03 14:49:05 by fjoestin         ###   ########.fr        #
+#    Updated: 2024/05/03 17:51:53 by mkulikov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,10 @@ DEBUG = -g
 HEADDIR = .
 HEADERS = minishell.h
 
-SRCS =	main.c \
-		envp_lst.c \
+SRCS =	0_utils.c \
+		echo.c \
+		main.c \
+		env_lst.c \
 		data.c
 
 OBJSDIR = ./objs/

@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 11:14:30 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/05/03 14:19:21 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/05/03 17:50:43 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,5 @@ int	main(int argc, char **argv, char **envp)
 	char *line = readline("Enter a line: ");
 	data->promt = "echo";
 	ft_echo(data);
-
-
-	printf("%s\n", line);
-	free(line);
 	return (0);
 }
