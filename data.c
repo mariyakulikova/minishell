@@ -1,33 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   data.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/03 11:14:30 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/05/03 14:19:21 by mkulikov         ###   ########.fr       */
+/*   Created: 2024/05/03 12:29:16 by mkulikov          #+#    #+#             */
+/*   Updated: 2024/05/03 12:45:18 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-
-
-int	main(int argc, char **argv, char **envp)
+void	data_init(t_data **data, char **envp)
 {
-	t_data	*data;
-
-	(void)argv;
-	data = NULL;
-	data_init(&data, envp);
-
-	char *line = readline("Enter a line: ");
-	data->promt = "echo";
-	ft_echo(data);
-
-
-	printf("%s\n", line);
-	free(line);
-	return (0);
+	*data = (t_data *)malloc(sizeof(t_data));
+	if (!*data)
+		exit(EXIT_SUCCESS);
+	ft_memset(*data, 0, sizeof(t_data));
+	(*data)->lst = set_envp_lst(envp);
+	if (!(*data)->lst)
+	{
+		free(data);
+		exit(EXIT_SUCCESS);
+	}
 }

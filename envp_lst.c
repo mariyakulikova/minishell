@@ -1,33 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   envp_lst.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/03 11:14:30 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/05/03 14:19:21 by mkulikov         ###   ########.fr       */
+/*   Created: 2024/05/03 12:04:18 by mkulikov          #+#    #+#             */
+/*   Updated: 2024/05/03 14:32:43 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-
-
-int	main(int argc, char **argv, char **envp)
+t_envp_lst	*envp_lst_new(char *key, char *value)
 {
-	t_data	*data;
+	t_envp_lst	*new;
 
-	(void)argv;
-	data = NULL;
-	data_init(&data, envp);
+	new = (t_envp_lst *)malloc(sizeof(t_envp_lst));
+	if (!new)
+		return (NULL);
+	new->key = key;
+	new->value = value;
+	new->next = NULL;
+	return (new);
+}
 
-	char *line = readline("Enter a line: ");
-	data->promt = "echo";
-	ft_echo(data);
+t_envp_lst	*set_envp_lst(char **envp)
+{
+	t_envp_lst	*lst;
+	int			c;
+	char		*key;
+	char		*value;
 
-
-	printf("%s\n", line);
-	free(line);
-	return (0);
+	lst = NULL;
+	while (*envp)
+	{
+		// c = ft_strchr(*envp, '=');
+		// key = ft_substr()
+		// envp++;
+	}
+	return (lst);
 }

@@ -7,7 +7,9 @@ DEBUG = -g
 HEADDIR = .
 HEADERS = minishell.h
 
-SRCS =	main.c
+SRCS =	main.c \
+		envp_lst.c \
+		data.c
 
 OBJSDIR = ./objs/
 OBJSLIST = $(SRCS:.c=.o)

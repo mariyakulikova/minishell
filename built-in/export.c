@@ -1,33 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/03 11:14:30 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/05/03 14:19:21 by mkulikov         ###   ########.fr       */
+/*   Created: 2024/05/03 13:13:40 by mkulikov          #+#    #+#             */
+/*   Updated: 2024/05/03 13:27:21 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-
-
-int	main(int argc, char **argv, char **envp)
+int	ft_export(t_data *data)
 {
-	t_data	*data;
-
-	(void)argv;
-	data = NULL;
-	data_init(&data, envp);
-
-	char *line = readline("Enter a line: ");
-	data->promt = "echo";
-	ft_echo(data);
-
-
-	printf("%s\n", line);
-	free(line);
+	(void)data;
+	printf("Here is ft_export\n");
 	return (0);
 }
