@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 16:24:03 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/05/03 16:31:31 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/05/06 13:06:12 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,13 @@ int	str_chr_idx(const char *str, int c)
 		i++;
 	}
 	return (-1);
+}
+
+int	is_space(char c)
+{
+	if (c == ' ' || c == '\f' || \
+		c == '\n' || c == '\r' || \
+		c == '\t' || c == '\v')
+		return (1);
+	return (0);
 }
