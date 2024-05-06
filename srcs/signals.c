@@ -1,20 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/03 13:12:49 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/05/06 16:27:06 by mkulikov         ###   ########.fr       */
+/*   Created: 2024/05/06 15:27:12 by fjoestin          #+#    #+#             */
+/*   Updated: 2024/05/06 22:58:08 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-int	ft_echo(t_data *data)
+void	signal_handler(int)
 {
-	(void)data;
-	printf("Here is ft_echo\n");
-	return (0);
+
+}
+
+void	set_signal(void)
+{
+
 }

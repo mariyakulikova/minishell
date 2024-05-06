@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   0_parser.c                                         :+:      :+:    :+:   */
+/*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/06 12:31:25 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/05/06 13:41:17 by mkulikov         ###   ########.fr       */
+/*   Created: 2024/05/03 13:12:49 by mkulikov          #+#    #+#             */
+/*   Updated: 2024/05/06 22:56:25 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../minishell.h"
 
-int	parser(t_data *data)
+int	ft_pwd(t_data *data)
 {
-	printf("This is parser!\n");
+	(void)data;
+	printf("Here is ft_pwd\n");
+	return (0);
 }

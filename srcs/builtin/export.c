@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   0_executer.c                                       :+:      :+:    :+:   */
+/*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/06 12:32:29 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/05/06 13:41:12 by mkulikov         ###   ########.fr       */
+/*   Created: 2024/05/03 13:13:40 by mkulikov          #+#    #+#             */
+/*   Updated: 2024/05/06 22:56:23 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../minishell.h"
 
-int	executer(t_data *data)
+int	ft_export(t_data *data)
 {
-	printf("This is executer!\n");
+	(void)data;
+	printf("Here is ft_export\n");
+	return (0);
 }

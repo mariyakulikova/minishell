@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pwd.c                                              :+:      :+:    :+:   */
+/*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/03 13:12:49 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/05/06 16:27:32 by mkulikov         ###   ########.fr       */
+/*   Created: 2024/05/03 13:13:53 by mkulikov          #+#    #+#             */
+/*   Updated: 2024/05/06 22:56:27 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../minishell.h"
 
-int	ft_pwd(t_data *data)
+int	ft_unset(t_data *data)
 {
 	(void)data;
-	printf("Here is ft_pwd\n");
+	printf("Here is ft_unset\n");
 	return (0);
 }

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 11:14:30 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/05/06 13:40:44 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/05/06 22:56:50 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 static int	is_only_space(char *promt)
 {
@@ -29,6 +29,11 @@ int	main(int argc, char **argv, char **envp)
 
 	(void)argv;
 	data = NULL;
+	if (argc != 1)
+	{
+		perror("main");
+		exit(EXIT_FAILURE);
+	}
 	data_init(&data, envp);
 	while (1)
 	{
@@ -38,10 +43,10 @@ int	main(int argc, char **argv, char **envp)
 			continue ;
 		if (lexer(data))
 			continue ;
-		if (parser(data))
-			continue ;
-		if (executer(data))
-			continue ;
+		// if (parser(data))
+		// 	continue ;
+		// if (executer(data))
+		// 	continue ;
 	}
 	return (0);
 }

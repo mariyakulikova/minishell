@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/03 13:14:22 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/05/06 16:27:12 by mkulikov         ###   ########.fr       */
+/*   Created: 2024/05/03 13:12:49 by mkulikov          #+#    #+#             */
+/*   Updated: 2024/05/06 22:56:17 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../minishell.h"
 
-int	ft_env(t_data *data)
+int	ft_echo(t_data *data)
 {
 	(void)data;
-	printf("Here is ft_env\n");
+	printf("Here is ft_echo\n");
 	return (0);
 }

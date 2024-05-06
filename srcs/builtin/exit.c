@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   export.c                                           :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/03 13:13:40 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/05/06 16:27:19 by mkulikov         ###   ########.fr       */
+/*   Created: 2024/05/03 13:14:35 by mkulikov          #+#    #+#             */
+/*   Updated: 2024/05/06 22:56:21 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../minishell.h"
 
-int	ft_export(t_data *data)
+int	ft_exit(t_data *data)
 {
 	(void)data;
-	printf("Here is ft_export\n");
+	printf("Here is ft_exit\n");
 	return (0);
 }

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   env_lst.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 12:04:18 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/05/03 17:41:30 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/05/06 22:56:48 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 void	envp_lst_free(t_env_lst *lst)
 {

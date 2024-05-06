@@ -3,66 +3,62 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+         #
+#    By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:49:03 by fjoestin          #+#    #+#              #
-#    Updated: 2024/05/06 12:40:03 by mkulikov         ###   ########.fr        #
+#    Updated: 2024/05/06 22:58:25 by fjoestin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
+LIBFT = ./libft/libft.a
+INC = inc/
+OBJ_DIR = obj/
 CC = cc
-CCFLAGS = -Wextra -Wall -Werror
+FLAGS = -g -Wall -Wextra -Werror -I
+READFLAG = -lreadline
 RM = rm -f
-DEBUG = -g
+SRC =   srcs/builtin/cd.c \
+		srcs/builtin/echo.c \
+		srcs/builtin/env.c \
+		srcs/builtin/exit.c \
+		srcs/builtin/export.c \
+		srcs/builtin/pwd.c \
+		srcs/builtin/unset.c \
+		srcs/0_executer.c \
+		srcs/0_lexer.c \
+		srcs/0_parser.c \
+		srcs/0_utils.c \
+		srcs/data.c \
+		srcs/env_lst.c \
+		srcs/main.c \
+		
+		
+OBJ = $(patsubst %.c,$(OBJ_DIR)%.o,$(SRC))
 
-HEADDIR = .
-HEADERS = minishell.h
-
-SRCS =	0_utils.c \
-		0_lexer.c \
-		0_parser.c \
-		0_executer.c \
-		echo.c \
-		main.c \
-		env_lst.c \
-		data.c \
-
-
-OBJSDIR = ./objs/
-OBJSLIST = $(SRCS:.c=.o)
-OBJS = $(addprefix $(OBJSDIR), $(OBJSLIST))
-
-LIBFTDIR = ./libft/
-LIBFT = $(LIBFTDIR)libft.a
-
-READLINE = -lreadline
-
-LIBS = -L${LIBFTDIR} -lft ${READLINE}
-INCS = -I${HEADDIR} -I${LIBFTDIR}
+start:
+	@make all
+$(LIBFT):
+	@make -C ./lib/libft
 
 all: $(NAME)
-
-$(NAME): $(LIBFT) $(OBJSDIR) $(OBJS)
-	$(CC) $(FLAGS) $(DEBUG) $(OBJS) -o $@ $(LIBS) $(INCS)
-
-$(LIBFT):
-	make -C $(LIBFTDIR)
-
-$(OBJSDIR):
-	mkdir -p $(OBJSDIR)
-
-$(OBJSDIR)%.o: %.c $(HEADERS)
-	$(CC) $(FLAGS) $(DEBUG) $(INCS) -c $< -o $@
+$(NAME): $(OBJ) $(LIBFT)
+	@$(CC) $(FLAGS) $(INC) $(OBJ) $(LIBFT) $(READFLAG) -o $(NAME)
+$(OBJ_DIR)%.o:	  %.c
+	@mkdir -p $(@D)
+	@$(CC) $(FLAGS) $(INC) -c $< -o $@
 
 clean:
-	$(RM) -r $(OBJSDIR)
-	make -C $(LIBFTDIR) clean
+	@$(RM) -r $(OBJ_DIR)
+	@make clean -C ./lib/libft
 
 fclean: clean
-	$(RM) $(NAME)
-	make -C $(LIBFTDIR) fclean
+	@$(RM) $(NAME)
+	@$(RM) $(LIBFT)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+norminette:
+	@norminette $(SRC)
+
+.PHONY: start all clean fclean re
