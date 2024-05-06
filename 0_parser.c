@@ -6,13 +6,13 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 12:31:25 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/05/06 12:32:00 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/05/06 13:41:17 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	parser(t_data *data)
+int	parser(t_data *data)
 {
 	printf("This is parser!\n");
 }

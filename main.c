@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 11:14:30 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/05/06 13:06:46 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/05/06 13:40:44 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,16 @@ int	main(int argc, char **argv, char **envp)
 	data_init(&data, envp);
 	while (1)
 	{
-		data->promt = readline(TITLE);
-		add_history(data->promt);
-		if (!is_only_space(data->promt))
-		{
-			lexer(data);
-			parser(data);
-			executer(data);
-		}
+		data->prompt = readline(ENTRY_PROMPT);
+		add_history(data->prompt);
+		if (is_only_space(data->prompt) || ft_strlen(data->prompt) == 0)
+			continue ;
+		if (lexer(data))
+			continue ;
+		if (parser(data))
+			continue ;
+		if (executer(data))
+			continue ;
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:59:01 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/05/06 12:59:39 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/05/06 13:53:26 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,16 @@
 # include <fcntl.h>
 # include "libft.h"
 
-# define TITLE "minishell: "
+# define ENTRY_PROMPT "minishell$ "
+# define HERE_DOC_PROMPT "> "
 
 typedef enum e_type
 {
 	OPERAND,
 	STRING,
-	ENV,
+	ENVAR,
 	PIPE,
-	HERE_DOC
+	HERE_DOC,
 }			t_type;
 
 typedef struct s_env_lst
@@ -51,17 +52,17 @@ typedef struct s_data
 	t_tocken	*tocken;
 	char		**path;
 	char		**cmd_tab;
-	char		*promt;
+	char		*prompt;
 }			t_data;
 
 /* lexer */
-void		lexer(t_data *data);
+int			lexer(t_data *data);
 
 /* parser */
-void	parser(t_data *data);
+int			parser(t_data *data);
 
 /* executer */
-void	executer(t_data *data);
+int			executer(t_data *data);
 
 /* utils/ */
 int			str_chr_idx(const char *str, int c);
@@ -82,6 +83,5 @@ t_env_lst	*set_env_lst(char **envp);
 
 /* data.c */
 void		data_init(t_data **data, char **envp);
-
 
 #endif
