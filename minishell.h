@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:59:01 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/05/03 16:58:05 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/05/06 12:59:39 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,17 @@
 # include <fcntl.h>
 # include "libft.h"
 
+# define TITLE "minishell: "
+
+typedef enum e_type
+{
+	OPERAND,
+	STRING,
+	ENV,
+	PIPE,
+	HERE_DOC
+}			t_type;
+
 typedef struct s_env_lst
 {
 	char				*key;
@@ -26,15 +37,35 @@ typedef struct s_env_lst
 	struct s_env_lst	*next;
 }			t_env_lst;
 
+typedef struct s_tocken
+{
+	char			*value;
+	t_type			type;
+	struct s_tocken	*inner;
+	struct s_tocken	*next;
+}			t_tocken;
+
 typedef struct s_data
 {
 	t_env_lst	*lst;
+	t_tocken	*tocken;
 	char		**path;
+	char		**cmd_tab;
 	char		*promt;
 }			t_data;
 
+/* lexer */
+void		lexer(t_data *data);
+
+/* parser */
+void	parser(t_data *data);
+
+/* executer */
+void	executer(t_data *data);
+
 /* utils/ */
 int			str_chr_idx(const char *str, int c);
+int			is_space(char c);
 
 /* built-in/ */
 int			ft_cd(t_data *data);
@@ -54,4 +85,3 @@ void		data_init(t_data **data, char **envp);
 
 
 #endif
-

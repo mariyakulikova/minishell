@@ -6,7 +6,7 @@
 #    By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:49:03 by fjoestin          #+#    #+#              #
-#    Updated: 2024/05/03 17:51:53 by mkulikov         ###   ########.fr        #
+#    Updated: 2024/05/06 12:40:03 by mkulikov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,10 +20,14 @@ HEADDIR = .
 HEADERS = minishell.h
 
 SRCS =	0_utils.c \
+		0_lexer.c \
+		0_parser.c \
+		0_executer.c \
 		echo.c \
 		main.c \
 		env_lst.c \
-		data.c
+		data.c \
+
 
 OBJSDIR = ./objs/
 OBJSLIST = $(SRCS:.c=.o)
