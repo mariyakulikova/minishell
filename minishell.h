@@ -6,7 +6,7 @@
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:59:01 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/05/06 23:40:56 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/05/07 14:17:18 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,9 @@ typedef struct s_env_lst
 typedef struct s_token
 {
 	char			*value;
+	int				quotes;
+	int				index;
 	t_type			type;
-	struct s_token	*inner;
 	struct s_token	*next;
 }			t_token;
 
