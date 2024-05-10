@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 13:22:33 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/05/10 16:26:58 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/05/10 17:07:22 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,17 @@ void	close_files(t_param *param)
 	close(param->outfile_fd);
 	if (param->here_doc)
 		unlink(TMP_FILE);
+}
+
+int	split_size(char **split)
+{
+	int	size;
+
+	size = 0;
+	while(*split)
+	{
+		size++;
+		split++;
+	}
+	return (size);
 }

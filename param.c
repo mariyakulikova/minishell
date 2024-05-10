@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 13:09:25 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/05/10 16:26:58 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/05/10 17:30:38 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,27 +73,30 @@ static int	*pipes_init(t_param *param, int size)
 	return (pipes);
 }
 
-void	set_param(t_param *param, int argc, char **argv, char **envp)
+void	set_param(t_param *param, int argc, char *prompt, char **envp)
 {
-	int	size;
-	int	i;
+	char	**splited_prompt;
+	int		size;
+	int		i;
 
 	if (param->here_doc)
 	{
-		param->limiter = ft_strjoin(argv[2], "\n");
-		if (!param->limiter)
-			exit(EXIT_FAILURE);
+		// param->limiter = ft_strjoin(argv[2], "\n");
+		// if (!param->limiter)
+		// 	exit(EXIT_FAILURE);
 	}
-	size = argc - param->here_doc - 3;
-	param->cmd_num = size;
+	splited_prompt = ft_split(prompt, ' ');
+	size = split_size(splited_prompt);
+	param->cmd_num = size - 2;
 	param->pipes_size = (size - 1) * 2;
-	open_files(*(argv + 1), *(argv + argc - 1), param);
+	open_files(*(splited_prompt), *(splited_prompt + size - 1), param);
 	param->pids = (pid_t *)malloc(sizeof(pid_t) * size);
 	if (!param->pids)
 		exit(EXIT_FAILURE);
 	param->envp = envp;
 	set_path_value(param, envp);
 	param->cmds_path = ft_split(param->path, ':');
-	parse_cmds(param, argc, argv);
+
+	parse_cmds(param, size - 1, splited_prompt);
 	param->pipes = pipes_init(param, param->pipes_size);
 }

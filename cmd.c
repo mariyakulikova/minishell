@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 13:24:34 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/05/10 16:26:58 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/05/10 17:29:43 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	parse_cmds(t_param *params, int argc, char **argv)
 	if (params->here_doc)
 		shift = 3;
 	else
-		shift = 2;
+		shift = 1;
 	params->cmds = (char ***)malloc(sizeof(char **) * (size + 1));
 	*(params->cmds + size) = NULL;
 	i = 0;
