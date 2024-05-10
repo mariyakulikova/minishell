@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 10:55:05 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/05/03 12:40:08 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/03/25 11:06:07 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,5 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 char	*get_next_line(int fd);
 size_t	ft_count_words(char const *s, char c);
 int		ft_strcmp(const char *s1, const char *s2);
-void	free_split(char **s);
 
 #endif

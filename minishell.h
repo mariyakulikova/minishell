@@ -1,93 +1,67 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   minishell.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/03 10:59:01 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/05/07 14:17:18 by fjoestin         ###   ########.fr       */
+/*   Created: 2024/03/20 12:31:50 by mkulikov          #+#    #+#             */
+/*   Updated: 2024/03/26 15:27:47 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
-
-# include <stdio.h>
-# include <readline/readline.h>
-# include <readline/history.h>
+#ifndef PIPEX_BONUS_H
+# define PIPEX_BONUS_H
+# include <string.h>
+# include <errno.h>
 # include <fcntl.h>
-# include "libft/libft.h"
+# include <stdlib.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <sys/wait.h>
+# include "libft.h"
 
-# define ENTRY_PROMPT "minishell$ "
-# define HERE_DOC_PROMPT "> "
-# define WHITE_SPACE "\f\r\v\t\n "
-# define SINGLE_QUOTE 39
-# define DOBLE_QUOTE 34
-# define WORD 0
+# define BUFF_SIZE 10
+# define TMP_FILE ".temp"
+# define ERR_ARGS "Invalid number of arguments\n"
+# define ERR_PIPE "Pipe error"
+# define ERR_DUP2 "Dup2 error"
+# define ERR_FORK "Fork error"
+# define ERR_EXEC "Execve error"
+# define ERR_OPEN "File opening error"
+# define ERR_READ "Reading error"
+# define ERR_CMD "command not found"
+# define ERR_SPLT "Split error"
+# define ERR_ENVP "envp is NULL"
 
-typedef enum e_type
-{
-	OPERAND,
-	STRING,
-	ENVAR,
-	PIPE,
-	HERE_DOC,
-}			t_type;
+typedef struct s_param {
+	pid_t	*pids;
+	int		*pipes;
+	char	*path;
+	char	**cmds_path;
+	char	***cmds;
+	char	**envp;
+	int		infile_fd;
+	int		outfile_fd;
+	int		cmd_num;
+	int		pipes_size;
+	int		here_doc;
+	char	*limiter;
+}			t_param;
 
-typedef struct s_env_lst
-{
-	char				*key;
-	char				*value;
-	struct s_env_lst	*next;
-}			t_env_lst;
-
-typedef struct s_token
-{
-	char			*value;
-	int				quotes;
-	int				index;
-	t_type			type;
-	struct s_token	*next;
-}			t_token;
-
-typedef struct s_data
-{
-	t_env_lst	*lst;
-	t_token	*token;
-	char		**path;
-	char		**cmd_tab;
-	char		*prompt;
-}			t_data;
-
-/* lexer */
-int			lexer(t_data *data);
-
-/* parser */
-int			parser(t_data *data);
-
-/* executer */
-int			executer(t_data *data);
-
-/* utils/ */
-int			str_chr_idx(const char *str, int c);
-int			is_space(char c);
-
-/* built-in/ */
-int			ft_cd(t_data *data);
-int			ft_echo(t_data *data);
-int			ft_env(t_data *data);
-int			ft_exit(t_data *data);
-int			ft_export(t_data *data);
-int			ft_pwd(t_data *data);
-int			ft_unset(t_data *data);
-
-/* envp_lst.c */
-void		envp_lst_free(t_env_lst *lst);
-t_env_lst	*set_env_lst(char **envp);
-t_env_lst	*envp_lst_new(char *envp);
-
-/* data.c */
-void		data_init(t_data **data, char **envp);
+t_param	*param_init(void);
+void	set_param(t_param *param, int argc, char **argv, char **envp);
+void	free_param(t_param *params);
+void	free_split(char **split);
+void	my_exit(t_param *params, char *str, char *name);
+void	open_files(char *infile, char *outfile, t_param *params);
+void	parse_cmds(t_param *params, int argc, char **argv);
+void	set_path_value(t_param *params, char **envp);
+char	*get_cmd_path(char **cmds_path, char *cmd);
+void	waitpids(t_param *param, int size);
+void	close_pipes(t_param *param);
+void	child(t_param *param, int i);
+int		here_doc(t_param *param);
+void	close_files(t_param *param);
 
 #endif
