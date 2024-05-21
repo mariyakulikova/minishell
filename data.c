@@ -6,7 +6,7 @@
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 15:12:04 by fjoestin          #+#    #+#             */
-/*   Updated: 2024/05/21 15:32:59 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/05/21 21:18:35 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	init_data(t_data **data, char **envp)
 	if (!*data)
 		exit(EXIT_SUCCESS);
 	ft_memset(*data, 0, sizeof(t_data));
-	(*data)->lst = set_envp_lst(envp);
+	(*data)->lst = set_env_lst(envp);
 	if (!(*data)->lst)
 	{
 		free(data);

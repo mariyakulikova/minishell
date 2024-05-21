@@ -55,4 +55,7 @@ t_env_lst	*set_env_lst(char **envp);
 // data
 void	init_data(t_data **data, char **envp);
 
+//utils_1
+int	str_chr_idx(const char *str, int c);
+
 #endif

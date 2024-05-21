@@ -13,8 +13,9 @@ SRCS =	main.c \
 		param.c \
 		pipex.c \
 		utils.c \
-		data.c \
 		env_lst.c \
+		data.c \
+		utils_1.c
 
 OBJSDIR = ./objs/
 OBJSLIST = $(SRCS:.c=.o)
