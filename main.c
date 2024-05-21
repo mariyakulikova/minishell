@@ -6,11 +6,13 @@
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 12:30:50 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/05/21 15:11:49 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/05/21 15:28:20 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+
 
 static int	is_argc_valid(t_param *param, int argc, char **argv)
 {
@@ -38,13 +40,13 @@ int	main(int argc, char **argv, char **envp)
 	if (argc != 1)
 	{
 		perror("Wrong number of arguments!");
-		return (1);
+		exit(EXIT_FAILURE);
 	}
 	param = param_init();
-	init_data(data, envp);
+	init_data(&data, envp);
 	// while (1)
-	line = readline(PROMPT);
-	set_param(param, 2, line, envp);
+	data->prompt = readline(PROMPT);
+	set_param(param, 2, data->prompt, envp);
 	i = 0;
 	while (i < param->cmd_num)
 		child(param, i++);

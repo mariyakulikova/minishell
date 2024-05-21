@@ -47,5 +47,12 @@ typedef struct s_data
 	char		*prompt;
 }			t_data;
 
+// env_lst
+void	envp_lst_free(t_env_lst *lst);
+t_env_lst	*envp_lst_new(char *envp);
+t_env_lst	*set_env_lst(char **envp);
+
+// data
+void	init_data(t_data **data, char **envp);
 
 #endif
