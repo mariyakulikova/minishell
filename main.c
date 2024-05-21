@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/20 12:30:50 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/05/10 17:10:34 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/05/21 15:11:49 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,18 @@ static int	is_argc_valid(t_param *param, int argc, char **argv)
 
 int	main(int argc, char **argv, char **envp)
 {
-	char	*line;
+	t_data	*data;
 	t_param	*param;
 	int		i;
 
+	data = NULL;
+	if (argc != 1)
+	{
+		perror("Wrong number of arguments!");
+		return (1);
+	}
 	param = param_init();
+	init_data(data, envp);
 	// while (1)
 	line = readline(PROMPT);
 	set_param(param, 2, line, envp);
