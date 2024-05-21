@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   exit_err.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/03 13:12:49 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/05/08 14:35:56 by fjoestin         ###   ########.fr       */
+/*   Created: 2024/05/07 14:42:59 by fjoestin          #+#    #+#             */
+/*   Updated: 2024/05/07 14:44:19 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../minishell.h"
+#include "../minishell.h"
 
-int	ft_echo(t_data *data)
+void	exit_err(char *msg, t_data *data)
 {
-	(void)data;
-	printf("Here is ft_echo\n");
-	return (0);
+	
 }

@@ -6,7 +6,7 @@
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:59:01 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/05/07 14:17:18 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/05/07 15:42:23 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <fcntl.h>
+# include <limits.h>
 # include "libft/libft.h"
 
 # define ENTRY_PROMPT "minishell$ "
 # define HERE_DOC_PROMPT "> "
 # define WHITE_SPACE "\f\r\v\t\n "
 # define SINGLE_QUOTE 39
-# define DOBLE_QUOTE 34
-# define WORD 0
+# define DOUBLE_QUOTE 34
 
 typedef enum e_type
 {
@@ -47,7 +47,9 @@ typedef struct s_token
 	char			*value;
 	int				quotes;
 	int				index;
+	int				join;
 	t_type			type;
+	struct s_token	*prev;
 	struct s_token	*next;
 }			t_token;
 
@@ -62,6 +64,10 @@ typedef struct s_data
 
 /* lexer */
 int			lexer(t_data *data);
+t_token		*token_new(char *prompt, int start, int end, int white);
+int			check_single_quote(char *prompt);
+int			check_double_quote(char *prompt);
+int			check_word(char *prompt);
 
 /* parser */
 int			parser(t_data *data);
@@ -72,6 +78,7 @@ int			executer(t_data *data);
 /* utils/ */
 int			str_chr_idx(const char *str, int c);
 int			is_space(char c);
+void		ft_lstadd_back_ms(t_token **lst, t_token *new);
 
 /* built-in/ */
 int			ft_cd(t_data *data);
