@@ -6,7 +6,7 @@
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 12:04:18 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/05/06 22:56:48 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/05/31 14:14:57 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_env_lst	*envp_lst_new(char *envp)
 	return (new);
 }
 
-t_env_lst	*set_env_lst(char **envp)
+t_env_lst	*set_envp_lst(char **envp)
 {
 	t_env_lst	*head;
 	t_env_lst	*curr;

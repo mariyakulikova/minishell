@@ -6,7 +6,7 @@
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:59:01 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/05/07 15:42:23 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/05/31 14:38:06 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <readline/history.h>
 # include <fcntl.h>
 # include <limits.h>
+# include <stdbool.h>
 # include "libft/libft.h"
 
 # define ENTRY_PROMPT "minishell$ "
@@ -56,10 +57,16 @@ typedef struct s_token
 typedef struct s_data
 {
 	t_env_lst	*lst;
-	t_token	*token;
+	t_token	*tokens;
+	int			n_tokens;
 	char		**path;
 	char		**cmd_tab;
 	char		*prompt;
+	char		*line;
+	unsigned int	exit_status;
+	unsigned int	exit_status_final;
+	int			orig_std_in;
+	int			orig_std_out;
 }			t_data;
 
 /* lexer */
@@ -91,7 +98,7 @@ int			ft_unset(t_data *data);
 
 /* envp_lst.c */
 void		envp_lst_free(t_env_lst *lst);
-t_env_lst	*set_env_lst(char **envp);
+t_env_lst	*set_envp_lst(char **envp);
 t_env_lst	*envp_lst_new(char *envp);
 
 /* data.c */
