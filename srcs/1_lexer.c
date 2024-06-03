@@ -6,7 +6,7 @@
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 14:05:45 by fjoestin          #+#    #+#             */
-/*   Updated: 2024/05/31 14:44:18 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/06/02 17:14:30 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,32 @@
 
 int	lexer(t_data *data)
 {
-	t_token *token;
+	t_lexer_help *lexer;
 	
 	if(!check_open_quotes(data->prompt))
-		return (perror("Error: not all quotes were closed"));
-	
+		return (perror("Error: not all quotes were closed"), 1);
+	lexer = init_lh(data);
 	
 
+}
+
+t_lexer_help	*init_lh(t_data *data)
+{
+	t_lexer_help	*lh;
+	
+	lh = (t_lexer_help *)malloc(sizeof(t_lexer_help));
+	if (!lh)
+		return (NULL);
+	lh->line = ft_strdup(data->prompt);
+	lh->result = NULL;
+	lh->temp = NULL;
+	lh->size = 0;
+	lh->start = 0;
+	lh->in_quotes = 0;
+	lh->quotes_type = 0;
+	lh->i = 0;
+	lh->curr_t = 0;
+	return (lh);
 }
 
 // void	tokenizer(t_token *token, t_data *data)
@@ -35,9 +54,9 @@ int	lexer(t_data *data)
 // 	data->line = ft_strtrim(data->prompt, WHITE_SPACE);
 // 	while(data->line[i])
 // 	{
-// 		if (data->line[i] == ' ' )
+// 		if (data->line[i] == ' ' && (!in_d_quotes || !in_s_quotes))
 // 		{
-// 			/* code */
+			
 // 		}
 		
 // 		if(data->line[i] == '\"')
@@ -62,24 +81,4 @@ bool	check_open_quotes(char *prompt)
 		i++;
 	}
 	return (!in_double && !in_single);
-}
-
-t_token	*token_new(char *prompt, int start, int end, int white)
-{
-	t_token	*new;
-	
-	new = (t_token *)malloc(sizeof(t_token));
-	if (!new)
-		exit(EXIT_FAILURE);
-	new->value = ft_substr(prompt, start, end);
-	new->index = INT_MAX;
-	new->quotes = INT_MAX;
-	if (white == 0)
-		new->join = 1;
-	else
-		new->join = 2;
-	new->prev = NULL;
-	new->next = NULL;
-	new->type = NULL;
-	return (new);
 }

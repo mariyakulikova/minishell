@@ -6,7 +6,7 @@
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:59:01 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/05/31 14:38:06 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/05/31 17:57:26 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,19 @@ typedef struct s_token
 	struct s_token	*prev;
 	struct s_token	*next;
 }			t_token;
+
+typedef struct s_lexer_help 
+{
+	char	*line;
+	char	**result;
+	char	*temp;
+	int		size;
+	int		start;
+	int		in_quotes;
+	int		quotes_type;
+	int		i;
+	int		curr_t;
+}	t_lexer_help;
 
 typedef struct s_data
 {
