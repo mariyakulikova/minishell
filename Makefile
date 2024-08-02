@@ -6,7 +6,7 @@
 #    By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:49:03 by fjoestin          #+#    #+#              #
-#    Updated: 2024/05/06 22:58:25 by fjoestin         ###   ########.fr        #
+#    Updated: 2024/08/02 16:11:24 by fjoestin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,9 @@ SRC =   srcs/builtin/cd.c \
 		srcs/data.c \
 		srcs/env_lst.c \
 		srcs/main.c \
+		srcs/1_lexer.c \
+		srcs/get.c \
+		srcs/test.c \
 		
 		
 OBJ = $(patsubst %.c,$(OBJ_DIR)%.o,$(SRC))
@@ -39,7 +42,7 @@ OBJ = $(patsubst %.c,$(OBJ_DIR)%.o,$(SRC))
 start:
 	@make all
 $(LIBFT):
-	@make -C ./lib/libft
+	@make -C ./libft
 
 all: $(NAME)
 $(NAME): $(OBJ) $(LIBFT)
@@ -50,7 +53,7 @@ $(OBJ_DIR)%.o:	  %.c
 
 clean:
 	@$(RM) -r $(OBJ_DIR)
-	@make clean -C ./lib/libft
+	@make clean -C ./libft
 
 fclean: clean
 	@$(RM) $(NAME)

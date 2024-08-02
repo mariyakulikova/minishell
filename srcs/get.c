@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   get.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 12:05:38 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/02 17:50:14 by fjoestin         ###   ########.fr       */
+/*   Created: 2024/08/02 14:29:13 by fjoestin          #+#    #+#             */
+/*   Updated: 2024/08/02 16:04:28 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
-int	ft_isprint(int c)
+int	get_if_quotes(char *value)
 {
-	if (c > 32 && c <= 126)
+	int	i;
+
+	i = 0;
+	if (value[i] == SINGLE_QUOTE)
 		return (1);
+	if (value[i] == DOUBLE_QUOTE)
+		return (2);
 	return (0);
 }
+
+/* t_type	get_type() */

@@ -6,7 +6,7 @@
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:59:01 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/05/31 17:57:26 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/08/02 15:57:56 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,9 @@
 # define SINGLE_QUOTE 39
 # define DOUBLE_QUOTE 34
 
+# define TRUE 1
+# define FALSE 0
+
 typedef enum e_type
 {
 	OPERAND,
@@ -34,6 +37,7 @@ typedef enum e_type
 	ENVAR,
 	PIPE,
 	HERE_DOC,
+	CMD,
 }			t_type;
 
 typedef struct s_env_lst
@@ -53,19 +57,6 @@ typedef struct s_token
 	struct s_token	*prev;
 	struct s_token	*next;
 }			t_token;
-
-typedef struct s_lexer_help 
-{
-	char	*line;
-	char	**result;
-	char	*temp;
-	int		size;
-	int		start;
-	int		in_quotes;
-	int		quotes_type;
-	int		i;
-	int		curr_t;
-}	t_lexer_help;
 
 typedef struct s_data
 {
@@ -88,6 +79,8 @@ t_token		*token_new(char *prompt, int start, int end, int white);
 int			check_single_quote(char *prompt);
 int			check_double_quote(char *prompt);
 int			check_word(char *prompt);
+t_token	*tokenizer(t_data *data);
+bool	check_open_quotes(char *prompt);
 
 /* parser */
 int			parser(t_data *data);
@@ -99,6 +92,7 @@ int			executer(t_data *data);
 int			str_chr_idx(const char *str, int c);
 int			is_space(char c);
 void		ft_lstadd_back_ms(t_token **lst, t_token *new);
+t_token		*ft_lstlast_ms(t_token *lst);
 
 /* built-in/ */
 int			ft_cd(t_data *data);
@@ -115,6 +109,13 @@ t_env_lst	*set_envp_lst(char **envp);
 t_env_lst	*envp_lst_new(char *envp);
 
 /* data.c */
+void	ft_minishell(t_data *data);
 void		data_init(t_data **data, char **envp);
+
+/* get */
+int	get_if_quotes(char *value);
+
+/* test */
+void	test_tokens(t_token	*token);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 14:05:45 by fjoestin          #+#    #+#             */
-/*   Updated: 2024/06/02 17:14:30 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/08/02 16:04:17 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,54 +14,14 @@
 
 int	lexer(t_data *data)
 {
-	t_lexer_help *lexer;
+	t_token *tokens;
 	
 	if(!check_open_quotes(data->prompt))
 		return (perror("Error: not all quotes were closed"), 1);
-	lexer = init_lh(data);
-	
-
+	tokens = tokenizer(data);
+	test_tokens(tokens);
+	return 0;
 }
-
-t_lexer_help	*init_lh(t_data *data)
-{
-	t_lexer_help	*lh;
-	
-	lh = (t_lexer_help *)malloc(sizeof(t_lexer_help));
-	if (!lh)
-		return (NULL);
-	lh->line = ft_strdup(data->prompt);
-	lh->result = NULL;
-	lh->temp = NULL;
-	lh->size = 0;
-	lh->start = 0;
-	lh->in_quotes = 0;
-	lh->quotes_type = 0;
-	lh->i = 0;
-	lh->curr_t = 0;
-	return (lh);
-}
-
-// void	tokenizer(t_token *token, t_data *data)
-// {
-// 	int	i;
-// 	bool	in_s_quotes;
-// 	bool	in_d_quotes;
-	
-// 	i = 0;
-// 	in_d_quotes = false;
-// 	in_s_quotes = false;
-// 	data->line = ft_strtrim(data->prompt, WHITE_SPACE);
-// 	while(data->line[i])
-// 	{
-// 		if (data->line[i] == ' ' && (!in_d_quotes || !in_s_quotes))
-// 		{
-			
-// 		}
-		
-// 		if(data->line[i] == '\"')
-// 	}
-// }
 
 bool	check_open_quotes(char *prompt)
 {

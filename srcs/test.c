@@ -1,20 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 12:05:38 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/02 17:50:14 by fjoestin         ###   ########.fr       */
+/*   Created: 2024/08/02 15:38:53 by fjoestin          #+#    #+#             */
+/*   Updated: 2024/08/02 16:14:42 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../minishell.h"
 
-int	ft_isprint(int c)
+void	test_tokens(t_token	*token)
 {
-	if (c > 32 && c <= 126)
-		return (1);
-	return (0);
+	int	i = 0;
+
+	while (token != NULL)
+	{
+		printf("token number: %i\n", i);
+		printf("value: [%s]\n", token->value);
+		printf("Quotes: [%i]\n", token->quotes);
+		i++;
+		token = token->next;
+	}
 }
