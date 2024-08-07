@@ -91,23 +91,31 @@ int	check_single_quote(char *prompt)
 			return (++i) ;
 		i++;
 	}
-	return (-1);
+	return (i);
 }
 
 int	check_double_quote(char *prompt)
 {
 	char *tmp;
 	int		i;
+	int		j;
 
 	tmp = prompt;
 	i = 1;
+	j = 0;
 	while(tmp[i])
 	{
-		if(tmp[i] == DOUBLE_QUOTE && ft_isprint(tmp[i + 1]) == FALSE)
+		if(tmp[i] == DOUBLE_QUOTE && ft_isprint(tmp[i + 1]) == FALSE) 
 			return (++i) ;
+		while(tmp[i] == DOUBLE_QUOTE && ft_isprint(tmp[i + 1]) == TRUE)
+		{
+			if(is_space(tmp[i + j]) == TRUE)
+				return(i + j);
+			j++;
+		}
 		i++;
 	}
-	return (-1);
+	return (i);
 }
 
 int	check_word(char *prompt)

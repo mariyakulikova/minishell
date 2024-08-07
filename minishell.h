@@ -26,6 +26,7 @@
 # define WHITE_SPACE "\f\r\v\t\n "
 # define SINGLE_QUOTE 39
 # define DOUBLE_QUOTE 34
+# define PIPE_PROMPT 124
 
 # define TRUE 1
 # define FALSE 0
@@ -37,7 +38,7 @@ typedef enum e_type
 	ENVAR,
 	PIPE,
 	HERE_DOC,
-	CMD,
+	RED,
 }			t_type;
 
 typedef struct s_env_lst
@@ -81,6 +82,7 @@ int			check_double_quote(char *prompt);
 int			check_word(char *prompt);
 t_token	*tokenizer(t_data *data);
 bool	check_open_quotes(char *prompt);
+void	update_index(t_token *tokens);
 
 /* parser */
 int			parser(t_data *data);
