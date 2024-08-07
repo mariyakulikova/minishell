@@ -6,7 +6,7 @@
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 14:05:45 by fjoestin          #+#    #+#             */
-/*   Updated: 2024/08/02 16:04:17 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/08/07 18:35:26 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ int	lexer(t_data *data)
 	if(!check_open_quotes(data->prompt))
 		return (perror("Error: not all quotes were closed"), 1);
 	tokens = tokenizer(data);
-	processing(&tokens);
-	expender(&tokens);
+/* 	processing(&tokens);
+	expender(&tokens); */
 	test_tokens(tokens);
 	return 0;
 }
@@ -45,11 +45,10 @@ bool	check_open_quotes(char *prompt)
 	return (!in_double && !in_single);
 }
 
-void	processing(t_token **tokens)
+/* void	processing(t_token **tokens)
 {
 	update_index(&tokens);
 	update_type(&tokens);
-	update_join(&tokens);
 }
 
 void	update_index(t_token *tokens)
@@ -63,16 +62,6 @@ void	update_index(t_token *tokens)
 		i++;
 		tokens = tokens->next;
 	}
-}
-
-void	update_join(t_token **tokens)
-{
-	while (tokens != NULL)
-	{
-		
-		tokens = tokens->next;
-	}
-	
 }
 
 void	update_type(t_token **tokens)
@@ -108,4 +97,4 @@ void	check_pipe(t_token *tokens) //should be this token specific
 
 	}
 	
-}
+} */

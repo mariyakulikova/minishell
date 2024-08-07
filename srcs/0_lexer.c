@@ -6,7 +6,7 @@
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 11:08:48 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/02 18:26:17 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/08/07 18:18:22 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_token	*tokenizer(t_data *data)
 	token_lst = NULL;
 	tmp = NULL;
 	prompt = ft_strtrim(data->prompt, WHITE_SPACE);
-	printf("strlen of prompt: %zu", ft_strlen(prompt));
+	//printf("strlen of prompt: %zu", ft_strlen(prompt));
 	start = 0;
 	end = 0;
 	white = 0;
@@ -109,7 +109,7 @@ int	check_double_quote(char *prompt)
 			return (++i) ;
 		while(tmp[i] == DOUBLE_QUOTE && ft_isprint(tmp[i + 1]) == TRUE)
 		{
-			if(is_space(tmp[i + j]) == TRUE)
+			if(tmp[i + j] == '\0' || is_space(tmp[i + j]) == TRUE)
 				return(i + j);
 			j++;
 		}
