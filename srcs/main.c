@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 11:14:30 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/05/06 22:56:50 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/08/08 12:46:53 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static int	is_only_space(char *promt)
 {
+	printf("test\n");
 	while (*promt)
 	{
 		if (!is_space(*promt))
