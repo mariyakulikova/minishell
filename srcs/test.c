@@ -6,7 +6,7 @@
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 15:38:53 by fjoestin          #+#    #+#             */
-/*   Updated: 2024/08/02 16:14:42 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/08/08 14:34:03 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ void	test_tokens(t_token	*token)
 	while (token != NULL)
 	{
 		printf("token number: %i\n", i);
+		printf("token index: [%i]\n", token->index);
 		printf("value: [%s]\n", token->value);
 		printf("Quotes: [%i]\n", token->quotes);
+		printf("Type: [%u]\n", token->type);
 		i++;
 		token = token->next;
 	}

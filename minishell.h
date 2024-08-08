@@ -6,7 +6,7 @@
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:59:01 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/02 15:57:56 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/08/08 14:28:56 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,12 @@ int			check_double_quote(char *prompt);
 int			check_word(char *prompt);
 t_token	*tokenizer(t_data *data);
 bool	check_open_quotes(char *prompt);
-void	update_index(t_token *tokens);
+void	update_index(t_token *tokens, t_data *data);
+void	processing(t_data *data);
+void	update_type(t_data *data);
+t_type	check_pipe(t_token *tokens, t_data *data);
+void	real_pipe(t_token *token, t_data *data);
+void	ft_new_token(t_token *token, char *line);
 
 /* parser */
 int			parser(t_data *data);
