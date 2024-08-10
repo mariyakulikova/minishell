@@ -78,7 +78,6 @@ void	update_type(t_data *data)//**
 		{
 			if(tokens->value[i] == PIPE_PROMPT)
 			{
-				printf("found pipe\n");
 				tokens->type = check_pipe(tokens, data);
 			}
 			i++;
@@ -91,23 +90,22 @@ void	update_type(t_data *data)//**
 t_type	check_pipe(t_token *tokens, t_data *data) //should be this token specific
 {
 	int	i;
-	bool	in_quotes;
+	bool	in_squotes;
+	bool	in_dquotes;
 
 	i = 0;
-	in_quotes = false;
+	in_squotes = false;
+	in_dquotes = false;
 	if (tokens->value[0] == PIPE_PROMPT && tokens->value[1] == '\0')
 		return (PIPE);
 	while (tokens->value[i])
 	{
-		if (tokens->value[i] == SINGLE_QUOTE || tokens->value[i] == DOUBLE_QUOTE)
-		{
-			in_quotes = !in_quotes;
-		}
-		if (tokens->value[i] == PIPE_PROMPT && !in_quotes)
-		{
-			printf("real_pipe\n");
+		if (tokens->value[i] == SINGLE_QUOTE && !in_dquotes)
+			in_squotes = !in_squotes;
+		else if (tokens->value[i] == DOUBLE_QUOTE && !in_squotes)
+			in_dquotes = !in_dquotes;
+		if (tokens->value[i] == PIPE_PROMPT && !in_squotes && !in_dquotes)
 			real_pipe(tokens, data);
-		}
 		i++;
 	}
 	return(STRING);
@@ -118,13 +116,12 @@ void	real_pipe(t_token *token, t_data *data)
 	char	*prompt;
 	char	**split;
 	int		wpipe;
-	int		i;
 	int		size;
 	int		j = 1;
+	t_token	*tmp;// will i have to initialize?
 
 	prompt = token->value;
 	wpipe = str_chr_idx(prompt, PIPE_PROMPT);
-	i = 0;
 	if (prompt[wpipe] != 0 && prompt[wpipe + 1] != '\0')
 	{
 		split = (char **)malloc(sizeof(char *) * 4);
@@ -142,27 +139,34 @@ void	real_pipe(t_token *token, t_data *data)
 	}
 	else
 	{
-		split[0] = ft_substr(prompt, 0, (wpipe));
+		split[0] = ft_substr(prompt, 0, wpipe);
 		split[1] = ft_strdup("|");
 		if (prompt[wpipe + 1])
 		{
-			while (prompt[wpipe + i])
-				i++;
-			split[2] = ft_substr(prompt, ++wpipe, i); 
+			split[2] = ft_substr(prompt, (wpipe + 1), (ft_strlen(prompt) - wpipe)); 
 		}
 	}
 	split[size] = NULL;
 	token->value = ft_strdup(split[0]);
-	while (j < size)
+	while (split[j] && token != NULL)
 	{
-		ft_new_token(token, split[j]);
-		token = token->next;
+		tmp = ft_new_token(split[j]);
+		tmp->prev = token;
+		if (token->next)
+		{
+			tmp->next = token->next;
+			token->next->prev = tmp;
+		}
+		else
+			tmp->next = NULL;
+		token->next = tmp;
+		if (token->next)
+			token = token->next;
 		j++;
 	}
 	processing(data);
-	//call processing
 }
-void	ft_new_token(t_token *token, char *line)
+t_token	*ft_new_token(char *line)
 {
 	t_token	*new;
 
@@ -171,9 +175,8 @@ void	ft_new_token(t_token *token, char *line)
 	new->index = INT_MAX; 
 	new->join = TRUE;
 	new->quotes = get_if_quotes(new->value);
-	new->type = STRING;
-	new->prev = token;
-	new->next = token->next;
-	token->next->prev = new;
-	token->prev = new;
+	new->type = OPERAND;
+	new->prev = NULL;
+	new->next = NULL;
+	return(new);
 }

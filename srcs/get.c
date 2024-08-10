@@ -17,9 +17,9 @@ int	get_if_quotes(char *value)
 	int	i;
 
 	i = 0;
-	if (value[i] == SINGLE_QUOTE && value[ft_strlen(value)] == SINGLE_QUOTE)
+	if (value[i] == SINGLE_QUOTE && value[ft_strlen(value) - 1] == SINGLE_QUOTE)
 		return (1);
-	if (value[i] == DOUBLE_QUOTE && value[ft_strlen(value)] ==DOUBLE_QUOTE)
+	else if (value[i] == DOUBLE_QUOTE && value[ft_strlen(value) - 1] ==DOUBLE_QUOTE)
 		return (2);
 	while (value[i])
 	{

@@ -76,7 +76,7 @@ typedef struct s_data
 
 /* lexer */
 int			lexer(t_data *data);
-t_token		*token_new(char *prompt, int start, int end, int white);
+t_token		*token_new(char *prompt, int start, int end);
 int			check_single_quote(char *prompt);
 int			check_double_quote(char *prompt);
 int			check_word(char *prompt);
@@ -87,7 +87,7 @@ void	processing(t_data *data);
 void	update_type(t_data *data);
 t_type	check_pipe(t_token *tokens, t_data *data);
 void	real_pipe(t_token *token, t_data *data);
-void	ft_new_token(t_token *token, char *line);
+t_token	*ft_new_token(char *line);
 
 /* parser */
 int			parser(t_data *data);

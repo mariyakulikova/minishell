@@ -12,7 +12,7 @@
 
 #include "../minishell.h"
 
-t_token	*token_new(char *prompt, int start, int end, int white)
+t_token	*token_new(char *prompt, int start, int end)
 {
 	t_token	*new;
 	
@@ -22,10 +22,7 @@ t_token	*token_new(char *prompt, int start, int end, int white)
 	new->value = ft_substr(prompt, start, end);
 	new->index = INT_MAX;
 	new->quotes = get_if_quotes(new->value);
-	if (white == 0)
-		new->join = 1;
-	else
-		new->join = 2;
+	new->join = 1;
 	new->prev = NULL;
 	new->next = NULL;
 	new->type = STRING;
@@ -39,25 +36,20 @@ t_token	*tokenizer(t_data *data)
 	char	*prompt;
 	int		start;
 	int		end;
-	int		white;
 
 	token_lst = NULL;
 	tmp = NULL;
 	prompt = ft_strtrim(data->prompt, WHITE_SPACE);
-	//printf("strlen of prompt: %zu", ft_strlen(prompt));
 	start = 0;
 	end = 0;
-	white = 0;
 	while (prompt[start])
 	{
 		if (end > 0)
 		{
-			printf("start: %i, end: %i\n", start, end);
-			tmp = token_new(prompt, start, end, white);
+			tmp = token_new(prompt, start, end);
 			ft_lstadd_back_ms(&token_lst, tmp);
 			start += end + 1;
 			end = 0;
-			white = 0;
 			if(start >= (int)ft_strlen(prompt))
 				break;
 		}
@@ -70,10 +62,7 @@ t_token	*tokenizer(t_data *data)
 		else if (ft_isprint(prompt[start]))
 			end += check_word(&prompt[start]);
 		else
-		{
 			start++;
-			white++;
-		}
 	}
 	return (token_lst);
 }
