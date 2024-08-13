@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   1_lexer.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 14:05:45 by fjoestin          #+#    #+#             */
-/*   Updated: 2024/08/08 14:42:54 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/08/13 14:34:38 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 int	lexer(t_data *data)
 {
-	
+
 	if(!check_open_quotes(data->prompt))
 		return (perror("Error: not all quotes were closed"), 1);
 	data->tokens = tokenizer(data);
 	processing(data);
-	/* expender(&tokens); */
+	expander(data->tokens, data);
 	test_tokens(data->tokens);
 	return 0;
 }
@@ -68,7 +68,7 @@ void	update_type(t_data *data)//**
 {
 	t_token	*tokens;
 	int	i;
-	
+
 	tokens = data->tokens;
 	i = 0;
 	while (tokens != NULL)
@@ -84,7 +84,7 @@ void	update_type(t_data *data)//**
 		}
 		tokens = tokens->next;
 	}
-	
+
 }
 
 t_type	check_pipe(t_token *tokens, t_data *data) //should be this token specific
@@ -143,7 +143,7 @@ void	real_pipe(t_token *token, t_data *data)
 		split[1] = ft_strdup("|");
 		if (prompt[wpipe + 1])
 		{
-			split[2] = ft_substr(prompt, (wpipe + 1), (ft_strlen(prompt) - wpipe)); 
+			split[2] = ft_substr(prompt, (wpipe + 1), (ft_strlen(prompt) - wpipe));
 		}
 	}
 	split[size] = NULL;
@@ -172,7 +172,7 @@ t_token	*ft_new_token(char *line)
 
 	new = (t_token *)malloc(sizeof(t_token));
 	new->value = ft_strdup(line);
-	new->index = INT_MAX; 
+	new->index = INT_MAX;
 	new->join = TRUE;
 	new->quotes = get_if_quotes(new->value);
 	new->type = OPERAND;

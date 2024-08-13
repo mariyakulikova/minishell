@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:59:01 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/08 14:28:56 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/08/13 14:31:45 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,8 @@ void	update_type(t_data *data);
 t_type	check_pipe(t_token *tokens, t_data *data);
 void	real_pipe(t_token *token, t_data *data);
 t_token	*ft_new_token(char *line);
+void	expander(t_token *tokens, t_data *data);
+char	*expand_dollar(char *str, int *i, t_data *data);
 
 /* parser */
 int			parser(t_data *data);
@@ -114,6 +116,7 @@ int			ft_unset(t_data *data);
 void		envp_lst_free(t_env_lst *lst);
 t_env_lst	*set_envp_lst(char **envp);
 t_env_lst	*envp_lst_new(char *envp);
+t_env_lst	*get_var_by_key(t_env_lst *envp_list, char *key);
 
 /* data.c */
 void	ft_minishell(t_data *data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_lst.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 12:04:18 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/05/31 14:14:57 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/08/13 14:31:30 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,4 +73,18 @@ t_env_lst	*set_envp_lst(char **envp)
 		i++;
 	}
 	return (head);
+}
+
+t_env_lst	*get_var_by_key(t_env_lst *envp_list, char *key)
+{
+	t_env_lst	*curr;
+
+	curr = envp_list;
+	while (curr)
+	{
+		if (ft_strcmp((char *)curr->key, key) == 0)
+			return (curr);
+		curr = curr->next;
+	}
+	return (NULL);
 }

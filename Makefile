@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+         #
+#    By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:49:03 by fjoestin          #+#    #+#              #
-#    Updated: 2024/08/02 16:11:24 by fjoestin         ###   ########.fr        #
+#    Updated: 2024/08/13 14:24:41 by mkulikov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,8 +35,10 @@ SRC =   srcs/builtin/cd.c \
 		srcs/1_lexer.c \
 		srcs/get.c \
 		srcs/test.c \
-		
-		
+		srcs/0_expander.c \
+		srcs/1_expander.c
+
+
 OBJ = $(patsubst %.c,$(OBJ_DIR)%.o,$(SRC))
 
 start:

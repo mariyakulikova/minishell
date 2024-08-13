@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/13 18:17:39 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/02/22 12:03:55 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/08/13 14:20:15 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 	if (!s)
 		return (NULL);
-	if (start >= ft_strlen(s))
+	if (start > ft_strlen(s))
 		return (NULL);
 	substrlen = ft_strlen(s) - start;
 	if (len > substrlen)
