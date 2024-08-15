@@ -1,7 +1,7 @@
 
 #include "../minishell.h"
 
-t_type	check_heredoc(t_token *tokens, t_data *data) //should be this token specific
+/* t_type	check_heredoc(t_token *tokens, t_data *data) //should be this token specific
 {
 	int	i;
 	bool	in_squotes;
@@ -18,7 +18,7 @@ t_type	check_heredoc(t_token *tokens, t_data *data) //should be this token speci
 			in_squotes = !in_squotes;
 		else if (tokens->value[i] == DOUBLE_QUOTE && !in_squotes)
 			in_dquotes = !in_dquotes;
-		if (tokens->value[i] == '<' && tokens->value[i + 1] == '<' && !in_squotes && !in_dquotes)
+		if ((tokens->value[i] == '<' && tokens->value[i + 1] == '<') && !in_squotes && !in_dquotes)
 			real_heredoc(tokens, data);
 		i++;
 	}
@@ -35,8 +35,8 @@ void	real_heredoc(t_token *token, t_data *data)
 	t_token	*tmp;// will i have to initialize?
 
 	prompt = token->value;
-	wheredoc = str_chr_idx(prompt, PIPE_PROMPT);
-	if (prompt[wpipe] != 0 && prompt[wpipe + 1] != '\0')
+	wheredoc = ft_strnstr(prompt, "<<", 2);
+	if (prompt[wheredoc] != 0 && prompt[wheredoc + 2] != '\0')
 	{
 		split = (char **)malloc(sizeof(char *) * 4);
 		size = 3;
@@ -46,18 +46,18 @@ void	real_heredoc(t_token *token, t_data *data)
 		split = (char **)malloc(sizeof(char *) * 3);
 		size = 2;
 	}
-	if (wpipe == 0)
+	if (wheredoc == 0)
 	{
-		split[0] = ft_strdup("|");
-		split[1] = ft_substr(prompt, 1, (ft_strlen(prompt) - 1));
+		split[0] = ft_strdup("<<");
+		split[1] = ft_substr(prompt, 2, (ft_strlen(prompt) - 2));
 	}
 	else
 	{
-		split[0] = ft_substr(prompt, 0, wpipe);
-		split[1] = ft_strdup("|");
-		if (prompt[wpipe + 1])
+		split[0] = ft_substr(prompt, 0, wheredoc);
+		split[1] = ft_strdup("<<");
+		if (prompt[wheredoc + 2])
 		{
-			split[2] = ft_substr(prompt, (wpipe + 1), (ft_strlen(prompt) - wpipe)); 
+			split[2] = ft_substr(prompt, (wheredoc + 2), (ft_strlen(prompt) - (wheredoc + 1))); 
 		}
 	}
 	split[size] = NULL;
@@ -79,14 +79,14 @@ void	real_heredoc(t_token *token, t_data *data)
 		j++;
 	}
 	processing(data);
-}
+} */
 
 t_type	check_redirect(t_token *tokens, t_data *data) //should be this token specific
 {
 	int	i;
 	bool	in_squotes;
 	bool	in_dquotes;
-
+	printf("here\n");
 	i = 0;
 	in_squotes = false;
 	in_dquotes = false;
@@ -99,24 +99,24 @@ t_type	check_redirect(t_token *tokens, t_data *data) //should be this token spec
 		else if (tokens->value[i] == DOUBLE_QUOTE && !in_squotes)
 			in_dquotes = !in_dquotes;
 		if ((tokens->value[i] == '<' || tokens->value[i] == '>') && !in_squotes && !in_dquotes)
-			real_red(tokens, data);
+			real_red(tokens, data, tokens->value[i]);
 		i++;
 	}
 	return(STRING);
 }
 
-void	real_red(t_token *token, t_data *data)
+void	real_red(t_token *token, t_data *data, char red)
 {
 	char	*prompt;
 	char	**split;
-	int		wpipe;
+	int		wred;
 	int		size;
 	int		j = 1;
 	t_token	*tmp;// will i have to initialize?
-
+	printf("value of red: %c", red);
 	prompt = token->value;
-	wpipe = str_chr_idx(prompt, PIPE_PROMPT);
-	if (prompt[wpipe] != 0 && prompt[wpipe + 1] != '\0')
+	wred = str_chr_idx(prompt, red);
+	if (prompt[wred] != 0 && prompt[wred + 1] != '\0')
 	{
 		split = (char **)malloc(sizeof(char *) * 4);
 		size = 3;
@@ -126,18 +126,18 @@ void	real_red(t_token *token, t_data *data)
 		split = (char **)malloc(sizeof(char *) * 3);
 		size = 2;
 	}
-	if (wpipe == 0)
+	if (wred == 0)
 	{
-		split[0] = ft_strdup("|");
+		split[0] = ft_strdup(&red);
 		split[1] = ft_substr(prompt, 1, (ft_strlen(prompt) - 1));
 	}
 	else
 	{
-		split[0] = ft_substr(prompt, 0, wpipe);
-		split[1] = ft_strdup("|");
-		if (prompt[wpipe + 1])
+		split[0] = ft_substr(prompt, 0, wred);
+		split[1] = ft_strdup(&red);
+		if (prompt[wred + 1])
 		{
-			split[2] = ft_substr(prompt, (wpipe + 1), (ft_strlen(prompt) - wpipe)); 
+			split[2] = ft_substr(prompt, (wred + 1), (ft_strlen(prompt) - wred)); 
 		}
 	}
 	split[size] = NULL;

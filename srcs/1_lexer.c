@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   1_lexer.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 14:05:45 by fjoestin          #+#    #+#             */
-/*   Updated: 2024/08/13 14:34:38 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/08/15 20:46:37 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,9 +77,12 @@ void	update_type(t_data *data)//**
 		while (tokens->value[i] != '\0')
 		{
 			if(tokens->value[i] == PIPE_PROMPT)
-			{
 				tokens->type = check_pipe(tokens, data);
-			}
+/* 			if (tokens->value[i] == '<' && tokens->value[i + 1] == '<')
+				tokens->type = check_heredoc(tokens, data); */
+			if (tokens->value[i] == '<' || tokens->value[i] == '>')
+				tokens->type = check_redirect(tokens, data);
+			
 			i++;
 		}
 		tokens = tokens->next;

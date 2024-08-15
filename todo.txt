@@ -4,3 +4,6 @@
 - keep while loop running
 -don't except more then 1 argc when lauching the program
 - handle string inside quotes
+
+hello"world$USERS$SHLVL" test - should delete $USERS, but still change $SHLVL
+helloworld$'USERS'$SHLVL - should remove $'USERS', but still process $SHLVL

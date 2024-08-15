@@ -6,7 +6,7 @@
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 11:08:48 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/07 18:18:22 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/08/15 18:32:59 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_token	*token_new(char *prompt, int start, int end)
 	new->value = ft_substr(prompt, start, end);
 	new->index = INT_MAX;
 	new->quotes = get_if_quotes(new->value);
-	new->join = 1;
+	new->join = FALSE;
 	new->prev = NULL;
 	new->next = NULL;
 	new->type = STRING;
