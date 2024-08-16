@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:59:01 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/16 13:05:25 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/08/16 16:22:44 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ char	*expand_dollar(char *str, int *i, t_data *data);
 int			parser(t_data *data);
 int			parse_red(t_data *data);
 int			parse_cmd(t_data *data);
+int			handle_heredoc(char *limiter);
 
 /* executer */
 int			executer(t_data *data);

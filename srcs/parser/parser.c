@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 13:38:20 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/16 13:02:14 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/08/16 21:47:27 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,33 @@ static int	count_tokens(t_token *token, t_type type)
 	return (count);
 }
 
-// static void	init_parser_data(t_data *data)
-// {
-// 	int	i;
+//test
+bool is_red(char *val)
+{
+	return (ft_strcmp(val, ">>") == 0 || ft_strcmp(val, ">") == 0 || ft_strcmp(val, "<<") == 0 || ft_strcmp(val, "<") == 0);
+}
+//test
+void	mock_tokens(t_token *tokens)
+{
+	t_token *curr;
 
-// 	data->cmd_size = count_tokens(data->tokens, PIPE) + 1;
-// 	data->cmd_tab = (char ***)malloc(sizeof(char **) * data->cmd_size);
-// 	i = -1;
-// 	while (++i < data->cmd_size)
-// 		data->cmd_tab[i] = NULL;
-// 	data->fd_tab = (int *)malloc(sizeof(int) * data->cmd_size * 2);
-// 	ft_memset(data->fd_tab, -1, data->cmd_size);
-// }
-
+	curr = tokens;
+	while (curr)
+	{
+		if (is_red(curr->value))
+		{
+			curr->type = RED;
+			if (curr->next)
+			{
+				curr = curr->next;
+				curr->type = RED;
+			}
+		}
+		else
+			curr = curr->next;
+	}
+}
+// test
 void	test(char ***arr, int size)
 {
 	int i = -1;
@@ -61,20 +75,21 @@ int	parser(t_data *data)
 {
 	int	i;
 
+	mock_tokens(data->tokens); // delete after lexer will be done
 	data->cmd_size = count_tokens(data->tokens, PIPE) + 1;
 	data->fd_tab = (int *)malloc(sizeof(int) * data->cmd_size * 2);
-	ft_memset(data->fd_tab, -2, data->cmd_size);
+	if (!data->fd_tab)
+		return (1);
+	ft_memset(data->fd_tab, -1, sizeof(int) * data->cmd_size * 2);
 	if (parse_red(data))
 		return (1);
 	data->cmd_tab = (char ***)malloc(sizeof(char **) * data->cmd_size);
+	if (!data->cmd_tab)
+		return (1);
 	i = -1;
 	while (++i < data->cmd_size)
 		data->cmd_tab[i] = NULL;
 	if (parse_cmd(data))
 		return (1);
-	test(data->cmd_tab, data->cmd_size);
 	return (0);
 }
-
-// if (curr->type == RED || curr->type == HERE_DOC)
-// 				handle_red(data->fd_tab + (i * 2), curr);
