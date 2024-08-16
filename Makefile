@@ -6,7 +6,7 @@
 #    By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:49:03 by fjoestin          #+#    #+#              #
-#    Updated: 2024/08/13 14:24:41 by mkulikov         ###   ########.fr        #
+#    Updated: 2024/08/16 13:05:53 by mkulikov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,9 +25,11 @@ SRC =   srcs/builtin/cd.c \
 		srcs/builtin/export.c \
 		srcs/builtin/pwd.c \
 		srcs/builtin/unset.c \
+		srcs/parser/parser.c \
+		srcs/parser/parse_cmd.c \
+		srcs/parser/parse_red.c \
 		srcs/0_executer.c \
 		srcs/0_lexer.c \
-		srcs/0_parser.c \
 		srcs/0_utils.c \
 		srcs/data.c \
 		srcs/env_lst.c \

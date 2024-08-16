@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 13:38:20 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/15 21:53:04 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/08/16 13:02:14 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,10 @@ int	parser(t_data *data)
 	int	i;
 
 	data->cmd_size = count_tokens(data->tokens, PIPE) + 1;
+	data->fd_tab = (int *)malloc(sizeof(int) * data->cmd_size * 2);
+	ft_memset(data->fd_tab, -2, data->cmd_size);
+	if (parse_red(data))
+		return (1);
 	data->cmd_tab = (char ***)malloc(sizeof(char **) * data->cmd_size);
 	i = -1;
 	while (++i < data->cmd_size)

@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:59:01 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/16 09:43:26 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/08/16 13:05:25 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,9 @@ typedef struct s_data
 	t_token	*tokens;
 	int			n_tokens;
 	char		**path;
-	char		**cmd_tab;
+	char		***cmd_tab;
 	int			cmd_size;
+	int			*fd_tab;
 	char		*prompt;
 	char		*line;
 	unsigned int	exit_status;
@@ -94,6 +95,8 @@ char	*expand_dollar(char *str, int *i, t_data *data);
 
 /* parser */
 int			parser(t_data *data);
+int			parse_red(t_data *data);
+int			parse_cmd(t_data *data);
 
 /* executer */
 int			executer(t_data *data);
