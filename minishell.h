@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:59:01 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/13 14:31:45 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/08/16 09:43:26 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ typedef struct s_data
 	int			n_tokens;
 	char		**path;
 	char		**cmd_tab;
+	int			cmd_size;
 	char		*prompt;
 	char		*line;
 	unsigned int	exit_status;
