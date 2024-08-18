@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:59:01 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/18 12:20:58 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/08/18 13:56:12 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ typedef enum e_type
 	HERE_DOC,
 	RED,
 }			t_type;
+
+typedef int	(*t_builtin_func)(t_data *);
 
 typedef struct s_env_lst
 {
@@ -83,6 +85,8 @@ typedef struct s_data
 	unsigned int	exit_status_final;
 	int			orig_std_in;
 	int			orig_std_out;
+	char		*builtin_name[7];
+	t_builtin_func	builtin_tab[7];
 }			t_data;
 
 /* lexer */
