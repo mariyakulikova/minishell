@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   0_executer.c                                       :+:      :+:    :+:   */
+/*   executer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/06 12:32:29 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/05/06 22:57:07 by fjoestin         ###   ########.fr       */
+/*   Created: 2024/08/18 11:58:26 by mkulikov          #+#    #+#             */
+/*   Updated: 2024/08/18 12:04:11 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 int	executer(t_data *data)
 {
 	(void)data;
-	printf("This is executer!\n");
-	return 0;
+	printf("here is executor!\n");
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 11:14:30 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/16 13:06:47 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/08/18 12:04:15 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ void	ft_minishell(t_data *data)
 			continue ;
 		if (parser(data))
 			continue ;
-		// if (executer(data))
-		// 	continue ;
+		if (executer(data))
+			continue ;
 	}
 
 }

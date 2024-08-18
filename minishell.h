@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:59:01 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/16 16:22:44 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/08/18 12:06:30 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,10 +59,17 @@ typedef struct s_token
 	struct s_token	*next;
 }			t_token;
 
+typedef struct s_exe_data
+{
+	int		*pipes;
+	int		*pids;
+}			t_exe_data;
+
 typedef struct s_data
 {
+	t_exe_data	*exe_data;
 	t_env_lst	*lst;
-	t_token	*tokens;
+	t_token		*tokens;
 	int			n_tokens;
 	char		**path;
 	char		***cmd_tab;
