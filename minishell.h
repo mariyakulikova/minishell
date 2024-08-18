@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:59:01 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/18 12:06:30 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/08/18 12:20:58 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ typedef struct s_exe_data
 {
 	int		*pipes;
 	int		*pids;
+	int		pids_size;
+	int		pipes_size;
 }			t_exe_data;
 
 typedef struct s_data
