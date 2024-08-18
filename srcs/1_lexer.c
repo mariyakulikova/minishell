@@ -82,7 +82,6 @@ void	update_type(t_data *data)//**
 				tokens->type = check_heredoc(tokens, data); */
 			if (tokens->value[i] == '<' || tokens->value[i] == '>')
 				tokens->type = check_redirect(tokens, data);
-			
 			i++;
 		}
 		tokens = tokens->next;
@@ -127,11 +126,13 @@ void	real_pipe(t_token *token, t_data *data)
 	wpipe = str_chr_idx(prompt, PIPE_PROMPT);
 	if (prompt[wpipe] != 0 && prompt[wpipe + 1] != '\0')
 	{
+		printf("hello size 3 pipe\n");
 		split = (char **)malloc(sizeof(char *) * 4);
 		size = 3;
 	}
 	else
 	{
+		printf("hello size 2 pipe\n");
 		split = (char **)malloc(sizeof(char *) * 3);
 		size = 2;
 	}
@@ -178,7 +179,7 @@ t_token	*ft_new_token(char *line)
 	new->index = INT_MAX;
 	new->join = TRUE;
 	new->quotes = get_if_quotes(new->value);
-	new->type = OPERAND;
+	new->type = STRING;
 	new->prev = NULL;
 	new->next = NULL;
 	return(new);

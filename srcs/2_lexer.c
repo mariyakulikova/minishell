@@ -86,7 +86,6 @@ t_type	check_redirect(t_token *tokens, t_data *data) //should be this token spec
 	int	i;
 	bool	in_squotes;
 	bool	in_dquotes;
-	printf("here\n");
 	i = 0;
 	in_squotes = false;
 	in_dquotes = false;
@@ -105,18 +104,18 @@ t_type	check_redirect(t_token *tokens, t_data *data) //should be this token spec
 	return(STRING);
 }
 
-void	real_red(t_token *token, t_data *data, char red)
+void	real_red(t_token *token, t_data *data, int red)
 {
 	char	*prompt;
 	char	**split;
 	int		wred;
 	int		size;
 	int		j = 1;
-	t_token	*tmp;// will i have to initialize?
-	printf("value of red: %c", red);
+	t_token	*tmp;
+
 	prompt = token->value;
 	wred = str_chr_idx(prompt, red);
-	if (prompt[wred] != 0 && prompt[wred + 1] != '\0')
+	if (wred != 0 && prompt[wred + 1] != '\0')
 	{
 		split = (char **)malloc(sizeof(char *) * 4);
 		size = 3;
@@ -126,19 +125,18 @@ void	real_red(t_token *token, t_data *data, char red)
 		split = (char **)malloc(sizeof(char *) * 3);
 		size = 2;
 	}
-	if (wred == 0)
+	if(size == 2)
 	{
-		split[0] = ft_strdup(&red);
-		split[1] = ft_substr(prompt, 1, (ft_strlen(prompt) - 1));
+		if(wred == 0)
+			wred++;
+		split[0] = ft_substr(prompt, 0, wred);
+		split[1] = ft_substr(prompt, wred, (ft_strlen(prompt) - wred));
 	}
 	else
 	{
 		split[0] = ft_substr(prompt, 0, wred);
-		split[1] = ft_strdup(&red);
-		if (prompt[wred + 1])
-		{
-			split[2] = ft_substr(prompt, (wred + 1), (ft_strlen(prompt) - wred)); 
-		}
+		split[1] = ft_substr(prompt, wred, 1);
+		split[2] = ft_substr(prompt, (wred + 1), (ft_strlen(prompt) - wred));
 	}
 	split[size] = NULL;
 	token->value = ft_strdup(split[0]);
