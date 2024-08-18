@@ -126,13 +126,11 @@ void	real_pipe(t_token *token, t_data *data)
 	wpipe = str_chr_idx(prompt, PIPE_PROMPT);
 	if (prompt[wpipe] != 0 && prompt[wpipe + 1] != '\0')
 	{
-		printf("hello size 3 pipe\n");
 		split = (char **)malloc(sizeof(char *) * 4);
 		size = 3;
 	}
 	else
 	{
-		printf("hello size 2 pipe\n");
 		split = (char **)malloc(sizeof(char *) * 3);
 		size = 2;
 	}

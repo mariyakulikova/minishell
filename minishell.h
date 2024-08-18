@@ -38,6 +38,7 @@ typedef enum e_type
 	ENVAR,
 	PIPE,
 	HERE_DOC,
+	APPEND,
 	RED,
 }			t_type;
 
