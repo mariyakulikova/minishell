@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   0_utils.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 16:24:03 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/02 14:44:59 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/08/19 13:11:58 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +65,17 @@ t_token	*ft_lstlast_ms(t_token *lst)
 		temp = temp->next;
 	}
 	return (temp);
+}
+
+void	free_split(char **split)
+{
+	int	i;
+
+	i = 0;
+	while (*(split + i))
+	{
+		free(*(split + i));
+		i++;
+	}
+	free(split);
 }
