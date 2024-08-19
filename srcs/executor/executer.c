@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 11:58:26 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/18 13:41:56 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/08/18 15:04:41 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,6 @@ int	executer(t_data *data)
 	if (init_exe_data(&exe_data, data))
 		return (free_exe_data(exe_data, 1));
 	(void)data;
-	printf("here is executor!\n");
+	
 	return (free_exe_data(exe_data, 0));
 }

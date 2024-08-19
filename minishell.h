@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:59:01 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/18 13:56:12 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/08/18 15:05:21 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,7 @@ int			handle_heredoc(char *limiter);
 
 /* executer */
 int			executer(t_data *data);
+void		close_fd(int *fd, int size);
 
 /* utils/ */
 int			str_chr_idx(const char *str, int c);

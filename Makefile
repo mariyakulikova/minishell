@@ -6,7 +6,7 @@
 #    By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:49:03 by fjoestin          #+#    #+#              #
-#    Updated: 2024/08/18 12:05:37 by mkulikov         ###   ########.fr        #
+#    Updated: 2024/08/18 15:06:28 by mkulikov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRC =   srcs/builtin/cd.c \
 		srcs/parser/parse_red.c \
 		srcs/parser/heredoc.c \
 		srcs/executor/executer.c \
+		srcs/executor/executer_utils.c \
 		srcs/0_lexer.c \
 		srcs/0_utils.c \
 		srcs/data.c \
@@ -40,7 +41,6 @@ SRC =   srcs/builtin/cd.c \
 		srcs/test.c \
 		srcs/0_expander.c \
 		srcs/1_expander.c
-
 
 OBJ = $(patsubst %.c,$(OBJ_DIR)%.o,$(SRC))
 
@@ -66,7 +66,7 @@ fclean: clean
 
 re: fclean all
 
-norminette:
+norm:
 	@norminette $(SRC)
 
 .PHONY: start all clean fclean re
