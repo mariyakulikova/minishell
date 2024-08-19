@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 12:29:16 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/18 13:55:18 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/08/19 13:04:19 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	data_init(t_data **data, char **envp)
 	(*data)->tokens = NULL;
 	(*data)->line = NULL;
 	(*data)->cmd_tab = NULL;
-	(*data)->path = NULL;
+	(*data)->envp = envp;
 	(*data)->exe_data = NULL;
 }
 
