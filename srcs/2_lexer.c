@@ -159,10 +159,10 @@ void	check_types(t_data *data)
 	token = data->tokens;
 	while (token != NULL)
 	{
-		if (token->type == PIPE && (token->index == 0 || token->index == data->n_tokens))
-			//error message
+		if (token->type == PIPE && (token->index == 0 || token->index == (data->n_tokens - 1)))
+			ft_exit_err("pipe doesn't work\n", data);
 		if (token->type == PIPE && token->next->type == PIPE)
-			//error message
+			ft_exit_err("2 pipes\n", data);
 		token = token->next;
 	}
 	

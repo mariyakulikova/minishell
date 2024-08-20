@@ -37,7 +37,8 @@ SRC =   srcs/builtin/cd.c \
 		srcs/get.c \
 		srcs/test.c \
 		srcs/0_expander.c \
-		srcs/1_expander.c
+		srcs/1_expander.c \
+		srcs/exit_err.c
 
 
 OBJ = $(patsubst %.c,$(OBJ_DIR)%.o,$(SRC))

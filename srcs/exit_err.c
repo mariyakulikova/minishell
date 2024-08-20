@@ -15,6 +15,7 @@
 void	ft_exit_err(char *msg, t_data *data)
 {
 	//if data
+	//reiniciar values of data
 	write(2,msg, ft_strlen(msg));
-	exit(1);		
+	ft_minishell(data);
 }
