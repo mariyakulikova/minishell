@@ -96,7 +96,7 @@ void	real_heredoc(t_token *token, t_data *data);
 t_type	check_redirect(t_token *tokens, t_data *data);
 void	real_red(t_token *token, t_data *data, int red);
 void	real_double(t_token *token, t_data *data, int red);
-
+void	check_types(t_data *data);
 /* parser */
 int			parser(t_data *data);
 
@@ -131,6 +131,8 @@ void		data_init(t_data **data, char **envp);
 /* get */
 int	get_if_quotes(char *value);
 
+//exit_err
+void	ft_exit_err(char *msg, t_data *data);
 /* test */
 void	test_tokens(t_token	*token);
 
