@@ -72,8 +72,10 @@ t_type	check_redirect(t_token *tokens, t_data *data) //should be this token spec
 	i = 0;
 	in_squotes = false;
 	in_dquotes = false;
-	if ((tokens->value[0] == '<' || tokens->value[0] == '>') && tokens->value[1] == '\0')
-		return (RED);
+	if (tokens->value[0] == '<' && tokens->value[1] == '\0')
+		return (RED_IN);
+	else if (tokens->value[0] == '>' && tokens->value[1] == '\0')
+		return (RED_OUT);
 	if ((tokens->value[0] == '<' && tokens->value[1] == '<') && tokens->value[2] == '\0')
 		return(HERE_DOC);
 	if ((tokens->value[0] == '>' && tokens->value[1] == '>') && tokens->value[2] == '\0')

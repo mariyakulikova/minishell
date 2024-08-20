@@ -39,7 +39,8 @@ typedef enum e_type
 	PIPE,
 	HERE_DOC,
 	APPEND,
-	RED,
+	RED_IN,
+	RED_OUT,
 }			t_type;
 
 typedef struct s_env_lst
