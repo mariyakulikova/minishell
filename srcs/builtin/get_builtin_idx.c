@@ -6,28 +6,25 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 13:54:45 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/18 13:56:25 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/08/19 20:38:08 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	get_builtin_idx(t_data *data)
+int	get_builtin_idx(t_data *data, char *str)
 {
 	int		i;
 	int		size;
-	char	*prompt;
 	char	**names;
 
-	i = 0;
+	i = -1;
 	size = 7;
-	prompt = data->prompt;
 	names = data->builtin_name;
-	while (i < size)
+	while (++i < size)
 	{
-		if (ft_strcmp(prompt, names[i]) == 0)
+		if (ft_strcmp(str, *(names + i)) == 0)
 			return(i);
-		i++;
 	}
 	return (-1);
 }

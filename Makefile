@@ -6,7 +6,7 @@
 #    By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:49:03 by fjoestin          #+#    #+#              #
-#    Updated: 2024/08/19 13:15:16 by mkulikov         ###   ########.fr        #
+#    Updated: 2024/08/20 11:58:52 by mkulikov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRC =   srcs/builtin/cd.c \
 		srcs/executor/executer.c \
 		srcs/executor/executer_utils.c \
 		srcs/executor/exe_data.c \
+		srcs/executor/cmd.c \
 		srcs/0_lexer.c \
 		srcs/0_utils.c \
 		srcs/data.c \

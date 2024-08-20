@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 11:22:27 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/16 21:44:59 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/08/20 12:08:29 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	get_std_type(char *val)
 	return (std_type);
 }
 
-static void	update_fd_tab(int *fd_tab, int size)
+void	update_fd_tab(int *fd_tab, int size)
 {
 	int	i;
 
@@ -47,6 +47,11 @@ static void	update_fd_tab(int *fd_tab, int size)
 			else
 				*(fd_tab + i) = 1;
 		}
+		else
+			if (i % 2 == 0)
+				dup2(*(fd_tab + i), 0);
+			else
+				dup2(*(fd_tab + i), 1);
 	}
 }
 
@@ -115,6 +120,6 @@ int	parse_red(t_data *data)
 			++i;
 		curr = curr->next;
 	}
-	update_fd_tab(data->fd_tab, data->cmd_size * 2);
+	// update_fd_tab(data->fd_tab, data->cmd_size * 2);
 	return (0);
 }
