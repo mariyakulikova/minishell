@@ -95,6 +95,7 @@ t_type	check_heredoc(t_token *tokens, t_data *data);
 void	real_heredoc(t_token *token, t_data *data);
 t_type	check_redirect(t_token *tokens, t_data *data);
 void	real_red(t_token *token, t_data *data, int red);
+void	real_double(t_token *token, t_data *data, int red);
 
 /* parser */
 int			parser(t_data *data);
