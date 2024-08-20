@@ -12,7 +12,7 @@
 
 #include "../minishell.h"
 
-void	exit_err(char *msg, t_data *data)
+void	ft_exit_err(char *msg, t_data *data)
 {
 	//if data
 	write(2,msg, ft_strlen(msg));

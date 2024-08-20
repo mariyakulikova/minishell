@@ -75,15 +75,9 @@ t_type	check_redirect(t_token *tokens, t_data *data) //should be this token spec
 	if ((tokens->value[0] == '<' || tokens->value[0] == '>') && tokens->value[1] == '\0')
 		return (RED);
 	if ((tokens->value[0] == '<' && tokens->value[1] == '<') && tokens->value[2] == '\0')
-	{
-		printf("heredoc\n");
 		return(HERE_DOC);
-	}
 	if ((tokens->value[0] == '>' && tokens->value[1] == '>') && tokens->value[2] == '\0')
-	{
-		printf("append\n");
 		return (APPEND);
-	}
 	while (tokens->value[i])
 	{
 		if (tokens->value[i] == SINGLE_QUOTE && !in_dquotes)
@@ -156,7 +150,18 @@ void	real_red(t_token *token, t_data *data, int red)
 	processing(data);
 }
 
-// void	check_types(t_data *data)
-// {
+void	check_types(t_data *data)
+{
+	t_token *token;
 
-// }
+	token = data->tokens;
+	while (token != NULL)
+	{
+		if (token->type == PIPE && (token->index == 0 || token->index == data->n_tokens))
+			//error message
+		if (token->type == PIPE && token->next->type == PIPE)
+			//error message
+		token = token->next;
+	}
+	
+}

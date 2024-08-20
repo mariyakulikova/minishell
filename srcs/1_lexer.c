@@ -49,7 +49,7 @@ void	processing(t_data *data)
 	//test_tokens(data->tokens);
 	update_index(data->tokens, data);
 	update_type(data);
-//check_types(data);
+	check_types(data);
 }
 
 void	update_index(t_token *tokens, t_data *data)
@@ -80,13 +80,8 @@ void	update_type(t_data *data)//**
 		{
 			if(tokens->value[i] == PIPE_PROMPT)
 				tokens->type = check_pipe(tokens, data);
-/* 			if (tokens->value[i] == '<' && tokens->value[i + 1] == '<')
-				tokens->type = check_heredoc(tokens, data); */
 			if (tokens->value[i] == '<' || tokens->value[i] == '>')
-			{
-				printf("checking redirections\n");
 				tokens->type = check_redirect(tokens, data);
-			}
 			i++;
 		}
 		tokens = tokens->next;
