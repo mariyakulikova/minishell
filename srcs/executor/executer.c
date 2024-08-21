@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 11:58:26 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/21 14:28:44 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/08/21 15:10:03 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,16 @@ static int	proceed_cmd(t_exe_data *exe_data, t_data *data, int i)
 		return (1);
 	if (*(exe_data->pid_tab + i) == 0)
 	{
-		printf("%s\n", (char *)(*(data->fd_list_tab + i))->value);
-		set_fd(exe_data->fd_tab + i, *(data->fd_list_tab + i));
-		if (set_fd(exe_data->fd_tab + i, *(data->fd_list_tab + i)))
-			return (1);
-		set_fd(exe_data->fd_tab + i + 1, *(data->fd_list_tab + i) + 1);
-		if (set_fd(exe_data->fd_tab + i + 1, *(data->fd_list_tab + i) + 1))
-			return (1);
-		update_fd_tab(exe_data->fd_tab + i, 2);
-		if (dup_fd(exe_data->fd_tab + i, 2))
-			return (1);
+		// printf("%s\n", (char *)(*(data->fd_list_tab + i))->value);
+		// set_fd(exe_data->fd_tab + i, *(data->fd_list_tab + i));
+		// if (set_fd(exe_data->fd_tab + i, *(data->fd_list_tab + i)))
+		// 	return (1);
+		// set_fd(exe_data->fd_tab + i + 1, *(data->fd_list_tab + i) + 1);
+		// if (set_fd(exe_data->fd_tab + i + 1, *(data->fd_list_tab + i) + 1))
+		// 	return (1);
+		// update_fd_tab(exe_data->fd_tab + i, 2);
+		// if (dup_fd(exe_data->fd_tab + i, 2))
+		// 	return (1);
 		execute_cmd(data, i);
 		// close_fd(data->fd_tab, 2);
 	}
