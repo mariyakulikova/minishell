@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/20 14:20:42 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/20 16:06:03 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/08/21 19:25:49 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	llistadd_back(t_llist **llist, t_llist *new)
 		return ;
 	}
 	last = *llist;
-	while (last)
+	while (last->next)
 		last = last->next;
 	last->next = new;
 }
