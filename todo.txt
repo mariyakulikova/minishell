@@ -1,6 +1,9 @@
-- check if it's only white spaces don't malloc just reprompt
-- function to update index
-- function to check for quotes, get rid of them in the string and say if the have it or not
-- keep while loop running
--don't except more then 1 argc when lauching the program
-- handle string inside quotes
+-check for pipes Error
+Here are pipe syntax error cases:
+if pipe at the beginning of the command --> | cat
+if pipe at the end of the command --> cat |
+if after pipe goes space and another pipe (important) --> cat | | cat
+If pipe goes in quotes it interprets as a simple character
+syntax error near unexpected token `|'
+hello"world$USERS$SHLVL" test - should delete $USERS, but still change $SHLVL
+helloworld$'USERS'$SHLVL - should remove $'USERS', but still process $SHLVL

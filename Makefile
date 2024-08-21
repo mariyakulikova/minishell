@@ -6,7 +6,7 @@
 #    By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:49:03 by fjoestin          #+#    #+#              #
-#    Updated: 2024/05/06 22:58:25 by fjoestin         ###   ########.fr        #
+#    Updated: 2024/08/21 16:39:50 by fjoestin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,21 +25,37 @@ SRC =   srcs/builtin/cd.c \
 		srcs/builtin/export.c \
 		srcs/builtin/pwd.c \
 		srcs/builtin/unset.c \
-		srcs/0_executer.c \
-		srcs/0_lexer.c \
-		srcs/0_parser.c \
-		srcs/0_utils.c \
+		srcs/builtin/get_builtin_idx.c \
+		srcs/parser/parser.c \
+		srcs/parser/parse_cmd.c \
+		srcs/parser/parse_red.c \
+		srcs/executor/heredoc.c \
+		srcs/executor/executer.c \
+		srcs/executor/executer_utils.c \
+		srcs/executor/exe_data.c \
+		srcs/executor/cmd.c \
+		srcs/executor/file.c \
+		srcs/utils/t_llist.c \
+		srcs/utils/1_utils.c \
+		srcs/utils/0_utils.c \
+		srcs/lexer/0_lexer.c \
+		srcs/lexer/1_lexer.c \
+		srcs/lexer/2_lexer.c \
+		srcs/lexer/0_expander.c \
+		srcs/lexer/1_expander.c \
+		srcs/lexer/get.c \
 		srcs/data.c \
 		srcs/env_lst.c \
 		srcs/main.c \
-		
-		
+		srcs/test.c \
+		srcs/exit_err.c
+
 OBJ = $(patsubst %.c,$(OBJ_DIR)%.o,$(SRC))
 
 start:
 	@make all
 $(LIBFT):
-	@make -C ./lib/libft
+	@make -C ./libft
 
 all: $(NAME)
 $(NAME): $(OBJ) $(LIBFT)
@@ -50,7 +66,7 @@ $(OBJ_DIR)%.o:	  %.c
 
 clean:
 	@$(RM) -r $(OBJ_DIR)
-	@make clean -C ./lib/libft
+	@make clean -C ./libft
 
 fclean: clean
 	@$(RM) $(NAME)
@@ -58,7 +74,7 @@ fclean: clean
 
 re: fclean all
 
-norminette:
+norm:
 	@norminette $(SRC)
 
 .PHONY: start all clean fclean re

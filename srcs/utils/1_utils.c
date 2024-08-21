@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_err.c                                         :+:      :+:    :+:   */
+/*   1_utils.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/07 14:42:59 by fjoestin          #+#    #+#             */
-/*   Updated: 2024/08/02 16:07:42 by fjoestin         ###   ########.fr       */
+/*   Created: 2024/08/21 11:06:10 by mkulikov          #+#    #+#             */
+/*   Updated: 2024/08/21 11:07:00 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
-void	ft_exit_err(char *msg, t_data *data)
+int	get_stream_type(t_type type)
 {
-	//if data
-	//reiniciar values of data
-	write(2,msg, ft_strlen(msg));
-	ft_minishell(data);
+	if (type == RED_OUT || type == APPEND)
+		return (1);
+	return (0);
 }

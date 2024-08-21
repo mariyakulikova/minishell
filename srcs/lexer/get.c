@@ -1,20 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   0_parser.c                                         :+:      :+:    :+:   */
+/*   get.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/06 12:31:25 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/05/06 22:57:31 by fjoestin         ###   ########.fr       */
+/*   Created: 2024/08/02 14:29:13 by fjoestin          #+#    #+#             */
+/*   Updated: 2024/08/21 16:20:27 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
-int	parser(t_data *data)
+int	get_if_quotes(char *value)
 {
-	(void)data;
-	printf("This is parser!\n");
-	return 0;
+	int	i;
+
+	i = 0;
+	if (value[i] == SINGLE_QUOTE && value[ft_strlen(value) - 1] == SINGLE_QUOTE)
+		return (1);
+	else if (value[i] == DOUBLE_QUOTE && value[ft_strlen(value) - 1] ==DOUBLE_QUOTE)
+		return (2);
+	while (value[i])
+	{
+		if (value[i] == SINGLE_QUOTE || value[i] == DOUBLE_QUOTE)
+			return (3);
+		i++;
+	}
+	return (0);
 }
+
+/* t_type	get_type() */

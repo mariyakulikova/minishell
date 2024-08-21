@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   0_executer.c                                       :+:      :+:    :+:   */
+/*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/06 12:32:29 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/05/06 22:57:07 by fjoestin         ###   ########.fr       */
+/*   Created: 2024/08/16 16:20:03 by mkulikov          #+#    #+#             */
+/*   Updated: 2024/08/16 16:22:27 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
-int	executer(t_data *data)
+int	handle_heredoc(char *limiter)
 {
-	(void)data;
-	printf("This is executer!\n");
-	return 0;
+	(void)limiter;
+	printf("here handle_heredoc func!\n");
+	return (0);
 }

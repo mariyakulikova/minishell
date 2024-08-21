@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 11:14:30 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/08 12:46:53 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/05/06 22:56:50 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static int	is_only_space(char *promt)
 {
-	printf("test\n");
 	while (*promt)
 	{
 		if (!is_space(*promt))
@@ -28,14 +27,19 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_data	*data;
 
-	(void)argv;
-	data = NULL;
-	if (argc != 1)
+	data = malloc(sizeof(t_data));
+	if (argc != 1 && argv[1])
 	{
-		perror("main");
+		perror("Doesn't accept arguments!");
 		exit(EXIT_FAILURE);
 	}
 	data_init(&data, envp);
+	ft_minishell(data);
+	return (0);
+}
+
+void	ft_minishell(t_data *data)
+{
 	while (1)
 	{
 		data->prompt = readline(ENTRY_PROMPT);
@@ -44,10 +48,9 @@ int	main(int argc, char **argv, char **envp)
 			continue ;
 		if (lexer(data))
 			continue ;
-		// if (parser(data))
-		// 	continue ;
-		// if (executer(data))
-		// 	continue ;
+		if (parser(data))
+			continue ;
+		if (executer(data))
+			continue ;
 	}
-	return (0);
 }

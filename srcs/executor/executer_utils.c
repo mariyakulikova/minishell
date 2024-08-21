@@ -1,39 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_substr.c                                        :+:      :+:    :+:   */
+/*   executer_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/13 18:17:39 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/13 14:20:15 by mkulikov         ###   ########.fr       */
+/*   Created: 2024/08/18 15:00:34 by mkulikov          #+#    #+#             */
+/*   Updated: 2024/08/21 13:06:31 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../minishell.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+void	close_fd(int *fd, int size)
 {
-	char	*str;
-	size_t	i;
-	size_t	substrlen;
+	int	i;
 
-	if (!s)
-		return (NULL);
-	if (start > ft_strlen(s))
-		return (NULL);
-	substrlen = ft_strlen(s) - start;
-	if (len > substrlen)
-		len = substrlen;
-	str = (char *)malloc(sizeof(char) * (len + 1));
-	if (!str)
-		return (NULL);
-	i = 0;
-	while (i < len)
+	i = -1;
+	while (++i < size)
 	{
-		*(str + i) = *(s + start + i);
+		if (*(fd + i) > 2)
+			close(*(fd + i));
+	}
+}
+
+void	waitpids(t_exe_data *exe_data, t_data *data)
+{
+	int	i;
+
+	i = 0;
+	(void)data;
+	while (i < exe_data->pids_size)
+	{
+		waitpid(*(exe_data->pid_tab + i), NULL, 0);
 		i++;
 	}
-	*(str + i) = '\0';
-	return (str);
 }
