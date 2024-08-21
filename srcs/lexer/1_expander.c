@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   1_expander.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 13:54:19 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/13 14:25:00 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/08/21 16:20:07 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 static bool	is_key(char c)
 {

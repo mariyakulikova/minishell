@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   0_utils.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 16:24:03 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/19 13:11:58 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/08/21 16:19:49 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 int	str_chr_idx(const char *str, int c)
 {

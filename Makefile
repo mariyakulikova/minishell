@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+         #
+#    By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:49:03 by fjoestin          #+#    #+#              #
-#    Updated: 2024/08/21 14:39:31 by mkulikov         ###   ########.fr        #
+#    Updated: 2024/08/21 16:39:50 by fjoestin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,17 +37,17 @@ SRC =   srcs/builtin/cd.c \
 		srcs/executor/file.c \
 		srcs/utils/t_llist.c \
 		srcs/utils/1_utils.c \
-		srcs/0_lexer.c \
-		srcs/0_utils.c \
+		srcs/utils/0_utils.c \
+		srcs/lexer/0_lexer.c \
+		srcs/lexer/1_lexer.c \
+		srcs/lexer/2_lexer.c \
+		srcs/lexer/0_expander.c \
+		srcs/lexer/1_expander.c \
+		srcs/lexer/get.c \
 		srcs/data.c \
 		srcs/env_lst.c \
 		srcs/main.c \
-		srcs/1_lexer.c \
-		srcs/2_lexer.c \
-		srcs/get.c \
 		srcs/test.c \
-		srcs/0_expander.c \
-		srcs/1_expander.c \
 		srcs/exit_err.c
 
 OBJ = $(patsubst %.c,$(OBJ_DIR)%.o,$(SRC))

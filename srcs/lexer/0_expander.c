@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   0_expander.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:52:17 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/13 14:42:57 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/08/21 16:19:56 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 static char	*shift_str(char *str, int i, int j)
 {
