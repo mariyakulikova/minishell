@@ -6,18 +6,11 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 11:22:27 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/21 10:54:15 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/08/21 11:07:40 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
-
-static int get_stream_type(t_type type)
-{
-	if (type == RED_OUT || type == APPEND)
-		return (1);
-	return (0);
-}
 
 static int	add_fd_list(t_llist **fd_list, t_token **curr)
 {

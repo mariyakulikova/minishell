@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 12:47:26 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/19 21:05:21 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/08/21 12:27:58 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@ int	free_exe_data(t_exe_data *exe_data, int code)
 {
 	if (!exe_data)
 		return (code);
-	if (exe_data->pipes)
-		free(exe_data->pipes);
-	if (exe_data->pids)
-		free(exe_data->pids);
+	if (exe_data->pipe_tab)
+		free(exe_data->pipe_tab);
+	if (exe_data->pid_tab)
+		free(exe_data->pid_tab);
+	if (exe_data->fd_tab)
+		free(exe_data->fd_tab);
 	free(exe_data);
 	return (code);
 }
@@ -31,7 +33,7 @@ static int	set_pipes(t_exe_data *exe_data)
 	i = -1;
 	while (++i < (exe_data)->pipes_size)
 	{
-		if (pipe((exe_data)->pipes + (i * 2)) == -1)
+		if (pipe((exe_data)->pipe_tab + (i * 2)) == -1)
 		{
 			perror("pipe");
 			return (1);
@@ -45,19 +47,21 @@ int	init_exe_data(t_exe_data **exe_data, t_data *data)
 	*exe_data = (t_exe_data *)malloc(sizeof(t_exe_data));
 	if (!*exe_data)
 		return (1);
+	ft_memset((*exe_data), 0, sizeof(t_exe_data));
 	(*exe_data)->pids_size = data->cmd_size;
-	(*exe_data)->pids =(pid_t *)malloc(sizeof(pid_t) * (*exe_data)->pids_size);
-	if (!(*exe_data)->pids)
+	(*exe_data)->pid_tab =(pid_t *)malloc(sizeof(pid_t) * (*exe_data)->pids_size);
+	if (!(*exe_data)->pid_tab)
 		return (1);
-	ft_memset((*exe_data)->pids, -1, sizeof(pid_t) * (*exe_data)->pids_size);
+	ft_memset((*exe_data)->pid_tab, -1, sizeof(pid_t) * (*exe_data)->pids_size);
+	(*exe_data)->fd_tab = (int *)malloc(sizeof(int) * (*exe_data)->pids_size * 2);
+	if (!(*exe_data)->fd_tab)
+		return (1);
+	ft_memset((*exe_data)->fd_tab, -1, sizeof(int) * (*exe_data)->pids_size * 2);
 	(*exe_data)->pipes_size = ((*exe_data)->pids_size - 1) * 2;
 	if ((*exe_data)->pipes_size == 0)
-	{
-		(*exe_data)->pipes = NULL;
 		return (0);
-	}
-	(*exe_data)->pipes = (int *)malloc(sizeof(int) * (*exe_data)->pipes_size);
-	if (!(*exe_data)->pipes)
+	(*exe_data)->pipe_tab = (int *)malloc(sizeof(int) * (*exe_data)->pipes_size);
+	if (!(*exe_data)->pipe_tab)
 		return (1);
 	if (set_pipes(*exe_data))
 		return (1);

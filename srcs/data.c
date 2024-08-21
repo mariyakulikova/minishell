@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 12:29:16 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/19 21:12:34 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/08/21 13:10:29 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,4 @@ void	data_init(t_data **data, char **envp)
 	(*data)->line = NULL;
 	(*data)->cmd_tab = NULL;
 	(*data)->envp = envp;
-	(*data)->has_heredoc = false;
 }
