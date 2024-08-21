@@ -1,20 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   0_parser.c                                         :+:      :+:    :+:   */
+/*   1_utils.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/06 12:31:25 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/05/06 22:57:31 by fjoestin         ###   ########.fr       */
+/*   Created: 2024/08/21 11:06:10 by mkulikov          #+#    #+#             */
+/*   Updated: 2024/08/21 11:07:00 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
-int	parser(t_data *data)
+int	get_stream_type(t_type type)
 {
-	(void)data;
-	printf("This is parser!\n");
-	return 0;
+	if (type == RED_OUT || type == APPEND)
+		return (1);
+	return (0);
 }

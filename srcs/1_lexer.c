@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   1_lexer.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 14:05:45 by fjoestin          #+#    #+#             */
-/*   Updated: 2024/08/15 20:46:37 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/08/21 14:36:53 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	lexer(t_data *data)
 	data->tokens = tokenizer(data);
 	processing(data);
 	expander(data->tokens, data);
-	test_tokens(data->tokens);
+	// test_tokens(data->tokens);
 	return 0;
 }
 

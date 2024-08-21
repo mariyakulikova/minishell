@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+         #
+#    By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:49:03 by fjoestin          #+#    #+#              #
-#    Updated: 2024/08/15 18:37:12 by fjoestin         ###   ########.fr        #
+#    Updated: 2024/08/21 14:39:31 by mkulikov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,9 +25,19 @@ SRC =   srcs/builtin/cd.c \
 		srcs/builtin/export.c \
 		srcs/builtin/pwd.c \
 		srcs/builtin/unset.c \
-		srcs/0_executer.c \
+		srcs/builtin/get_builtin_idx.c \
+		srcs/parser/parser.c \
+		srcs/parser/parse_cmd.c \
+		srcs/parser/parse_red.c \
+		srcs/executor/heredoc.c \
+		srcs/executor/executer.c \
+		srcs/executor/executer_utils.c \
+		srcs/executor/exe_data.c \
+		srcs/executor/cmd.c \
+		srcs/executor/file.c \
+		srcs/utils/t_llist.c \
+		srcs/utils/1_utils.c \
 		srcs/0_lexer.c \
-		srcs/0_parser.c \
 		srcs/0_utils.c \
 		srcs/data.c \
 		srcs/env_lst.c \
@@ -39,7 +49,6 @@ SRC =   srcs/builtin/cd.c \
 		srcs/0_expander.c \
 		srcs/1_expander.c \
 		srcs/exit_err.c
-
 
 OBJ = $(patsubst %.c,$(OBJ_DIR)%.o,$(SRC))
 
@@ -65,7 +74,7 @@ fclean: clean
 
 re: fclean all
 
-norminette:
+norm:
 	@norminette $(SRC)
 
 .PHONY: start all clean fclean re
