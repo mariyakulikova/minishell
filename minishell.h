@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:59:01 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/20 12:39:24 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/08/20 16:54:29 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,16 @@ typedef enum e_type
 	PIPE,
 	HERE_DOC,
 	RED,
+	RED_IN,
+	RED_OUT,
+	APPEND
 }			t_type;
 
 typedef struct s_llist
 {
-	char			*key;
-	char			*value;
-	struct s_llist	*nexr;
+	void			*key;
+	void			*value;
+	struct s_llist	*next;
 }			t_llist;
 
 typedef struct s_env_lst
@@ -88,7 +91,7 @@ struct s_data
 	int				n_tokens;
 	char			***cmd_tab;
 	int				cmd_size;
-	int				*fd_tab;
+	t_llist			**fd_list_tab;
 	char			*prompt;
 	char			*line;
 	unsigned int	exit_status;
@@ -139,6 +142,8 @@ int			is_space(char c);
 void		ft_lstadd_back_ms(t_token **lst, t_token *new);
 t_token		*ft_lstlast_ms(t_token *lst);
 void		free_split(char **split);
+t_llist		*new_llist(void *key, void *value);
+void		llistadd_back(t_llist **llist, t_llist *new);
 
 /* built-in/ */
 int			ft_cd(t_data *data);
