@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:59:01 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/21 14:38:52 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/08/21 14:50:53 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,9 @@ void		real_pipe(t_token *token, t_data *data);
 t_token		*ft_new_token(char *line);
 void		expander(t_token *tokens, t_data *data);
 char		*expand_dollar(char *str, int *i, t_data *data);
+void		check_types(t_data *data);
+t_type		check_redirect(t_token *tokens, t_data *data);
+void		real_red(t_token *token, t_data *data, int red);
 
 /* parser */
 int			parser(t_data *data);
