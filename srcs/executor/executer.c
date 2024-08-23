@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 11:58:26 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/23 21:48:12 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/08/23 22:25:32 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ static void	child_process(t_exe_data *exe_data, t_data *data, int i)
 	if (set_fd(exe_data->fd_tab, data->fd_list_tab, (i * 2) + 1))
 		exit(1);
 	update_fd_tab(exe_data->fd_tab, (i * 2), 2);
-	// if (dup_fd(exe_data->fd_tab, (i * 2), 2))
-	// 	exit(1);
+	if (dup_fd(exe_data->fd_tab, (i * 2), 2))
+		exit(1);
 	execute_cmd(data, i);
 }
 

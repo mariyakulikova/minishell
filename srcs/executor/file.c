@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 12:17:11 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/23 21:35:06 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/08/23 22:24:51 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,20 @@ int	dup_fd(int *fd_tab, int j, int size)
 	code = 0;
 	while (++i < j + size)
 	{
-		if (i % 2 == 0 && *(fd_tab + i) > 2)
-			code = dup2(*(fd_tab + i), STDIN_FILENO);
-		else
-			code = dup2(*(fd_tab + i), STDOUT_FILENO);
-		if (code == -1)
+		if (*(fd_tab + i) > 2)
 		{
-			perror("dup2");
-			return (code);
+			if (i % 2 == 0 )
+				code = dup2(*(fd_tab + i), STDIN_FILENO);
+			else
+				code = dup2(*(fd_tab + i), STDOUT_FILENO);
+			if (code == -1)
+			{
+				perror("dup2");
+				return (code);
+			}
 		}
 	}
-	return (code);
+	return (0);
 }
 
 int	set_fd(int *fd_tab, t_llist **fd_list_tab, int i)
