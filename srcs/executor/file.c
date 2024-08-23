@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 12:17:11 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/23 10:24:19 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/08/23 21:35:06 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ static int	open_file(t_llist *list)
 	return (fd);
 }
 
-void	update_fd_tab(int *fd_tab, int size)
+void	update_fd_tab(int *fd_tab, int j, int size)
 {
 	int	i;
 
-	i = -1;
-	while (++i < size)
+	i = j - 1;
+	while (++i < j + size)
 	{
 		if (*(fd_tab + i) < 0)
 		{
@@ -45,45 +45,46 @@ void	update_fd_tab(int *fd_tab, int size)
 	}
 }
 
-int	dup_fd(int *fd_tab, int size)
+int	dup_fd(int *fd_tab, int j, int size)
 {
 	int	i;
 	int	code;
 
-	i = -1;
+	i = j - 1;
 	code = 0;
-	while (++i < size)
+	while (++i < j + size)
 	{
-		if (i % 2 == 0)
+		if (i % 2 == 0 && *(fd_tab + i) > 2)
 			code = dup2(*(fd_tab + i), STDIN_FILENO);
 		else
 			code = dup2(*(fd_tab + i), STDOUT_FILENO);
-	}
-	if (code)
-	{
-		perror("dup2");
-		return (code);
+		if (code == -1)
+		{
+			perror("dup2");
+			return (code);
+		}
 	}
 	return (code);
 }
 
-int	set_fd(int *fd, t_llist *fd_list_tab)
+int	set_fd(int *fd_tab, t_llist **fd_list_tab, int i)
 {
 	t_llist	*fd_list;
 
-	fd_list = fd_list_tab;
-	printf("%s\n", (char *)fd_list->value);
+	if (!*(fd_list_tab + i))
+		return (0);
+	fd_list = *(fd_list_tab + i);
 	if (fd_list)
 	{
-		if (*fd != -1)
-			close(*fd);
-		*fd = open_file(fd_list);
-		if (*fd == -1)
+		if (*fd_tab != -1)
+			close(*(fd_tab + i));
+		*(fd_tab + i) = open_file(fd_list);
+		if (*(fd_tab + i) == -1)
 		{
 			perror("open");
 			return (1);
 		}
-		fd_list = fd_list_tab->next;
+		fd_list = fd_list->next;
 	}
 	return (0);
 }

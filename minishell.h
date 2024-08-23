@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:59:01 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/21 21:21:40 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/08/23 20:46:38 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,10 +136,10 @@ int			init_exe_data(t_exe_data **exe_data, t_data *data);
 int			free_exe_data(t_exe_data *exe_data, int code);
 void		waitpids(t_exe_data *exe_data, t_data *data);
 int			execute_cmd(t_data *data, int i);
-int			set_fd(int *fd, t_llist *fd_list_tab);
+int			set_fd(int *fd, t_llist **fd_list_tab, int i);
 void		close_fd(int *fd, int size);
-void		update_fd_tab(int *fd_tab, int size);
-int			dup_fd(int *fd_tab, int size);
+void		update_fd_tab(int *fd_tab, int j, int size);
+int			dup_fd(int *fd_tab,  int j, int size);
 int			handle_heredoc(char *limiter);
 
 /* utils/ */
