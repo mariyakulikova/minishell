@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 12:17:11 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/21 13:25:16 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/08/23 10:24:19 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ static int	open_file(t_llist *list)
 	int	fd;
 
 	fd = -1;
-	if ((t_type)list->key == RED_OUT)
+	if (*(t_type *)list->key == RED_OUT)
 		fd = open((char *)list->value, O_RDWR | O_CREAT | O_TRUNC, 0644);
-	else if ((t_type)list->key == APPEND)
+	else if (*(t_type *)list->key == APPEND)
 		fd = open((char *)list->value, O_RDWR | O_CREAT | O_APPEND, 0644);
-	else if ((t_type)list->key == RED_IN)
+	else if (*(t_type *)list->key == RED_IN)
 		fd = open((char *)list->value, O_RDWR, 0644);
-	else if ((t_type)list->key == HERE_DOC)
+	else if (*(t_type *)list->key == HERE_DOC)
 		fd = handle_heredoc((char *)list->value);
 	return (fd);
 }
