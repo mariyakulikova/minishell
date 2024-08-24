@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:59:01 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/23 20:46:38 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/08/24 17:51:03 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,11 +136,11 @@ int			init_exe_data(t_exe_data **exe_data, t_data *data);
 int			free_exe_data(t_exe_data *exe_data, int code);
 void		waitpids(t_exe_data *exe_data, t_data *data);
 int			execute_cmd(t_data *data, int i);
-int			set_fd(int *fd, t_llist **fd_list_tab, int i);
+int			set_fd(int *fd, t_data *data, int i);
 void		close_fd(int *fd, int size);
 void		update_fd_tab(int *fd_tab, int j, int size);
 int			dup_fd(int *fd_tab,  int j, int size);
-int			handle_heredoc(char *limiter);
+int			handle_heredoc(t_llist *fd_list, t_data *data, int i);
 
 /* utils/ */
 int			str_chr_idx(const char *str, int c);
@@ -177,6 +177,7 @@ int			get_if_quotes(char *value);
 
 //exit_err
 void	ft_exit_err(char *msg, t_data *data);
+
 /* test */
 void		test_tokens(t_token	*token);
 

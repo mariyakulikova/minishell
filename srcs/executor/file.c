@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 12:17:11 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/23 22:24:51 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/08/24 17:53:57 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ static int	open_file(t_llist *list)
 		fd = open((char *)list->value, O_RDWR | O_CREAT | O_APPEND, 0644);
 	else if (*(t_type *)list->key == RED_IN)
 		fd = open((char *)list->value, O_RDWR, 0644);
-	else if (*(t_type *)list->key == HERE_DOC)
-		fd = handle_heredoc((char *)list->value);
 	return (fd);
 }
 
@@ -70,18 +68,21 @@ int	dup_fd(int *fd_tab, int j, int size)
 	return (0);
 }
 
-int	set_fd(int *fd_tab, t_llist **fd_list_tab, int i)
+int	set_fd(int *fd_tab, t_data *data, int i)
 {
 	t_llist	*fd_list;
 
-	if (!*(fd_list_tab + i))
+	if (!*(data->fd_list_tab + i))
 		return (0);
-	fd_list = *(fd_list_tab + i);
-	if (fd_list)
+	fd_list = *(data->fd_list_tab + i);
+	while (fd_list)
 	{
 		if (*fd_tab != -1)
 			close(*(fd_tab + i));
-		*(fd_tab + i) = open_file(fd_list);
+		if (*(t_type *)fd_list->key == HERE_DOC)
+			*(fd_tab + i) = handle_heredoc(fd_list, data, i);
+		else
+			*(fd_tab + i) = open_file(fd_list);
 		if (*(fd_tab + i) == -1)
 		{
 			perror("open");
