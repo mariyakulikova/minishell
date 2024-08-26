@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 12:47:26 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/26 20:48:08 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/08/26 22:10:22 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	init_exe_data(t_exe_data **exe_data, t_data *data)
 	(*exe_data)->fd_tab = (int *)malloc(sizeof(int) * (*exe_data)->pids_size * 2);
 	if (!(*exe_data)->fd_tab)
 		return (1);
-	ft_memset((*exe_data)->fd_tab, -1, sizeof(int) * (*exe_data)->pids_size * 2);
+	set_default_fd((*exe_data)->fd_tab, 0, (*exe_data)->pids_size * 2);
 	(*exe_data)->pipes_size = ((*exe_data)->pids_size - 1) * 2;
 	if ((*exe_data)->pipes_size == 0)
 		return (0);

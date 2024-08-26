@@ -138,7 +138,7 @@ void		waitpids(t_exe_data *exe_data, t_data *data);
 int			execute_cmd(t_data *data, int i);
 int			set_fd(int *fd, t_data *data, int i);
 void		close_fd(int *fd, int size);
-void		update_fd_tab(int *fd_tab, int j, int size);
+void		set_default_fd(int *fd_tab, int j, int size);
 int			dup_fd(int *fd_tab,  int j, int size);
 int			handle_heredoc(t_llist *fd_list, t_data *data, int i);
 

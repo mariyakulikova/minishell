@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 12:17:11 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/24 17:53:57 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/08/26 22:11:48 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,17 @@ static int	open_file(t_llist *list)
 	return (fd);
 }
 
-void	update_fd_tab(int *fd_tab, int j, int size)
+void	set_default_fd(int *fd_tab, int j, int size)
 {
 	int	i;
 
 	i = j - 1;
 	while (++i < j + size)
 	{
-		if (*(fd_tab + i) < 0)
-		{
-			if (i % 2 == 0)
-				*(fd_tab + i) = 0;
-			else
-				*(fd_tab + i) = 1;
-		}
+		if (i % 2 == 0)
+			*(fd_tab + i) = STDIN_FILENO;
+		else
+			*(fd_tab + i) = STDOUT_FILENO;
 	}
 }
 
