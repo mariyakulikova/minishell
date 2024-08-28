@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 12:47:26 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/21 12:27:58 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/08/26 20:48:08 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	set_pipes(t_exe_data *exe_data)
 	int	i;
 
 	i = -1;
-	while (++i < (exe_data)->pipes_size)
+	while (++i < (exe_data)->pids_size - 1)
 	{
 		if (pipe((exe_data)->pipe_tab + (i * 2)) == -1)
 		{

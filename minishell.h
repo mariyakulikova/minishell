@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:59:01 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/21 14:50:53 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/08/24 17:51:03 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,9 +126,9 @@ void		real_red(t_token *token, t_data *data, int red);
 
 /* parser */
 int			parser(t_data *data);
-int			parse_red(t_data *data);
-int			parse_cmd(t_data *data);
-int			handle_heredoc(char *limiter);
+char		**update_cmd(char **old_cmd, t_token *token);
+bool		is_red(t_token *token);
+int			add_fd_list(t_llist **fd_list, t_token **curr);
 
 /* executer */
 int			executer(t_data *data);
@@ -136,10 +136,11 @@ int			init_exe_data(t_exe_data **exe_data, t_data *data);
 int			free_exe_data(t_exe_data *exe_data, int code);
 void		waitpids(t_exe_data *exe_data, t_data *data);
 int			execute_cmd(t_data *data, int i);
-int			set_fd(int *fd, t_llist *fd_list_tab);
+int			set_fd(int *fd, t_data *data, int i);
 void		close_fd(int *fd, int size);
-void		update_fd_tab(int *fd_tab, int size);
-int			dup_fd(int *fd_tab, int size);
+void		update_fd_tab(int *fd_tab, int j, int size);
+int			dup_fd(int *fd_tab,  int j, int size);
+int			handle_heredoc(t_llist *fd_list, t_data *data, int i);
 
 /* utils/ */
 int			str_chr_idx(const char *str, int c);
@@ -176,6 +177,7 @@ int			get_if_quotes(char *value);
 
 //exit_err
 void	ft_exit_err(char *msg, t_data *data);
+
 /* test */
 void		test_tokens(t_token	*token);
 
