@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:59:01 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/24 17:51:03 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/08/26 22:10:39 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,7 @@ void		close_fd(int *fd, int size);
 void		set_default_fd(int *fd_tab, int j, int size);
 int			dup_fd(int *fd_tab,  int j, int size);
 int			handle_heredoc(t_llist *fd_list, t_data *data, int i);
+int			link_pipes(int *pipe_tab, int *fd_tab, int size, int i);
 
 /* utils/ */
 int			str_chr_idx(const char *str, int c);
