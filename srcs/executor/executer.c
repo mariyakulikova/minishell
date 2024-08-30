@@ -6,11 +6,32 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 11:58:26 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/29 11:36:04 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/08/30 20:15:41 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+// void fd_test(int *fd, int size, t_data *data, int i)
+// {
+// 	char *pid = ft_itoa(getpid());
+// 	int len = ft_strlen(pid);
+// 	write(2, pid, len);
+// 	write(2, "\n", 1);
+// 	write(2, "i - ", 5);
+// 	write(2, ft_itoa(i), 1);
+// 	write(2, "\n", 1);
+// 	write(2, "cmd - ", 7);
+// 	write(2, **(data->cmd_tab + i), ft_strlen(**(data->cmd_tab + i)));
+// 	write(2, "\n", 1);
+// 	for (int i = 0; i < size; i++)
+// 	{
+// 		char *c_fd = ft_itoa(fd[i]);
+// 		int fd_len = ft_strlen(c_fd);
+// 		write(2, c_fd, fd_len);
+// 		write(2, " ", 1);
+// 	}
+// 	write(2, "\n", 1);
+// }
 
 static void	child_process(t_exe_data *exe_data, t_data *data, int i)
 {
@@ -19,7 +40,6 @@ static void	child_process(t_exe_data *exe_data, t_data *data, int i)
 		exit(1);
 	if (set_fd(exe_data->fd_tab, data, (i * 2) + 1))
 		exit(1);
-	// update_fd_tab(exe_data->fd_tab, (i * 2), 2);
 	link_pipes(exe_data->pipe_tab, exe_data->fd_tab, exe_data->pids_size, i);
 	if (dup_fd(exe_data->fd_tab, (i * 2), 2))
 		exit(1);
