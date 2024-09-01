@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:20:03 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/24 18:19:54 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/01 20:09:26 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	handle_heredoc(t_llist *fd_list, t_data *data, int i)
 
 	char	*fname;
 
-	fname = get_fname(".temp", i);
+	fname = get_fname("/var/tmp/.temp", i);
 	if (!fname)
 		return (1);
 	fd = open(fname, O_CREAT | O_WRONLY | O_TRUNC, 0644);
