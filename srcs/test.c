@@ -27,3 +27,12 @@ void	test_tokens(t_token	*token)
 		token = token->next;
 	}
 }
+
+void	test_list(t_env_lst *list)
+{
+	while (list != NULL)
+	{
+		printf("key: [%s] value: [%s]\n", list->key, list->value);
+		list = list->next;	
+	}
+}

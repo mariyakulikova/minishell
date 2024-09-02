@@ -36,6 +36,7 @@ void	data_init(t_data **data, char **envp)
 	(*data)->orig_std_in = dup(STDIN_FILENO);
 	(*data)->orig_std_out = dup(STDOUT_FILENO);
 	(*data)->lst = set_envp_lst(envp);
+	(*data)->export_list = set_envp_lst(envp);
 	if (!(*data)->lst)
 	{
 		free(data);
@@ -48,4 +49,5 @@ void	data_init(t_data **data, char **envp)
 	(*data)->cmd_tab = NULL;
 	(*data)->envp = envp;
 	(*data)->fd_list_tab = NULL;
+	(*data)->oldpwd = NULL;
 }

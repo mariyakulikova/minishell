@@ -32,7 +32,7 @@ static char	*get_key(char *str, int i)
 	return (ft_substr(str, i + 1, j - i - 1));
 }
 
-static char	*get_value(char *key, t_data *data)
+char	*get_value(char *key, t_data *data)
 {
 	t_env_lst	*var;
 

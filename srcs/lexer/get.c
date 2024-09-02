@@ -30,4 +30,15 @@ int	get_if_quotes(char *value)
 	return (0);
 }
 
-/* t_type	get_type() */
+/* void	test_tokens(t_token *tokens)
+{
+	while (tokens != NULL)
+	{
+		printf("index: %i\n", tokens->index);
+		printf("join: %i\n", tokens->join);
+		printf("quotes: %i\n", tokens->quotes);
+		printf("value: [%s]\n", tokens->value);
+		tokens = tokens->next;
+	}
+	
+} */

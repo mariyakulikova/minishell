@@ -19,8 +19,8 @@ int	lexer(t_data *data)
 		return (perror("Error: not all quotes were closed"), 1);
 	data->tokens = tokenizer(data);
 	processing(data);
+	//test_tokens(data->tokens);
 	expander(data->tokens, data);
-	// test_tokens(data->tokens);
 	return 0;
 }
 
