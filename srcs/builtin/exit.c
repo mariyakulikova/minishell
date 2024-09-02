@@ -16,5 +16,5 @@ int	ft_exit(t_data *data)
 {
 	(void)data;
 	printf("Here is ft_exit\n");
-	return (0);
+	exit(0);
 }

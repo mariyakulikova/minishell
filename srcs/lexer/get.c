@@ -6,11 +6,11 @@
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:29:13 by fjoestin          #+#    #+#             */
-/*   Updated: 2024/08/08 13:36:00 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/08/21 16:20:27 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 int	get_if_quotes(char *value)
 {
@@ -30,4 +30,15 @@ int	get_if_quotes(char *value)
 	return (0);
 }
 
-/* t_type	get_type() */
+/* void	test_tokens(t_token *tokens)
+{
+	while (tokens != NULL)
+	{
+		printf("index: %i\n", tokens->index);
+		printf("join: %i\n", tokens->join);
+		printf("quotes: %i\n", tokens->quotes);
+		printf("value: [%s]\n", tokens->value);
+		tokens = tokens->next;
+	}
+	
+} */

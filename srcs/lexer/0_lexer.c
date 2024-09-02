@@ -6,11 +6,11 @@
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 11:08:48 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/15 18:32:59 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/08/21 16:20:01 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 t_token	*token_new(char *prompt, int start, int end)
 {

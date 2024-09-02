@@ -14,7 +14,20 @@
 
 int	ft_env(t_data *data)
 {
-	(void)data;
-	printf("Here is ft_env\n");
+	int	i;
+	t_env_lst *list;
+
+	i = get_builtin_index(data->cmd_tab, "env");
+	list = data->lst;
+	if (data->cmd_tab[i][1] != NULL)
+	{
+		write(2, "env: Take no arguments\n", 24); // env: %s(arg): No such file or directory
+		return (-1);
+	}
+	while (list != NULL)
+	{
+		printf("%s=%s\n", list->key, list->value);
+		list = list->next;
+	}
 	return (0);
 }

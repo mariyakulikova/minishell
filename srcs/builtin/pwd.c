@@ -14,7 +14,24 @@
 
 int	ft_pwd(t_data *data)
 {
-	(void)data;
-	printf("Here is ft_pwd\n");
+	char	key[3] = "PWD";
+	char	*pwd;
+	t_env_lst	*list;
+	
+	list = data->lst;
+	pwd = getcwd(NULL, 0);
+	if(!pwd)
+		return (-1);
+	test_list(data->lst);
+	printf("%s\n", pwd);
+	while (list != NULL)
+	{
+		if (list->key == key)
+		{
+			printf("envp: %s\n", list->value);
+			break;
+		}
+		list = list->next;
+	}
 	return (0);
 }

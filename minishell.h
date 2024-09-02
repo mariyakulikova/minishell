@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:59:01 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/26 22:10:39 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/02 14:44:38 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ typedef int	(*t_builtin_func)(t_data *);
 struct s_data
 {
 	t_env_lst		*lst;
+	t_env_lst		*export_list;
 	t_token			*tokens;
 	int				n_tokens;
 	char			***cmd_tab;
@@ -102,9 +103,11 @@ struct s_data
 	char			*builtin_name[7];
 	t_builtin_func	builtin_tab[7];
 	char			**envp;
+	char			*oldpwd;
 };
 
 /* lexer */
+void	test_tokens(t_token *tokens);
 int			lexer(t_data *data);
 t_token		*token_new(char *prompt, int start, int end);
 int			check_single_quote(char *prompt);
@@ -140,6 +143,7 @@ int			set_fd(int *fd, t_data *data, int i);
 void		close_fd(int *fd, int size);
 int			dup_fd(int *fd_tab,  int j, int size);
 int			handle_heredoc(t_llist *fd_list, t_data *data, int i);
+char		*get_value(char *key, t_data *data);
 int			link_pipes(int *pipe_tab, int *fd_tab, int size, int i);
 
 /* utils/ */
@@ -161,6 +165,10 @@ int			ft_export(t_data *data);
 int			ft_pwd(t_data *data);
 int			ft_unset(t_data *data);
 int			get_builtin_idx(t_data *data, char *str);
+int 		get_builtin_index(char ***str, char *cmd);
+void		sort_list(t_env_lst *list);
+void		update_exp_list(t_env_lst *curr, char *new_key, char *new_value);
+int			valid_format(char *str);
 
 /* envp_lst.c */
 void		envp_lst_free(t_env_lst *lst);
@@ -178,7 +186,11 @@ int			get_if_quotes(char *value);
 //exit_err
 void	ft_exit_err(char *msg, t_data *data);
 
+//Built in
+void	update_env_list(t_env_lst *curr, char *new_key, char *new_value);
+
 /* test */
 void		test_tokens(t_token	*token);
+void		test_list(t_env_lst *list);
 
 #endif

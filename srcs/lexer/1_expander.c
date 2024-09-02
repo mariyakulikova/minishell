@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   1_expander.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 13:54:19 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/13 14:25:00 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/08/21 16:20:07 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "../../minishell.h"
 
 static bool	is_key(char c)
 {
@@ -32,7 +32,7 @@ static char	*get_key(char *str, int i)
 	return (ft_substr(str, i + 1, j - i - 1));
 }
 
-static char	*get_value(char *key, t_data *data)
+char	*get_value(char *key, t_data *data)
 {
 	t_env_lst	*var;
 
