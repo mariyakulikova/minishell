@@ -169,6 +169,7 @@ int 		get_builtin_index(char ***str, char *cmd);
 void		sort_list(t_env_lst *list);
 void		update_exp_list(t_env_lst *curr, char *new_key, char *new_value);
 int			valid_format(char *str);
+int			get_exit_status(int	exit_status);
 
 /* envp_lst.c */
 void		envp_lst_free(t_env_lst *lst);
@@ -185,6 +186,9 @@ int			get_if_quotes(char *value);
 
 //exit_err
 void	ft_exit_err(char *msg, t_data *data);
+
+// free
+void	ft_free_data(t_data *data);
 
 //Built in
 void	update_env_list(t_env_lst *curr, char *new_key, char *new_value);

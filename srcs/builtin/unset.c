@@ -37,11 +37,18 @@ int	ft_unset(t_data *data)
 
 static void	remove_from_list(t_env_lst *envlst, char *keyvar)
 {
+	t_env_lst	*tmp;
+
+	tmp = NULL;
 	while (envlst->next != NULL)
 	{
 		if (ft_strcmp(envlst->next->key, keyvar) == 0)
 		{
-			envlst->next = envlst->next->next;
+			tmp = envlst->next->next;
+			free(envlst->next->key);
+			free(envlst->next->value);
+			free(envlst->next);
+			envlst->next = tmp;
 		}
 		envlst = envlst->next;
 	}

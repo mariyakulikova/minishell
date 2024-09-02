@@ -38,6 +38,7 @@ SRC =   srcs/builtin/cd.c \
 		srcs/utils/t_llist.c \
 		srcs/utils/1_utils.c \
 		srcs/utils/0_utils.c \
+		srcs/utils/free.c \
 		srcs/lexer/0_lexer.c \
 		srcs/lexer/1_lexer.c \
 		srcs/lexer/2_lexer.c \

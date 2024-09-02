@@ -47,7 +47,8 @@ int	ft_cd(t_data *data)
 		new_pwd = getcwd(NULL, 0);
 		update_env_list(data->lst, "PWD", new_pwd);
 		update_env_list(data->lst, "OLDPWD", data->oldpwd);
-		// and update export
+		update_exp_list(data->export_list, "PWD", new_pwd);
+		update_exp_list(data->export_list, "OLDPWD", data->oldpwd);
 	}
 	return (0);
 }
