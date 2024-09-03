@@ -6,11 +6,34 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 12:17:11 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/30 20:15:22 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/02 21:49:55 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+int	reset_std(t_data *data, int *fd)
+{
+	if (fd[0] > 2)
+	{
+		if (ft_dup2(data->orig_std_in, STDIN_FILENO) == -1)
+			return (1);
+		close(data->orig_std_in);
+		data->orig_std_in = dup(STDIN_FILENO);
+		if (data->orig_std_in == -1)
+			return (1);
+	}
+	if (fd[1] > 2)
+	{
+		if (ft_dup2(data->orig_std_out, STDOUT_FILENO) == -1)
+			return (1);
+		close(data->orig_std_out);
+		data->orig_std_out = dup(STDOUT_FILENO);
+		if (data->orig_std_out == -1)
+			return (1);
+	}
+	return (0);
+}
 
 static int	open_file(t_llist *list)
 {
@@ -72,6 +95,26 @@ int	set_fd(int *fd_tab, t_data *data, int i)
 			return (1);
 		}
 		fd_list = fd_list->next;
+	}
+	return (0);
+}
+
+int	unlink_temp(t_llist *fd_list)
+{
+	t_llist	*curr;
+
+	curr = fd_list;
+	while (curr)
+	{
+		if (*(t_type *)curr->key == HERE_DOC)
+		{
+			if (unlink((char *)curr->value) == -1)
+			{
+				perror("unlink");
+				return (1);
+			}
+		}
+		curr = curr->next;
 	}
 	return (0);
 }

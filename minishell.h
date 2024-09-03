@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:59:01 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/02 14:44:38 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/02 21:51:03 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,9 @@ int			dup_fd(int *fd_tab,  int j, int size);
 int			handle_heredoc(t_llist *fd_list, t_data *data, int i);
 char		*get_value(char *key, t_data *data);
 int			link_pipes(int *pipe_tab, int *fd_tab, int size, int i);
+int			reset_std(t_data *data, int *fd);
+int			unlink_temp(t_llist *fd_list);
+int			unlink_fd_list_tab(t_data *data);
 
 /* utils/ */
 int			str_chr_idx(const char *str, int c);
@@ -155,6 +158,8 @@ void		free_split(char **split);
 t_llist		*new_llist(void *key, void *value);
 void		llistadd_back(t_llist **llist, t_llist *new);
 int			get_stream_type(t_type type);
+int			ft_dup2(int old_fd, int new_fd);
+int			ft_dup(int fd);
 
 /* built-in/ */
 int			ft_cd(t_data *data);
