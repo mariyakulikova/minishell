@@ -1,9 +1,15 @@
-
+/* Mariia */
 !!! echo hello"world$USERS$SHLVL" test - should delete $USERS, but still change $SHLVL
 !!! echo helloworld$'USERS'$SHLVL - should remove $'USERS', but still process $SHLVL
 !!! echo "''helo''""hey"
+$? + $?
 echo test >666
+heredoc in parant process
+heredoc unlink temp files
+envp
+/* Mariia */
 
+/* Fernanda */
 $SHLVL when ./minishell inside of minishell
-
 create a function to clean before reprompting
+
