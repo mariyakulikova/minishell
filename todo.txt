@@ -12,4 +12,6 @@ envp
 /* Fernanda */
 $SHLVL when ./minishell inside of minishell
 create a function to clean before reprompting
-
+- fix built in
+see how to update **envp
+exit status update
