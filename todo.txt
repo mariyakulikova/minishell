@@ -8,3 +8,4 @@ syntax error near unexpected token `|'
 !!! echo hello"world$USERS$SHLVL" test - should delete $USERS, but still change $SHLVL
 !!! echo helloworld$'USERS'$SHLVL - should remove $'USERS', but still process $SHLVL
 !!! echo "''helo''""hey"
+echo test >666
