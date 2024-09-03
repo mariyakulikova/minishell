@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+         #
+#    By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:49:03 by fjoestin          #+#    #+#              #
-#    Updated: 2024/08/21 16:39:50 by fjoestin         ###   ########.fr        #
+#    Updated: 2024/09/02 14:45:00 by mkulikov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

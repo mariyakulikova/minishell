@@ -5,6 +5,7 @@ if pipe at the end of the command --> cat |
 if after pipe goes space and another pipe (important) --> cat | | cat
 If pipe goes in quotes it interprets as a simple character
 syntax error near unexpected token `|'
-hello"world$USERS$SHLVL" test - should delete $USERS, but still change $SHLVL
-helloworld$'USERS'$SHLVL - should remove $'USERS', but still process $SHLVL
-echo "''helo''""hey"
+!!! echo hello"world$USERS$SHLVL" test - should delete $USERS, but still change $SHLVL
+!!! echo helloworld$'USERS'$SHLVL - should remove $'USERS', but still process $SHLVL
+!!! echo "''helo''""hey"
+echo test >666

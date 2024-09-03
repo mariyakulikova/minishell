@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:20:03 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/24 18:19:54 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/02 21:50:50 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	handle_heredoc(t_llist *fd_list, t_data *data, int i)
 
 	char	*fname;
 
-	fname = get_fname(".temp", i);
+	fname = get_fname("/var/tmp/.temp", i);
 	if (!fname)
 		return (1);
 	fd = open(fname, O_CREAT | O_WRONLY | O_TRUNC, 0644);
@@ -78,4 +78,19 @@ int	handle_heredoc(t_llist *fd_list, t_data *data, int i)
 		return (-1);
 	fd_list->value = (void *)fname;
 	return (fd);
+}
+
+int	unlink_fd_list_tab(t_data *data)
+{
+	int		i;
+	t_llist	*curr;
+
+	i = -1;
+	while (++i < data->cmd_size * 2)
+	{
+		curr = *(data->fd_list_tab + i);
+		if (unlink_temp(curr))
+			return (1);
+	}
+	return (0);
 }
