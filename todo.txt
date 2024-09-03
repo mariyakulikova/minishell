@@ -1,11 +1,9 @@
--check for pipes Error
-Here are pipe syntax error cases:
-if pipe at the beginning of the command --> | cat
-if pipe at the end of the command --> cat |
-if after pipe goes space and another pipe (important) --> cat | | cat
-If pipe goes in quotes it interprets as a simple character
-syntax error near unexpected token `|'
+
 !!! echo hello"world$USERS$SHLVL" test - should delete $USERS, but still change $SHLVL
 !!! echo helloworld$'USERS'$SHLVL - should remove $'USERS', but still process $SHLVL
 !!! echo "''helo''""hey"
 echo test >666
+
+$SHLVL when ./minishell inside of minishell
+
+create a function to clean before reprompting
