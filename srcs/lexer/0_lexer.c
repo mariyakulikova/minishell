@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   0_lexer.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 11:08:48 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/21 16:20:01 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/04 13:23:33 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ t_token	*tokenizer(t_data *data)
 		else
 			start++;
 	}
+	free(prompt);
 	return (token_lst);
 }
 

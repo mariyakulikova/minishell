@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 13:14:35 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/05/06 22:56:21 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/04 13:13:51 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_exit(t_data *data)
 	{
 		ft_free_data(data);
 		printf("exit\n");
-		return (exit_status);
+		exit (exit_status);
 	}
 	if (data->cmd_tab[wexit][2] != NULL)
 	{

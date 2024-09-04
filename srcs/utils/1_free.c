@@ -4,10 +4,9 @@
 void	free_reprompt(t_data *data)
 {
 	//free tokens
+	free_triple_tab(data->cmd_tab, data->cmd_size);
 	free_tokens(data->tokens);
 	data->tokens = NULL;
-	//free cmd_tab
-	free_triple_tab(data->cmd_tab);
 	data->cmd_tab = NULL;
 	// free fd list
 	free_llist(data->fd_list_tab);

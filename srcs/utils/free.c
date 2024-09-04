@@ -1,25 +1,25 @@
 
 #include "../../minishell.h"
 
-static void	free_tab(char **tab);
+//static void	free_tab(char **tab);
 static void	free_env_lst(t_env_lst *list);
 
 void	ft_free_data(t_data *data)
 {
 	free_env_lst(data->lst);
 	free_env_lst(data->export_list);
+	free_triple_tab(data->cmd_tab, data->cmd_size);
 	free_tokens(data->tokens);
 	free_llist(data->fd_list_tab);
 	//free built in func?how?
-	free_tab(data->builtin_name);
-	free_tab(data->envp);
-	free_triple_tab(data->cmd_tab);
+	//free_tab(data->builtin_name);
+	//free_tab(data->envp);
 	free(data->prompt);
 	//free(data->line);
 	free(data->oldpwd);
 }
 
-void	free_triple_tab(char ***cmd_tab)
+void	free_triple_tab(char ***cmd_tab, int cmd_size)
 {
 	int	i;
 	int	j;
@@ -27,7 +27,7 @@ void	free_triple_tab(char ***cmd_tab)
 	if (!cmd_tab)
 		return;
 	i = 0;
-	while (cmd_tab[i] != NULL)
+	while (i < cmd_size)
 	{
 		j = 0;
 		while (cmd_tab[i][j] != NULL)
@@ -41,14 +41,16 @@ void	free_triple_tab(char ***cmd_tab)
 	free(cmd_tab);
 }
 
-static void	free_tab(char **tab)
+void	free_tab(char **tab)
 {
 	int	i;
+	int	stop;
 
 	i = 0;
 	if (!tab)
 		return ;
-	while (tab[i] != NULL)
+	stop = get_size_tab(tab);
+	while (i < stop)
 	{
 		free(tab[i]);
 		i++;
@@ -83,6 +85,7 @@ void	free_tokens(t_token *tokens)
 		free(tokens->prev);
 	}
 	free(tokens->value);
+	free(tokens->next);
 	free(tokens);
 }
 
