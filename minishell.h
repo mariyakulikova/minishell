@@ -95,7 +95,6 @@ struct s_data
 	int				cmd_size;
 	t_llist			**fd_list_tab;
 	char			*prompt;
-	char			*line;
 	unsigned int	exit_status;
 	unsigned int	exit_status_final;
 	int				orig_std_in;
@@ -194,6 +193,10 @@ void	ft_exit_err(char *msg, t_data *data);
 
 // free
 void	ft_free_data(t_data *data);
+void	free_triple_tab(char ***cmd_tab);
+void	free_llist(t_llist **fd_list_tab);
+void	free_tokens(t_token *tokens);
+void	free_reprompt(t_data *data);
 
 //Built in
 void	update_env_list(t_env_lst *curr, char *new_key, char *new_value);

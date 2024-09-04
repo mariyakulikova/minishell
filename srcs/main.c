@@ -52,5 +52,6 @@ void	ft_minishell(t_data *data)
 			continue ;
 		if (executer(data))
 			continue ;
+		free_reprompt(data);
 	}
 }

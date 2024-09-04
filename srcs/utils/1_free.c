@@ -1,0 +1,20 @@
+
+#include "../../minishell.h"
+
+void	free_reprompt(t_data *data)
+{
+	//free tokens
+	free_tokens(data->tokens);
+	data->tokens = NULL;
+	//free cmd_tab
+	free_triple_tab(data->cmd_tab);
+	data->cmd_tab = NULL;
+	// free fd list
+	free_llist(data->fd_list_tab);
+	data->fd_list_tab = NULL;
+	free(data->prompt);
+	data->prompt = NULL;
+	//free(data->line);
+	//data->line = NULL;
+	// free prompt and line
+}

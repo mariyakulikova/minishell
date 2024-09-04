@@ -1,11 +1,8 @@
 
 #include "../../minishell.h"
 
-static void	free_triple_tab(char ***cmd_tab);
 static void	free_tab(char **tab);
 static void	free_env_lst(t_env_lst *list);
-static void	free_tokens(t_token *tokens);
-static void	free_llist(t_llist **fd_list_tab);
 
 void	ft_free_data(t_data *data)
 {
@@ -18,15 +15,17 @@ void	ft_free_data(t_data *data)
 	free_tab(data->envp);
 	free_triple_tab(data->cmd_tab);
 	free(data->prompt);
-	free(data->line);
+	//free(data->line);
 	free(data->oldpwd);
 }
 
-static void	free_triple_tab(char ***cmd_tab)
+void	free_triple_tab(char ***cmd_tab)
 {
 	int	i;
 	int	j;
 
+	if (!cmd_tab)
+		return;
 	i = 0;
 	while (cmd_tab[i] != NULL)
 	{
@@ -47,6 +46,8 @@ static void	free_tab(char **tab)
 	int	i;
 
 	i = 0;
+	if (!tab)
+		return ;
 	while (tab[i] != NULL)
 	{
 		free(tab[i]);
@@ -71,7 +72,7 @@ static void	free_env_lst(t_env_lst *list)
 	}
 }
 
-static void	free_tokens(t_token *tokens)
+void	free_tokens(t_token *tokens)
 {
 	if (!tokens)
 		return ;
@@ -85,10 +86,10 @@ static void	free_tokens(t_token *tokens)
 	free(tokens);
 }
 
-static void	free_llist(t_llist **fd_list_tab)
+void	free_llist(t_llist **fd_list_tab)
 {
 	if(!fd_list_tab)
-			return ;
+		return ;
 	t_llist	*next;
 	while ((*fd_list_tab) != NULL)
 	{
