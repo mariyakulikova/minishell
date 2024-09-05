@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   0_expander.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:52:17 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/21 16:19:56 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/05 21:30:34 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static char	*shift_str(char *str, int i, int j)
 
 static char	*expand_single_qoutes(char *str, int *i)
 {
-	int		j;
+	int	j;
 
 	j = *i;
 	while (str[++(*i)])
@@ -50,7 +50,6 @@ static char	*expand_double_qoutes(char *str, int *i, t_data *data)
 {
 	int	j;
 
-
 	j = *i;
 	while (str[++(*i)])
 	{
@@ -60,7 +59,7 @@ static char	*expand_double_qoutes(char *str, int *i, t_data *data)
 			break ;
 	}
 	str = shift_str(str, *i, j);
-	--(*i);
+	*i -= 2;
 	return (str);
 }
 
@@ -77,12 +76,12 @@ void	expander(t_token *tokens, t_data *data)
 		str = curr->value;
 		while (str[++i])
 		{
-		if (str[i] == '\'')
-			str = expand_single_qoutes(str, &i);
-		if (str[i] == '\"')
-			str = expand_double_qoutes(str, &i, data);
-		if (str[i] == '$')
-			str = expand_dollar(str, &i, data);
+			if (str[i] == '\'')
+				str = expand_single_qoutes(str, &i);
+			if (str[i] == '\"')
+				str = expand_double_qoutes(str, &i, data);
+			if (str[i] == '$')
+				str = expand_dollar(str, &i, data);
 		}
 		curr->value = str;
 		curr = curr->next;
