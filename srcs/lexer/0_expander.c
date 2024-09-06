@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:52:17 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/05 21:30:34 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/06 18:36:08 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static char	*shift_str(char *str, int i, int j)
 	chunk = ft_strjoin(chunk, chunk3);
 	free(temp);
 	free(chunk3);
+	free(str);
 	return (chunk);
 }
 
