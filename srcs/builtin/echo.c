@@ -6,7 +6,7 @@
 /*   By: fjoestin <fjoestin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 13:12:49 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/04 13:23:23 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/05 14:47:25 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ int	ft_echo(t_data *data)
 		printf("\n");
 		return(0);
 	}
-	
 	while (ft_strncmp(data->cmd_tab[wecho][j], "-n", 2) == 0)
 	{
 		i = 1;
