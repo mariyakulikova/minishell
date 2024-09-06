@@ -45,7 +45,6 @@ void	data_init(t_data **data, char **envp)
 	(*data)->exit_status = 0;
 	(*data)->exit_status_final = 0;
 	(*data)->tokens = NULL;
-	(*data)->line = NULL;
 	(*data)->cmd_tab = NULL;
 	(*data)->envp = envp;
 	(*data)->fd_list_tab = NULL;

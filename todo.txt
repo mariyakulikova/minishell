@@ -10,8 +10,17 @@ envp
 /* Mariia */
 
 /* Fernanda */
-$SHLVL when ./minishell inside of minishell
 create a function to clean before reprompting
 - fix built in
 see how to update **envp
 exit status update
+signals
+$SHLVL when ./minishell inside of minishell
+
+PRompt:
+echo test>666
+Return:
+minishell(74323,0x205f94c00) malloc: Double free of object 0x13fe08300
+minishell(74323,0x205f94c00) malloc: *** set a breakpoint in malloc_error_break to debug
+zsh: abort      ./minishell
+

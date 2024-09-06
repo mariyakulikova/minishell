@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 13:13:53 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/05/06 22:56:27 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/05 12:28:33 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,17 +39,19 @@ static void	remove_from_list(t_env_lst *envlst, char *keyvar)
 {
 	t_env_lst	*tmp;
 
-	tmp = NULL;
-	while (envlst->next != NULL)
+	tmp = envlst;
+	while (envlst != NULL)
 	{
-		if (ft_strcmp(envlst->next->key, keyvar) == 0)
+		if (ft_strcmp(envlst->key, keyvar) == 0)
 		{
-			tmp = envlst->next->next;
-			free(envlst->next->key);
-			free(envlst->next->value);
-			free(envlst->next);
-			envlst->next = tmp;
+			tmp->next = envlst->next;
+			free(envlst->key);
+			if (envlst->value != NULL)
+				free(envlst->value);
+			free(envlst);
+			envlst = tmp;
 		}
+		tmp = envlst;
 		envlst = envlst->next;
 	}
 }

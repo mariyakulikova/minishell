@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:59:01 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/02 21:51:03 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/04 13:39:26 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,6 @@ struct s_data
 	int				cmd_size;
 	t_llist			**fd_list_tab;
 	char			*prompt;
-	char			*line;
 	unsigned int	exit_status;
 	unsigned int	exit_status_final;
 	int				orig_std_in;
@@ -160,6 +159,7 @@ void		llistadd_back(t_llist **llist, t_llist *new);
 int			get_stream_type(t_type type);
 int			ft_dup2(int old_fd, int new_fd);
 int			ft_dup(int fd);
+int			get_size_tab(char **tab);
 
 /* built-in/ */
 int			ft_cd(t_data *data);
@@ -194,6 +194,11 @@ void	ft_exit_err(char *msg, t_data *data);
 
 // free
 void	ft_free_data(t_data *data);
+void	free_triple_tab(char ***cmd_tab, int cmd_size);
+void	free_llist(t_llist **fd_list_tab);
+void	free_tokens(t_token *tokens);
+void	free_reprompt(t_data *data);
+void	free_tab(char **tab);
 
 //Built in
 void	update_env_list(t_env_lst *curr, char *new_key, char *new_value);
