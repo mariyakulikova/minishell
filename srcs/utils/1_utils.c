@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   1_utils.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 11:06:10 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/02 21:03:22 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/04 12:54:08 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,16 @@ int	ft_dup(int fd)
 		return (-1);
 	}
 	return (0);
+}
+
+int	get_size_tab(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+	{
+		i++;
+	}
+	return (i);
 }

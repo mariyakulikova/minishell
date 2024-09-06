@@ -1,15 +1,26 @@
 /* Mariia */
-+ echo hello"world$USERS$SHLVL" test - should delete $USERS, but still change $SHLVL
-+ echo helloworld$'USERS'$SHLVL - should remove $'USERS', but still process $SHLVL
-+ echo "''helo''""hey"
+!!! echo hello"world$USERS$SHLVL" test - should delete $USERS, but still change $SHLVL
+!!! echo helloworld$'USERS'$SHLVL - should remove $'USERS', but still process $SHLVL
+!!! echo "''helo''""hey"
 $? + $?
-echo test >666 (echo test > 666 this works, I guess something goes a bit wrong in lexer)
-+ heredoc in parant process
+echo test >666
+heredoc in parant process
 heredoc unlink temp files
 envp
 /* Mariia */
 
 /* Fernanda */
-$SHLVL when ./minishell inside of minishell
 create a function to clean before reprompting
+- fix built in
+see how to update **envp
+exit status update
+signals
+$SHLVL when ./minishell inside of minishell
+
+PRompt:
+echo test>666
+Return:
+minishell(74323,0x205f94c00) malloc: Double free of object 0x13fe08300
+minishell(74323,0x205f94c00) malloc: *** set a breakpoint in malloc_error_break to debug
+zsh: abort      ./minishell
 

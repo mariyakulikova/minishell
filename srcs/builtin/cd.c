@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 13:13:21 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/05/06 22:55:07 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/04 14:05:04 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,22 @@ int	ft_cd(t_data *data)
 
 	wcd = get_builtin_index(data->cmd_tab, "cd");
 	i = 1;
-	if (data->cmd_tab[wcd][2] != NULL)
-	{
-		write(2, "cd: Too many arguments\n", 24);
-		return (-1);
-	}
-	if (ft_strcmp(data->cmd_tab[wcd][i], "-") == 0)
+	if (data->cmd_tab[wcd][i] == NULL || ft_strcmp(data->cmd_tab[wcd][i], "˜") == 0) // if there are no args
+		ch = get_value("HOME", data);
+	else if (ft_strcmp(data->cmd_tab[wcd][i], "-") == 0)
 	{
 		ch = data->oldpwd;
 		printf("%s\n", data->oldpwd);
 	}
-	else if (data->cmd_tab[wcd][i] == NULL || ft_strcmp(data->cmd_tab[wcd][i], "˜") == 0) // if there are no args
-		ch = get_value("HOME", data);
+	else if (data->cmd_tab[wcd][2] != NULL)
+	{
+		write(2, "cd: Too many arguments\n", 24);
+		return (-1);
+	}
 	else
 		ch = data->cmd_tab[wcd][i];
 	data->oldpwd = getcwd(NULL, 0);
-	printf("ch: %s\n", ch);
+	// printf("ch: %s\n", ch);
 	if (chdir(ch) == -1)
 	{
 		write(2, "cd: No such file or directory\n", 31);
@@ -47,7 +47,8 @@ int	ft_cd(t_data *data)
 		new_pwd = getcwd(NULL, 0);
 		update_env_list(data->lst, "PWD", new_pwd);
 		update_env_list(data->lst, "OLDPWD", data->oldpwd);
-		// and update export
+		update_exp_list(data->export_list, "PWD", new_pwd);
+		update_exp_list(data->export_list, "OLDPWD", data->oldpwd);
 	}
 	return (0);
 }

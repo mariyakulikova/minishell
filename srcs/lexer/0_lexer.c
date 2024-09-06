@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   0_lexer.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 11:08:48 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/21 16:20:01 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/05 12:59:22 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ t_token	*tokenizer(t_data *data)
 		else
 			start++;
 	}
+	free(prompt);
 	return (token_lst);
 }
 
@@ -110,11 +111,19 @@ int	check_double_quote(char *prompt)
 int	check_word(char *prompt)
 {
 	int	i;
-
+	bool	ins_quotes;
+	bool	ind_quotes;
+	
 	i = 0;
-	while (prompt[i])
+	ins_quotes = false;
+	ind_quotes = false;
+	while (prompt[i] != '\0')
 	{
-		if(is_space(prompt[i + 1]))
+		if (prompt[i] == SINGLE_QUOTE && !ind_quotes)
+			ins_quotes = !ins_quotes;
+		else if (prompt[i] == DOUBLE_QUOTE && !ins_quotes)
+			ind_quotes = !ind_quotes;
+		if(is_space(prompt[i + 1]) && ind_quotes == false && ins_quotes == false)
 			return(++i);
 		i++;
 	}
