@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 13:54:19 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/05 21:21:57 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/08 17:13:04 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ char	*expand_dollar(char *str, int *i, t_data *data)
 	}
 	else
 	{
-		ft_memmove(str + *i, str + *i + ft_strlen(key) + 1, ft_strlen(str) - *i);
+		ft_memmove(str + *i, str + *i + ft_strlen(key) + 1, ft_strlen(str) - *i - ft_strlen(key));
 		(*i)--;
 	}
 	free(key);
