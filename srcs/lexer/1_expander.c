@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 13:54:19 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/09 15:23:48 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/09 15:42:13 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static bool	is_key(char c)
 {
-	return (c == '_' || ft_isalnum(c));
+	return (c == '?' || c == '_' || ft_isalnum(c));
 }
 
 static char	*get_key(char *str, int i)
@@ -22,6 +22,8 @@ static char	*get_key(char *str, int i)
 	int	j;
 
 	j = i + 1;
+	if (str[j] == '?')
+		return (ft_strdup("?"));
 	while (str[j])
 	{
 		if (ft_isalnum(str[j]) || str[j] == '_')
@@ -36,6 +38,8 @@ char	*get_value(char *key, t_data *data)
 {
 	t_env_lst	*var;
 
+	if (ft_strcmp(key, "?") == 0)
+		return (ft_itoa(data->exit_status));
 	var = get_var_by_key(data->lst, key);
 	if (var)
 		return ((char *)var->value);
@@ -79,7 +83,8 @@ char	*expand_dollar(char *str, int *i, t_data *data)
 	}
 	else
 	{
-		ft_memmove(str + *i, str + *i + ft_strlen(key) + 1, ft_strlen(str) - *i - ft_strlen(key));
+		ft_memmove(str + *i, str + *i + ft_strlen(key) + 1,\
+					ft_strlen(str) - *i - ft_strlen(key));
 		(*i)--;
 	}
 	free(key);
