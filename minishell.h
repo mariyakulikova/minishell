@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:59:01 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/09 15:34:58 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/09 16:37:30 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ typedef struct s_exe_data
 
 typedef struct s_data	t_data;
 
-typedef int	(*t_builtin_func)(t_data *);
+typedef int				(*t_builtin_func)(t_data *);
 
 struct s_data
 {
@@ -200,7 +200,7 @@ void	ft_exit_err(char *msg, t_data *data);
 // free
 void	ft_free_data(t_data *data);
 void	free_triple_tab(char ***cmd_tab, int cmd_size);
-void	free_llist(t_llist **fd_list_tab);
+void	free_llist(t_llist **fd_list_tab, int size);
 void	free_tokens(t_token *tokens);
 void	free_reprompt(t_data *data);
 void	free_tab(char **tab);

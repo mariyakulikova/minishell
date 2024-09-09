@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:45:13 by fjoestin          #+#    #+#             */
-/*   Updated: 2024/09/09 15:21:03 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/09 16:58:23 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_free_data(t_data *data)
 	free_env_lst(data->export_list);
 	free_triple_tab(data->cmd_tab, data->cmd_size);
 	free_tokens(data->tokens);
-	free_llist(data->fd_list_tab);
+	free_llist(data->fd_list_tab, data->cmd_size * 2);
 	//free built in func?how?
 	//free_tab(data->builtin_name);
 	//free_tab(data->envp);
@@ -36,7 +36,7 @@ void	free_triple_tab(char ***cmd_tab, int cmd_size)
 	int	j;
 
 	if (!cmd_tab)
-		return;
+		return ;
 	i = 0;
 	while (i < cmd_size)
 	{
@@ -71,9 +71,10 @@ void	free_tab(char **tab)
 
 static void	free_env_lst(t_env_lst *list)
 {
+	t_env_lst	*next;
+
 	if(!list)
 		return ;
-	t_env_lst	*next;
 	while (list != NULL)
 	{
 		next = list->next;
@@ -100,18 +101,25 @@ void	free_tokens(t_token *tokens)
 	free(tokens);
 }
 
-void	free_llist(t_llist **fd_list_tab)
+void	free_llist(t_llist **fd_list_tab, int size)
 {
-	if(!fd_list_tab)
+	int		i;
+	t_llist	*curr;
+	t_llist	*prev;
+
+	if (!fd_list_tab)
 		return ;
-	t_llist	*next;
-	while ((*fd_list_tab) != NULL)
+	i = -1;
+	while (++i < size)
 	{
-		next = (*fd_list_tab)->next;
-		free((*fd_list_tab)->key);
-		free((*fd_list_tab)->value);
-		free((*fd_list_tab));
-		(*fd_list_tab) = next;
+		curr = *(fd_list_tab + i);
+		while (curr)
+		{
+			prev = curr;
+			curr = curr->next;
+			free(prev);
+		}
+		*(fd_list_tab + i) = NULL;
 	}
 	free(fd_list_tab);
 }
