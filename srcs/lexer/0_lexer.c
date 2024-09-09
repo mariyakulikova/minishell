@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   0_lexer.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 11:08:48 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/05 12:59:22 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/09 14:58:11 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,43 +29,47 @@ t_token	*token_new(char *prompt, int start, int end)
 	return (new);
 }
 
-t_token	*tokenizer(t_data *data)
+t_token *tokenizer(t_data *data)
 {
-	t_token *token_lst;
-	t_token *tmp;
-	char	*prompt;
-	int		start;
-	int		end;
+    t_token *token_lst;
+    t_token *tmp;
+    int     start;
+    int     end;
+    data->line = ft_strtrim(data->prompt, WHITE_SPACE);
+    start = 0;
+    end = 0;
+    token_lst = NULL;
+    while (data->line[start])
+    {
+        if (end > 0)
+        {
+            tmp = token_new(data->line, start, end);
+            ft_lstadd_back_ms(&token_lst, tmp);
+            start += end + 1;
+            end = 0;
+            if(start >= (int)ft_strlen(data->line))
+                break;
+        }
+/*      else if (end < 0)
+            exit_err(ARG);  *///figure that out
+        end = check_prompt(data->line, &start);
+        if (end == 0)
+            start++;
+    }
+    return (token_lst);
+}
 
-	token_lst = NULL;
-	tmp = NULL;
-	prompt = ft_strtrim(data->prompt, WHITE_SPACE);
-	start = 0;
-	end = 0;
-	while (prompt[start])
-	{
-		if (end > 0)
-		{
-			tmp = token_new(prompt, start, end);
-			ft_lstadd_back_ms(&token_lst, tmp);
-			start += end + 1;
-			end = 0;
-			if(start >= (int)ft_strlen(prompt))
-				break;
-		}
-/* 		else if (end < 0)
-			exit_err(ARG);  *///figure that out
-		if (prompt[start] == SINGLE_QUOTE)
-			end += check_single_quote(&prompt[start]);
-		else if (prompt[start] == DOUBLE_QUOTE)
-			end += check_double_quote(&prompt[start]);
-		else if (ft_isprint(prompt[start]))
-			end += check_word(&prompt[start]);
-		else
-			start++;
-	}
-	free(prompt);
-	return (token_lst);
+int check_prompt(char *prompt, int *start)
+{
+    int end;
+    end = 0;
+    if (prompt[*start] == SINGLE_QUOTE)
+        end = check_single_quote(&prompt[*start]);
+    else if (prompt[*start] == DOUBLE_QUOTE)
+        end = check_double_quote(&prompt[*start]);
+    else if (ft_isprint(prompt[*start]))
+        end = check_word(&prompt[*start]);
+    return (end);
 }
 
 int	check_single_quote(char *prompt)
