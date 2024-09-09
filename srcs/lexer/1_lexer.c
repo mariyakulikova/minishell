@@ -6,7 +6,7 @@
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 14:05:45 by fjoestin          #+#    #+#             */
-/*   Updated: 2024/09/09 17:10:38 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/09 19:23:42 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ bool	check_open_quotes(char *prompt)
 
 void	processing(t_data *data)
 {
-	test_tokens(data->tokens);
-	update_index(data->tokens, data);
+	//test_tokens(data->tokens);
 	update_type(data);
+	update_index(data->tokens, data);
 	check_types(data);
 	test_tokens(data->tokens);
 }
@@ -82,7 +82,10 @@ void	update_type(t_data *data)//**
 			if(tokens->value[i] == PIPE_PROMPT)
 				tokens->type = check_pipe(tokens, data);
 			if (tokens->value[i] == '<' || tokens->value[i] == '>')
+			{
 				tokens->type = check_redirect(tokens, data);
+				break;
+			}
 			i++;
 		}
 		tokens = tokens->next;

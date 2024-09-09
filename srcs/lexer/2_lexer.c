@@ -6,56 +6,25 @@
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 16:20:21 by fjoestin          #+#    #+#             */
-/*   Updated: 2024/09/09 16:59:33 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/09 19:39:03 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #include "../../minishell.h"
 
-void	real_double(t_token *token, t_data *data, int red)
+int	real_double(t_token *token, t_data *data, int red)
 {
+	(void)data;
 	char	*prompt;
 	char	**split;
-	int		wred;
-	int		size;
-	int		j = 1;
+	int		j;
 	t_token	*tmp;
 
 	prompt = token->value;
-	wred = str_chr_idx(prompt, red);
-	// if (prompt[wred + 1] != red)
-	// 	return;
-	if (wred != 0 && prompt[wred + 2] != '\0')
-	{
-		split = (char **)malloc(sizeof(char *) * 4);
-		size = 3;
-	}
-	else
-	{
-		split = (char **)malloc(sizeof(char *) * 3);
-		size = 2;
-	}	
-	if(size == 2)
-	{
-		if(wred == 0)
-		{
-			split[0] = ft_substr(prompt, 0, 2);
-			split[1] = ft_substr(prompt, (wred + 2), (ft_strlen(prompt) - wred));
-		}
-		else
-		{
-			split[0] = ft_substr(prompt, 0, wred);
-			split[1] = ft_substr(prompt, wred, 2);
-		}
-	}
-	else
-	{
-		split[0] = ft_substr(prompt, 0, wred);
-		split[1] = ft_substr(prompt, wred, 2);
-		split[2] = ft_substr(prompt, (wred + 2), (ft_strlen(prompt) - wred));
-	}
-	split[size] = NULL;
+	j = 1;
+	split = ft_split_ms(prompt, red);
+	free(token->value);
 	token->value = ft_strdup(split[0]);
 	while (split[j] && token != NULL)
 	{
@@ -74,17 +43,43 @@ void	real_double(t_token *token, t_data *data, int red)
 		j++;
 	}
 	free_split(split);
-	processing(data);
+	return(1);
 }
+
+char	**ft_split_ms(char *prompt, int	red)
+{
+	int		wred;
+	char	**split;
+	int		size;
+	
+	wred = str_chr_idx(prompt, red);
+	if (wred != 0 && prompt[wred + 2] != '\0')
+		size = 3;
+	else
+		size = 2;
+	split = (char **)malloc(sizeof(char *) * (size + 1));
+	if(wred == 0)
+	{
+		split[0] = ft_substr(prompt, 0, 2);
+		split[1] = ft_substr(prompt, (wred + 2), (ft_strlen(prompt) - wred));
+	}
+	else
+	{
+		split[0] = ft_substr(prompt, 0, wred);
+		split[1] = ft_substr(prompt, wred, 2);
+		if (size == 3)
+			split[2] = ft_substr(prompt, (wred + 2), (ft_strlen(prompt) - wred));
+	}
+	split[size] = NULL;
+	return (split);
+}
+int check_redirect_helper(t_token *tokens, t_data *data);
 
 t_type	check_redirect(t_token *tokens, t_data *data) //should be this token specific
 {
-	int	i;
-	bool	in_squotes;
-	bool	in_dquotes;
-	i = 0;
-	in_squotes = false;
-	in_dquotes = false;
+	int check;
+
+	check = 0;
 	if (tokens->value[0] == '<' && tokens->value[1] == '\0')
 		return (RED_IN);
 	else if (tokens->value[0] == '>' && tokens->value[1] == '\0')
@@ -93,60 +88,67 @@ t_type	check_redirect(t_token *tokens, t_data *data) //should be this token spec
 		return(HERE_DOC);
 	if ((tokens->value[0] == '>' && tokens->value[1] == '>') && tokens->value[2] == '\0')
 		return (APPEND);
-	while (tokens->value[i])
-	{
-		if (tokens->value[i] == SINGLE_QUOTE && !in_dquotes)
-			in_squotes = !in_squotes;
-		else if (tokens->value[i] == DOUBLE_QUOTE && !in_squotes)
-			in_dquotes = !in_dquotes;
-		if ((tokens->value[i] == '<' || tokens->value[i] == '>') && (tokens->type != APPEND && tokens->type != HERE_DOC) && !in_squotes && !in_dquotes)
-			real_red(tokens, data, tokens->value[i]);
-		if (((tokens->value[i] == '<' && tokens->value[i + 1] == '<' )||( tokens->value[i] == '>' && tokens->value[i + 1] == '>')) && !in_squotes && !in_dquotes)
-			real_double(tokens, data, tokens->value[i]);
-		i++;
-	}
-	return(STRING);
+	check = check_redirect_helper(tokens, data);
+	if (check == 0)
+		return(STRING);
+	else
+		return (check_redirect(tokens, data));
 }
 
-void	real_red(t_token *token, t_data *data, int red)
+int check_redirect_helper(t_token *tokens, t_data *data)
 {
+	int	i;
+	bool	in_squotes;
+	bool	in_dquotes;
+	int		entered;
+	
+	in_squotes = false;
+	in_dquotes = false;
+
+	i = 0;
+	entered = 0;
+	char *prompt = ft_strdup(tokens->value);
+	while (prompt[i] != '\0')
+	{
+		if (prompt[i] == SINGLE_QUOTE && !in_dquotes)
+			in_squotes = !in_squotes;
+		else if (prompt[i] == DOUBLE_QUOTE && !in_squotes)
+			in_dquotes = !in_dquotes;
+		if ((prompt[i] == '<' || prompt[i] == '>') && (tokens->type != APPEND && tokens->type != HERE_DOC) && !in_squotes && !in_dquotes)
+			entered = real_red(tokens, data, prompt[i]);
+		if (((prompt[i] == '<' && prompt[i + 1] == '<' )||( prompt[i] == '>' && prompt[i + 1] == '>')) && !in_squotes && !in_dquotes)
+		{
+			entered = real_double(tokens, data, prompt[i]);
+			break;
+		}
+		i++;
+	}
+	free(prompt);
+	return (entered);
+}
+
+
+int	real_red(t_token *token, t_data *data, int red)
+{
+	(void)data;
 	char	*prompt;
 	char	**split;
 	int		wred;
-	int		size;
 	int		j = 1;
 	t_token	*tmp;
 
-	prompt = token->value;
+	prompt = ft_strdup(token->value);
 	wred = str_chr_idx(prompt, red);
-	if (prompt[wred + 1] == red)
-		return;
-	if (wred != 0 && prompt[wred + 1] != '\0')
+	if(prompt[wred + 1] == red || prompt[wred + 1] == '\0')
 	{
-		split = (char **)malloc(sizeof(char *) * 4);
-		size = 3;
+		free(prompt);
+		return (1);
 	}
-	else
-	{
-		split = (char **)malloc(sizeof(char *) * 3);
-		size = 2;
-	}
-	if(size == 2)
-	{
-		if(wred == 0)
-			wred++;
-		split[0] = ft_substr(prompt, 0, wred);
-		split[1] = ft_substr(prompt, wred, (ft_strlen(prompt) - wred));
-	}
-	else
-	{
-		split[0] = ft_substr(prompt, 0, wred);
-		split[1] = ft_substr(prompt, wred, 1);
-		split[2] = ft_substr(prompt, (wred + 1), (ft_strlen(prompt) - wred));
-	}
-	split[size] = NULL;
+	split = ft_split_red_ms(prompt, wred);
+	free(token->value);
+	token->value = NULL;
 	token->value = ft_strdup(split[0]);
-	while (split[j] && token != NULL)
+	while (split[j] != NULL && token != NULL)
 	{
 		tmp = ft_new_token(split[j]);
 		tmp->prev = token;
@@ -162,8 +164,34 @@ void	real_red(t_token *token, t_data *data, int red)
 			token = token->next;
 		j++;
 	}
+	free(prompt);
 	free_split(split);
-	processing(data);
+	return (1);
+}
+char	**ft_split_red_ms(char *prompt, int wred)
+{
+	int		size;
+	char	**split;
+	
+	if (wred != 0 && prompt[wred + 1] != '\0')
+		size = 3;
+	else
+		size = 2;
+	split = (char **)malloc(sizeof(char *) * (size + 1));
+	if(wred == 0)
+	{
+		split[0] = ft_substr(prompt, 0, 1);
+		split[1] = ft_substr(prompt, (wred + 1), (ft_strlen(prompt) - wred));
+	}
+	else
+	{
+		split[0] = ft_substr(prompt, 0, wred);
+		split[1] = ft_substr(prompt, wred, 1);
+		if (size == 3)
+			split[2] = ft_substr(prompt, (wred + 1), (ft_strlen(prompt) - wred));
+	}
+	split[size] = NULL;
+	return (split);
 }
 
 void	check_types(t_data *data)
@@ -177,6 +205,7 @@ void	check_types(t_data *data)
 			ft_exit_err("pipe doesn't work\n", data);
 		if (token->type == PIPE && token->next->type == PIPE)
 			ft_exit_err("2 pipes\n", data);
+		
 		token = token->next;
 	}
 	

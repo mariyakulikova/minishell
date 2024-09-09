@@ -6,7 +6,7 @@
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 11:08:48 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/09 16:49:17 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/09 17:24:11 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,6 @@ t_token *tokenizer(t_data *data)
             if(start >= (int)ft_strlen(data->line))
                 break;
         }
-/*      else if (end < 0)
-            exit_err(ARG);  *///figure that out
         end = check_prompt(data->line, &start);
 		printf("%i\n", end);
         if (end == 0)

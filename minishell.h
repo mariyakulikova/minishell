@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:59:01 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/09 16:37:30 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/09 18:17:04 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,8 +126,10 @@ void		expander(t_token *tokens, t_data *data);
 char		*expand_dollar(char *str, int *i, t_data *data);
 void		check_types(t_data *data);
 t_type		check_redirect(t_token *tokens, t_data *data);
-void		real_red(t_token *token, t_data *data, int red);
+int			real_red(t_token *token, t_data *data, int red);
 int			check_prompt(char *prompt, int *start);
+char		**ft_split_ms(char *prompt, int	red);
+char	**ft_split_red_ms(char *prompt, int wred);
 
 /* parser */
 int			parser(t_data *data);
