@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 13:14:35 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/09 15:22:24 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/09 15:34:39 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,6 @@ int	ft_exit(t_data *data)
 	ft_free_data(data);
 	printf("exit\n");
 	exit(exit_status);
-}
-
-int	get_exit_status(int	exit_status)
-{
-	if (exit_status < 0)
-		exit_status = 256 + (exit_status % 256);
-	else if (exit_status > 256)
-		exit_status = exit_status % 256;
-	return (exit_status);
 }
 
 int	get_exit_status(int	exit_status)

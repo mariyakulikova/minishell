@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   0_expander.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/09/09 15:23:05 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/09 15:37:44 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ static char	*shift_str(char *str, int i, int j)
 
 static char	*expand_single_qoutes(char *str, int *i)
 {
-	int	j;
 	int	j;
 
 	j = *i;

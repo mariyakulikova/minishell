@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:59:01 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/09 15:21:29 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/09 15:34:58 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ struct s_data
 	int				cmd_size;
 	t_llist			**fd_list_tab;
 	char			*prompt;
+	char			*line;
 	unsigned int	exit_status;
 	unsigned int	exit_status_final;
 	int				orig_std_in;

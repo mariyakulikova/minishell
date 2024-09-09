@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   0_lexer.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 11:08:48 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/09 15:23:23 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/09 15:36:40 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,11 +123,6 @@ int	check_word(char *prompt)
 	ind_quotes = false;
 	while (prompt[i] != '\0')
 	{
-		if (prompt[i] == SINGLE_QUOTE && !ind_quotes)
-			ins_quotes = !ins_quotes;
-		else if (prompt[i] == DOUBLE_QUOTE && !ins_quotes)
-			ind_quotes = !ind_quotes;
-		if(is_space(prompt[i + 1]) && ind_quotes == false && ins_quotes == false)
 		if (prompt[i] == SINGLE_QUOTE && !ind_quotes)
 			ins_quotes = !ins_quotes;
 		else if (prompt[i] == DOUBLE_QUOTE && !ins_quotes)

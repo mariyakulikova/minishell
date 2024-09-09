@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 13:13:21 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/09 15:21:58 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/09 15:34:16 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@ int	ft_cd(t_data *data)
 
 	wcd = get_builtin_index(data->cmd_tab, "cd");
 	i = 1;
-	if (data->cmd_tab[wcd][i] == NULL || ft_strcmp(data->cmd_tab[wcd][i], "˜") == 0) // if there are no args
-		ch = get_value("HOME", data);
-	else if (ft_strcmp(data->cmd_tab[wcd][i], "-") == 0)
 	if (data->cmd_tab[wcd][i] == NULL || ft_strcmp(data->cmd_tab[wcd][i], "˜") == 0) // if there are no args
 		ch = get_value("HOME", data);
 	else if (ft_strcmp(data->cmd_tab[wcd][i], "-") == 0)
@@ -44,8 +41,6 @@ int	ft_cd(t_data *data)
 	else
 		ch = data->cmd_tab[wcd][i];
 	data->oldpwd = getcwd(NULL, 0);
-	// printf("ch: %s\n", ch);
-	// printf("ch: %s\n", ch);
 	if (chdir(ch) == -1)
 	{
 		write(2, "cd: No such file or directory\n", 31);
