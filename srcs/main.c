@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 11:14:30 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/05 14:51:17 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/09 14:57:00 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,16 @@ int	main(int argc, char **argv, char **envp)
 
 void	ft_minishell(t_data *data)
 {
+	set_signal();
 	while (1)
 	{
 		data->prompt = readline(ENTRY_PROMPT);
 		if (!data->prompt)
 		{
-			//free data and exit
+			if (data)
+				ft_free_data(data);
+			printf("exit\n");
+			exit(0);
 		}
 		add_history(data->prompt);
 		if (is_only_space(data->prompt) || ft_strlen(data->prompt) == 0)

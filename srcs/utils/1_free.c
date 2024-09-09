@@ -13,7 +13,7 @@ void	free_reprompt(t_data *data)
 	data->fd_list_tab = NULL;
 	free(data->prompt);
 	data->prompt = NULL;
-	//free(data->line);
-	//data->line = NULL;
+	free(data->line);
+	data->line = NULL;
 	// free prompt and line
 }

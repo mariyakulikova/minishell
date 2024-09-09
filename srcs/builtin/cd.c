@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 13:13:21 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/04 14:05:04 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/09 14:52:51 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int	ft_cd(t_data *data)
 		update_env_list(data->lst, "OLDPWD", data->oldpwd);
 		update_exp_list(data->export_list, "PWD", new_pwd);
 		update_exp_list(data->export_list, "OLDPWD", data->oldpwd);
+		free(new_pwd);
 	}
 	return (0);
 }

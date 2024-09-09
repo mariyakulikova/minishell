@@ -1,7 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/09 14:45:13 by fjoestin          #+#    #+#             */
+/*   Updated: 2024/09/09 14:45:24 by fjoestin         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 
 #include "../../minishell.h"
 
-//static void	free_tab(char **tab);
 static void	free_env_lst(t_env_lst *list);
 
 void	ft_free_data(t_data *data)
@@ -15,7 +26,7 @@ void	ft_free_data(t_data *data)
 	//free_tab(data->builtin_name);
 	//free_tab(data->envp);
 	free(data->prompt);
-	//free(data->line);
+	free(data->line);
 	free(data->oldpwd);
 }
 

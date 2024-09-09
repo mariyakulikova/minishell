@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   1_lexer.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 14:05:45 by fjoestin          #+#    #+#             */
-/*   Updated: 2024/09/05 14:38:27 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/09 15:01:31 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,8 @@ t_type	check_pipe(t_token *tokens, t_data *data) //should be this token specific
 			real_pipe(tokens, data);
 		i++;
 	}
+	if (tokens->value[0] == PIPE_PROMPT && tokens->value[1] == '\0')
+		return (PIPE);
 	return(STRING);
 }
 

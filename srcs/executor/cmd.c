@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 14:17:38 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/29 10:30:33 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/09 14:49:39 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ static char	*get_cmd_path(t_data *data, int i)
 			return (cmd_path);
 		free(cmd_path);
 	}
+	free_split(path_tab);
 	return (NULL);
 }
 
@@ -74,6 +75,7 @@ int	execute_cmd(t_data *data, int i)
 			data->exit_status = 127;
 			write(2, **(data->cmd_tab + i), ft_strlen(**(data->cmd_tab + i)));
 			write(2, " : command not found\n", 21);
+			exit(data->exit_status);
 		}
 		else
 			return (execve(cmd_path, *(data->cmd_tab + i), data->envp));

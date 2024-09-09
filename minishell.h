@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:59:01 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/04 13:39:26 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/09 14:58:29 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include "libft/libft.h"
+# include <signal.h>
 
 # define ENTRY_PROMPT "minishell$ "
 # define HERE_DOC_PROMPT "> "
@@ -95,6 +96,7 @@ struct s_data
 	int				cmd_size;
 	t_llist			**fd_list_tab;
 	char			*prompt;
+	char			*line;
 	unsigned int	exit_status;
 	unsigned int	exit_status_final;
 	int				orig_std_in;
@@ -125,6 +127,7 @@ char		*expand_dollar(char *str, int *i, t_data *data);
 void		check_types(t_data *data);
 t_type		check_redirect(t_token *tokens, t_data *data);
 void		real_red(t_token *token, t_data *data, int red);
+int			check_prompt(char *prompt, int *start);
 
 /* parser */
 int			parser(t_data *data);
@@ -199,6 +202,10 @@ void	free_llist(t_llist **fd_list_tab);
 void	free_tokens(t_token *tokens);
 void	free_reprompt(t_data *data);
 void	free_tab(char **tab);
+
+// signals
+void	set_signal(void);
+void	signal_handler(int sig);
 
 //Built in
 void	update_env_list(t_env_lst *curr, char *new_key, char *new_value);
