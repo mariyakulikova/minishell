@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:52:17 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/06 18:36:08 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/09 13:19:44 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static char	*expand_single_qoutes(char *str, int *i)
 		if (str[*i] == '\'')
 			break ;
 	str = shift_str(str, *i, j);
-	--(*i);
+	*i -= 2;
 	return (str);
 }
 
