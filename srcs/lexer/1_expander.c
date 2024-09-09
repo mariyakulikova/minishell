@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   1_expander.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 13:54:19 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/21 16:20:07 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/05 21:21:57 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,7 @@ char	*expand_dollar(char *str, int *i, t_data *data)
 
 	(void) data;
 	if (!is_key(str[*i + 1]))
-	{
-		++(*i);
 		return (str);
-	}
 	key = get_key(str, *i);
 	val = get_value(key, data);
 	if (val)
@@ -81,7 +78,10 @@ char	*expand_dollar(char *str, int *i, t_data *data)
 		*i += ft_strlen(val) - 1;
 	}
 	else
+	{
 		ft_memmove(str + *i, str + *i + ft_strlen(key) + 1, ft_strlen(str) - *i);
+		(*i)--;
+	}
 	free(key);
 	return (str);
 }
