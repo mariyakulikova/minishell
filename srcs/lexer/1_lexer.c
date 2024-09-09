@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 14:05:45 by fjoestin          #+#    #+#             */
-/*   Updated: 2024/09/09 15:24:33 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/09 17:32:36 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	lexer(t_data *data)
 		return (perror("Error: not all quotes were closed"), 1);
 	data->tokens = tokenizer(data);
 	processing(data);
-	// test_tokens(data->tokens);
 	// test_tokens(data->tokens);
 	expander(data->tokens, data);
 	return 0;

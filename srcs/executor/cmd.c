@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 14:17:38 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/09 14:49:39 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/09 18:04:59 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,9 @@ int	execute_cmd(t_data *data, int i)
 		cmd_path = get_cmd_path(data, i);
 		if (!cmd_path)
 		{
-			data->exit_status = 127;
 			write(2, **(data->cmd_tab + i), ft_strlen(**(data->cmd_tab + i)));
 			write(2, " : command not found\n", 21);
-			exit(data->exit_status);
+			exit(127);
 		}
 		else
 			return (execve(cmd_path, *(data->cmd_tab + i), data->envp));

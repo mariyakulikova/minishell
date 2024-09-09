@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:59:01 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/09 16:37:30 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/09 17:45:42 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,8 @@ struct s_data
 	t_llist			**fd_list_tab;
 	char			*prompt;
 	char			*line;
-	unsigned int	exit_status;
-	unsigned int	exit_status_final;
+	int				exit_status;
+	int				exit_status_final;
 	int				orig_std_in;
 	int				orig_std_out;
 	char			*builtin_name[7];
