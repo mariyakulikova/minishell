@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   0_lexer.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 11:08:48 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/09 14:58:11 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/09 15:23:23 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 t_token	*token_new(char *prompt, int start, int end)
 {
 	t_token	*new;
-	
+
 	new = (t_token *)malloc(sizeof(t_token));
 	if (!new)
 		exit(EXIT_FAILURE);
@@ -99,7 +99,7 @@ int	check_double_quote(char *prompt)
 	j = 0;
 	while(tmp[i])
 	{
-		if(tmp[i] == DOUBLE_QUOTE && ft_isprint(tmp[i + 1]) == FALSE) 
+		if(tmp[i] == DOUBLE_QUOTE && ft_isprint(tmp[i + 1]) == FALSE)
 			return (++i) ;
 		while(tmp[i] == DOUBLE_QUOTE && ft_isprint(tmp[i + 1]) == TRUE)
 		{
@@ -117,12 +117,17 @@ int	check_word(char *prompt)
 	int	i;
 	bool	ins_quotes;
 	bool	ind_quotes;
-	
+
 	i = 0;
 	ins_quotes = false;
 	ind_quotes = false;
 	while (prompt[i] != '\0')
 	{
+		if (prompt[i] == SINGLE_QUOTE && !ind_quotes)
+			ins_quotes = !ins_quotes;
+		else if (prompt[i] == DOUBLE_QUOTE && !ins_quotes)
+			ind_quotes = !ind_quotes;
+		if(is_space(prompt[i + 1]) && ind_quotes == false && ins_quotes == false)
 		if (prompt[i] == SINGLE_QUOTE && !ind_quotes)
 			ins_quotes = !ins_quotes;
 		else if (prompt[i] == DOUBLE_QUOTE && !ins_quotes)

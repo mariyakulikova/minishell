@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:59:01 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/09 14:58:29 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/09 15:21:29 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ struct s_data
 	int				cmd_size;
 	t_llist			**fd_list_tab;
 	char			*prompt;
-	char			*line;
 	unsigned int	exit_status;
 	unsigned int	exit_status_final;
 	int				orig_std_in;
@@ -163,6 +162,7 @@ int			get_stream_type(t_type type);
 int			ft_dup2(int old_fd, int new_fd);
 int			ft_dup(int fd);
 int			get_size_tab(char **tab);
+int			get_size_tab(char **tab);
 
 /* built-in/ */
 int			ft_cd(t_data *data);
@@ -177,6 +177,7 @@ int 		get_builtin_index(char ***str, char *cmd);
 void		sort_list(t_env_lst *list);
 void		update_exp_list(t_env_lst *curr, char *new_key, char *new_value);
 int			valid_format(char *str);
+int			get_exit_status(int	exit_status);
 int			get_exit_status(int	exit_status);
 
 /* envp_lst.c */

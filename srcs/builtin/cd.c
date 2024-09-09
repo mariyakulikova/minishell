@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 13:13:21 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/09 14:52:51 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/09 15:21:58 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ int	ft_cd(t_data *data)
 	if (data->cmd_tab[wcd][i] == NULL || ft_strcmp(data->cmd_tab[wcd][i], "˜") == 0) // if there are no args
 		ch = get_value("HOME", data);
 	else if (ft_strcmp(data->cmd_tab[wcd][i], "-") == 0)
+	if (data->cmd_tab[wcd][i] == NULL || ft_strcmp(data->cmd_tab[wcd][i], "˜") == 0) // if there are no args
+		ch = get_value("HOME", data);
+	else if (ft_strcmp(data->cmd_tab[wcd][i], "-") == 0)
 	{
 		ch = data->oldpwd;
 		printf("%s\n", data->oldpwd);
@@ -33,9 +36,15 @@ int	ft_cd(t_data *data)
 		write(2, "cd: Too many arguments\n", 24);
 		return (-1);
 	}
+	else if (data->cmd_tab[wcd][2] != NULL)
+	{
+		write(2, "cd: Too many arguments\n", 24);
+		return (-1);
+	}
 	else
 		ch = data->cmd_tab[wcd][i];
 	data->oldpwd = getcwd(NULL, 0);
+	// printf("ch: %s\n", ch);
 	// printf("ch: %s\n", ch);
 	if (chdir(ch) == -1)
 	{
