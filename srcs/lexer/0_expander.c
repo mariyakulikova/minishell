@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:52:17 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/09 15:42:01 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/09 15:58:07 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static char	*expand_single_qoutes(char *str, int *i)
 		if (str[*i] == '\'')
 			break ;
 	str = shift_str(str, *i, j);
-	*i -= 2;
+	*i -= 1;
 	return (str);
 }
 
@@ -62,7 +62,6 @@ static char	*expand_double_qoutes(char *str, int *i, t_data *data)
 	}
 	str = shift_str(str, *i, j);
 	*i -= 2;
-	*i -= 2;
 	return (str);
 }
 
@@ -79,12 +78,6 @@ void	expander(t_token *tokens, t_data *data)
 		str = curr->value;
 		while (str[++i])
 		{
-			if (str[i] == '\'')
-				str = expand_single_qoutes(str, &i);
-			if (str[i] == '\"')
-				str = expand_double_qoutes(str, &i, data);
-			if (str[i] == '$')
-				str = expand_dollar(str, &i, data);
 			if (str[i] == '\'')
 				str = expand_single_qoutes(str, &i);
 			if (str[i] == '\"')
