@@ -6,7 +6,7 @@
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 16:20:21 by fjoestin          #+#    #+#             */
-/*   Updated: 2024/08/21 16:20:22 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/09 16:59:33 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ void	real_double(t_token *token, t_data *data, int red)
 			token = token->next;
 		j++;
 	}
+	free_split(split);
 	processing(data);
 }
 
@@ -161,6 +162,7 @@ void	real_red(t_token *token, t_data *data, int red)
 			token = token->next;
 		j++;
 	}
+	free_split(split);
 	processing(data);
 }
 

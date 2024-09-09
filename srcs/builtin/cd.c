@@ -6,7 +6,7 @@
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 13:13:21 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/09 15:34:16 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/09 15:56:50 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,6 @@ int	ft_cd(t_data *data)
 	{
 		ch = data->oldpwd;
 		printf("%s\n", data->oldpwd);
-	}
-	else if (data->cmd_tab[wcd][2] != NULL)
-	{
-		write(2, "cd: Too many arguments\n", 24);
-		return (-1);
 	}
 	else if (data->cmd_tab[wcd][2] != NULL)
 	{
