@@ -6,7 +6,7 @@
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 14:05:45 by fjoestin          #+#    #+#             */
-/*   Updated: 2024/09/09 19:23:42 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/10 17:34:19 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	processing(t_data *data)
 	update_type(data);
 	update_index(data->tokens, data);
 	check_types(data);
-	test_tokens(data->tokens);
+	//test_tokens(data->tokens);
 }
 
 void	update_index(t_token *tokens, t_data *data)
@@ -121,52 +121,19 @@ t_type	check_pipe(t_token *tokens, t_data *data) //should be this token specific
 
 void	real_pipe(t_token *token, t_data *data)
 {
-	char	*prompt;
 	char	**split;
 	int		wpipe;
-	int		size;
-	int		j = 1;
-	t_token	*tmp;// will i have to initialize?
+	int		j;
+	t_token	*tmp;
 
-	prompt = token->value;
-	wpipe = str_chr_idx(prompt, PIPE_PROMPT);
-	if (prompt[wpipe] != 0 && prompt[wpipe + 1] != '\0')
-	{
-		split = (char **)malloc(sizeof(char *) * 4);
-		size = 3;
-	}
-	else
-	{
-		split = (char **)malloc(sizeof(char *) * 3);
-		size = 2;
-	}
-	if (wpipe == 0)
-	{
-		split[0] = ft_strdup("|");
-		split[1] = ft_substr(prompt, 1, (ft_strlen(prompt) - 1));
-	}
-	else
-	{
-		split[0] = ft_substr(prompt, 0, wpipe);
-		split[1] = ft_strdup("|");
-		if (prompt[wpipe + 1])
-		{
-			split[2] = ft_substr(prompt, (wpipe + 1), (ft_strlen(prompt) - wpipe));
-		}
-	}
-	split[size] = NULL;
+	wpipe = str_chr_idx(token->value, PIPE_PROMPT);
+	split = ft_split_red_ms(token->value, wpipe);
+	free(token->value);
 	token->value = ft_strdup(split[0]);
+	j = 1;
 	while (split[j] && token != NULL)
 	{
-		tmp = ft_new_token(split[j]);
-		tmp->prev = token;
-		if (token->next)
-		{
-			tmp->next = token->next;
-			token->next->prev = tmp;
-		}
-		else
-			tmp->next = NULL;
+		tmp = ft_new_token(split[j], &token);
 		token->next = tmp;
 		if (token->next)
 			token = token->next;
@@ -174,7 +141,7 @@ void	real_pipe(t_token *token, t_data *data)
 	}
 	processing(data);
 }
-t_token	*ft_new_token(char *line)
+t_token	*ft_new_token(char *line, t_token **curr)
 {
 	t_token	*new;
 
@@ -184,7 +151,13 @@ t_token	*ft_new_token(char *line)
 	new->join = TRUE;
 	new->quotes = get_if_quotes(new->value);
 	new->type = STRING;
-	new->prev = NULL;
-	new->next = NULL;
+	new->prev = *curr;
+	if ((*curr)->next)
+	{
+		new->next = (*curr)->next;
+		(*curr)->next->prev = new;
+	}
+	else
+		new->next = NULL;
 	return(new);
 }

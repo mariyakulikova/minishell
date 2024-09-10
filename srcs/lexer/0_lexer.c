@@ -6,7 +6,7 @@
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 11:08:48 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/09 17:24:11 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/10 16:30:43 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ t_token *tokenizer(t_data *data)
                 break;
         }
         end = check_prompt(data->line, &start);
-		printf("%i\n", end);
         if (end == 0)
             start++;
     }

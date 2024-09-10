@@ -6,7 +6,7 @@
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 16:20:21 by fjoestin          #+#    #+#             */
-/*   Updated: 2024/09/09 19:39:03 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/10 17:29:31 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,7 @@ int	real_double(t_token *token, t_data *data, int red)
 	token->value = ft_strdup(split[0]);
 	while (split[j] && token != NULL)
 	{
-		tmp = ft_new_token(split[j]);
-		tmp->prev = token;
-		if (token->next)
-		{
-			tmp->next = token->next;
-			token->next->prev = tmp;
-		}
-		else
-			tmp->next = NULL;
+		tmp = ft_new_token(split[j], &token);
 		token->next = tmp;
 		if (token->next)
 			token = token->next;
@@ -115,7 +107,7 @@ int check_redirect_helper(t_token *tokens, t_data *data)
 		else if (prompt[i] == DOUBLE_QUOTE && !in_squotes)
 			in_dquotes = !in_dquotes;
 		if ((prompt[i] == '<' || prompt[i] == '>') && (tokens->type != APPEND && tokens->type != HERE_DOC) && !in_squotes && !in_dquotes)
-			entered = real_red(tokens, data, prompt[i]);
+			entered = real_red(tokens, prompt[i]);
 		if (((prompt[i] == '<' && prompt[i + 1] == '<' )||( prompt[i] == '>' && prompt[i + 1] == '>')) && !in_squotes && !in_dquotes)
 		{
 			entered = real_double(tokens, data, prompt[i]);
@@ -128,43 +120,27 @@ int check_redirect_helper(t_token *tokens, t_data *data)
 }
 
 
-int	real_red(t_token *token, t_data *data, int red)
+int	real_red(t_token *token, int red)
 {
-	(void)data;
-	char	*prompt;
 	char	**split;
 	int		wred;
 	int		j = 1;
 	t_token	*tmp;
 
-	prompt = ft_strdup(token->value);
-	wred = str_chr_idx(prompt, red);
-	if(prompt[wred + 1] == red || prompt[wred + 1] == '\0')
-	{
-		free(prompt);
+	wred = str_chr_idx(token->value, red);
+	if(token->value[wred + 1] == red || token->value[wred + 1] == '\0')
 		return (1);
-	}
-	split = ft_split_red_ms(prompt, wred);
+	split = ft_split_red_ms(token->value, wred);
 	free(token->value);
-	token->value = NULL;
 	token->value = ft_strdup(split[0]);
 	while (split[j] != NULL && token != NULL)
 	{
-		tmp = ft_new_token(split[j]);
-		tmp->prev = token;
-		if (token->next)
-		{
-			tmp->next = token->next;
-			token->next->prev = tmp;
-		}
-		else
-			tmp->next = NULL;
+		tmp = ft_new_token(split[j], &token);
 		token->next = tmp;
 		if (token->next)
 			token = token->next;
 		j++;
 	}
-	free(prompt);
 	free_split(split);
 	return (1);
 }
@@ -201,11 +177,12 @@ void	check_types(t_data *data)
 	token = data->tokens;
 	while (token != NULL)
 	{
+		if (token->type != STRING && token->next->type != STRING)
+			ft_exit_err("unexpected syntax\n", data);
 		if (token->type == PIPE && (token->index == 0 || token->index == (data->n_tokens - 1)))
 			ft_exit_err("pipe doesn't work\n", data);
 		if (token->type == PIPE && token->next->type == PIPE)
 			ft_exit_err("2 pipes\n", data);
-		
 		token = token->next;
 	}
 	
