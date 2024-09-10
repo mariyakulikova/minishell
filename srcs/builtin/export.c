@@ -6,38 +6,27 @@
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 13:13:40 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/10 18:46:21 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/10 19:18:32 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
+
+static void	print_list(t_env_lst *list);
 
 int	ft_export(t_data *data)
 {
 	int	wexport;
 	int	i;
 	int	j;
-	// int	k;
 	char	*new_key;
 	char	*new_value;
 	char	*sign;
-	t_env_lst	*list;
 
-	list = data->export_list;
 	wexport = get_builtin_index(data->cmd_tab, "export");
 	i = 1;
 	if (data->cmd_tab[wexport][i] == NULL)
-	{
-		sort_list(list);
-		while (list)
-		{
-			printf("declare -x %s", list->key);
-			if (list->value != NULL)
-				printf("=\"%s\"", list->value);
-			printf("\n");
-			list = list->next;
-		}	
-	}
+		print_list(data->export_list);
 	while (data->cmd_tab[wexport][i] != NULL)
 	{
 		if (valid_format(data->cmd_tab[wexport][i]) == 1)
@@ -62,15 +51,25 @@ int	ft_export(t_data *data)
 		}
 		else
 			new_key = ft_strdup(data->cmd_tab[wexport][i]);
-		update_exp_list(list, new_key, new_value);
+		update_exp_list(data->export_list, new_key, new_value);
 		if (new_value != NULL)
 			update_env_list(data->lst, new_key, new_value);
 		i++;
 	}
-	data->export_list = list;
 	return (0);
 }
-
+static void	print_list(t_env_lst *list)
+{
+	sort_list(list);
+	while (list)
+	{
+		printf("declare -x %s", list->key);
+		if (list->value != NULL)
+			printf("=\"%s\"", list->value);
+		printf("\n");
+		list = list->next;
+	}	
+}
 int	valid_format(char *str)
 {
 	int	i;
@@ -84,10 +83,13 @@ int	valid_format(char *str)
 			return (1);
 		i++;
 	}
-	while (str[++i])
+	if (str[i] != '\0')
 	{
-		if (ft_isalpha(str[i]) == 0 && str[i] != '_' && ft_isdigit(str[i]) == 0 && str[i] != ' ' && str[i] != '-')
-			return (1);
+		while (str[++i])
+		{
+			if (ft_isalpha(str[i]) == 0 && str[i] != '_' && ft_isdigit(str[i]) == 0 && str[i] != ' ' && str[i] != '-')
+				return (1);
+		}
 	}
 	return (0);
 }
