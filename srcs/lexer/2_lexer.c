@@ -6,7 +6,7 @@
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 16:20:21 by fjoestin          #+#    #+#             */
-/*   Updated: 2024/09/10 17:29:31 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/10 17:54:19 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,12 +177,14 @@ void	check_types(t_data *data)
 	token = data->tokens;
 	while (token != NULL)
 	{
-		if (token->type != STRING && token->next->type != STRING)
-			ft_exit_err("unexpected syntax\n", data);
 		if (token->type == PIPE && (token->index == 0 || token->index == (data->n_tokens - 1)))
 			ft_exit_err("pipe doesn't work\n", data);
+		if (token->type != STRING && (token->index == 0 || token->index == (data->n_tokens - 1)))
+			ft_exit_err("unexpected syntax\n", data);
 		if (token->type == PIPE && token->next->type == PIPE)
 			ft_exit_err("2 pipes\n", data);
+		if (token->type != STRING && token->next->type != STRING)
+			ft_exit_err("unexpected syntax\n", data);
 		token = token->next;
 	}
 	

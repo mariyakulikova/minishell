@@ -6,7 +6,7 @@
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 14:05:45 by fjoestin          #+#    #+#             */
-/*   Updated: 2024/09/10 17:34:19 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/10 18:05:56 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	lexer(t_data *data)
 {
-
 	if(!check_open_quotes(data->prompt))
 		return (perror("Error: not all quotes were closed"), 1);
 	data->tokens = tokenizer(data);
@@ -80,7 +79,10 @@ void	update_type(t_data *data)//**
 		while (tokens->value[i] != '\0')
 		{
 			if(tokens->value[i] == PIPE_PROMPT)
+			{
 				tokens->type = check_pipe(tokens, data);
+				break ;
+			}
 			if (tokens->value[i] == '<' || tokens->value[i] == '>')
 			{
 				tokens->type = check_redirect(tokens, data);
@@ -111,7 +113,10 @@ t_type	check_pipe(t_token *tokens, t_data *data) //should be this token specific
 		else if (tokens->value[i] == DOUBLE_QUOTE && !in_squotes)
 			in_dquotes = !in_dquotes;
 		if (tokens->value[i] == PIPE_PROMPT && !in_squotes && !in_dquotes)
+		{
 			real_pipe(tokens, data);
+			break ;
+		}
 		i++;
 	}
 	if (tokens->value[0] == PIPE_PROMPT && tokens->value[1] == '\0')
@@ -139,6 +144,7 @@ void	real_pipe(t_token *token, t_data *data)
 			token = token->next;
 		j++;
 	}
+	free_split(split);
 	processing(data);
 }
 t_token	*ft_new_token(char *line, t_token **curr)

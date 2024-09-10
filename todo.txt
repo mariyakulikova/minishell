@@ -31,3 +31,4 @@ mini output = ()
 bash output = (exit_code ->$? user ->$USER home -> $HOME)
 mini exit code = 139
 bash exit code = 0
+
