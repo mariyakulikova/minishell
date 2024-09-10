@@ -6,7 +6,7 @@
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 13:13:21 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/09 15:56:50 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/10 18:39:08 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_cd(t_data *data)
 	else if (data->cmd_tab[wcd][2] != NULL)
 	{
 		write(2, "cd: Too many arguments\n", 24);
-		return (-1);
+		return (1);
 	}
 	else
 		ch = data->cmd_tab[wcd][i];
@@ -39,7 +39,7 @@ int	ft_cd(t_data *data)
 	if (chdir(ch) == -1)
 	{
 		write(2, "cd: No such file or directory\n", 31);
-		return (-1);
+		return (1);
 	}
 	else
 	{

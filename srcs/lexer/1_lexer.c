@@ -6,7 +6,7 @@
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 14:05:45 by fjoestin          #+#    #+#             */
-/*   Updated: 2024/09/10 18:05:56 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/10 18:56:26 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ int	lexer(t_data *data)
 		return (perror("Error: not all quotes were closed"), 1);
 	data->tokens = tokenizer(data);
 	processing(data);
-	// test_tokens(data->tokens);
 	expander(data->tokens, data);
+	// test_tokens(data->tokens);
 	return 0;
 }
 
@@ -49,7 +49,7 @@ void	processing(t_data *data)
 	update_type(data);
 	update_index(data->tokens, data);
 	check_types(data);
-	//test_tokens(data->tokens);
+	// test_tokens(data->tokens);
 }
 
 void	update_index(t_token *tokens, t_data *data)

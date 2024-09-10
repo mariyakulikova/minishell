@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 13:13:40 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/05 14:27:44 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/10 18:46:21 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	ft_export(t_data *data)
 		if (valid_format(data->cmd_tab[wexport][i]) == 1)
 		{
 			write(2, "export: input not valid\n", 25);
-			return (-1);
+			return (1);
 		}
 		i++;
 	}
@@ -76,6 +76,8 @@ int	valid_format(char *str)
 	int	i;
 
 	i = 0;
+	if (str[i] == '=')
+		return (1);
 	while (str[i] != '=' && str[i])
 	{
 		if (ft_isalpha(str[i]) == 0 && str[i] != '_')
@@ -84,7 +86,7 @@ int	valid_format(char *str)
 	}
 	while (str[++i])
 	{
-		if (ft_isalpha(str[i]) == 0 && str[i] != '_' && ft_isdigit(str[i]) == 0 && str[i] != ' ')
+		if (ft_isalpha(str[i]) == 0 && str[i] != '_' && ft_isdigit(str[i]) == 0 && str[i] != ' ' && str[i] != '-')
 			return (1);
 	}
 	return (0);

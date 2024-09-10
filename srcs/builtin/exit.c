@@ -6,7 +6,7 @@
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 13:14:35 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/09 15:34:39 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/10 18:37:41 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int	ft_exit(t_data *data)
 			if (data->cmd_tab[wexit][2] != NULL)
 			{
 				write(2, "exit: Too many arguments\n", 26);
-				return (2);
+				return (1);
 			}
-			if (ft_isdigit(data->cmd_tab[wexit][1][exit_status]) == 0)
+			if (ft_isdigit(data->cmd_tab[wexit][1][exit_status]) == 0 && data->cmd_tab[wexit][1][exit_status] != '+' && data->cmd_tab[wexit][1][exit_status] != '-')
 			{
 				write(2, "exit: Numeric argument required\n", 33);
 				return(2);
