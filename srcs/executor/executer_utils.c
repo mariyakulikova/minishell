@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 15:00:34 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/30 14:29:02 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/11 22:05:15 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	waitpids(t_exe_data *exe_data, t_data *data)
 	(void)data;
 	while (i < exe_data->pids_size)
 	{
-		waitpid(*(exe_data->pid_tab + i), NULL, 0);
+		waitpid(*(exe_data->pid_tab + i), &data->exit_status, 0);
 		i++;
 	}
 }

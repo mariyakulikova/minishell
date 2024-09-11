@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 11:58:26 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/09 18:00:02 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/11 22:16:44 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,6 @@ static int	proceed_cmd(t_exe_data *exe_data, t_data *data)
 		if (*(exe_data->pid_tab + i) == 0)
 			child_process(exe_data, data, i);
 	}
-	waitpid(-1, &data->exit_status, 0);
-	if (WIFEXITED(data->exit_status))
-		data->exit_status = WEXITSTATUS(data->exit_status);
 	return (0);
 }
 
@@ -77,13 +74,10 @@ int	executer(t_data *data)
 	if (init_exe_data(&exe_data, data))
 		return (free_exe_data(exe_data, 1));
 	code = proceed_cmd(exe_data, data);
-	close_fd(exe_data->pipe_tab, exe_data->pipes_size);
 	close_fd(exe_data->fd_tab, exe_data->pids_size * 2);
-	// waitpid(-1, &data->exit_status, 0);
-	// if (WIFEXITED(data->exit_status))
-	// 	data->exit_status = WEXITSTATUS(data->exit_status);
-	// waitpids(exe_data, data);
-	// unlink_fd_list_tab(data);
-	// data->exit_status = code; // ??? need to check TODO
+	close_fd(exe_data->pipe_tab, exe_data->pipes_size);
+	waitpids(exe_data, data);
+	if (WIFEXITED(data->exit_status))
+		data->exit_status = WEXITSTATUS(data->exit_status);
 	return (free_exe_data(exe_data, code));
 }
