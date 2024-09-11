@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   0_expander.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:52:17 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/09 15:58:07 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/11 19:24:08 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	expander(t_token *tokens, t_data *data)
 {
 	int		i;
 	t_token *curr;
+/* 	t_token *tmp; */
 	char	*str;
 
 	curr = tokens;
@@ -85,7 +86,38 @@ void	expander(t_token *tokens, t_data *data)
 			if (str[i] == '$')
 				str = expand_dollar(str, &i, data);
 		}
-		curr->value = str;
+/* 		if (str[0] == '\0')
+		{
+			if (data->n_tokens == 1)
+				ft_exit_err("\n", data);
+			else
+			{
+				if (curr->prev)
+				{
+					tmp = curr->prev;
+					if(curr->next)
+					{
+						curr->next->prev = tmp;
+						tmp->next = curr->next;
+					}
+					else
+						tmp->next = NULL;
+					free(curr);
+					curr = tmp;
+				}
+				else
+				{
+					data->tokens = curr->next;
+					free(curr);
+					curr = data->tokens;
+					curr->prev = NULL;
+				}
+				free(str);
+			}
+		}
+		else */
+			curr->value = str;
 		curr = curr->next;
 	}
+/* 	update_index(data->tokens, data); */
 }

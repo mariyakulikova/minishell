@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 14:05:45 by fjoestin          #+#    #+#             */
-/*   Updated: 2024/09/09 17:32:36 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/11 19:43:46 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,12 @@
 
 int	lexer(t_data *data)
 {
-
 	if(!check_open_quotes(data->prompt))
 		return (perror("Error: not all quotes were closed"), 1);
 	data->tokens = tokenizer(data);
 	processing(data);
-	// test_tokens(data->tokens);
 	expander(data->tokens, data);
+	// test_tokens(data->tokens);
 	return 0;
 }
 
@@ -47,9 +46,10 @@ bool	check_open_quotes(char *prompt)
 void	processing(t_data *data)
 {
 	//test_tokens(data->tokens);
-	update_index(data->tokens, data);
 	update_type(data);
+	update_index(data->tokens, data);
 	check_types(data);
+	// test_tokens(data->tokens);
 }
 
 void	update_index(t_token *tokens, t_data *data)
@@ -79,9 +79,15 @@ void	update_type(t_data *data)//**
 		while (tokens->value[i] != '\0')
 		{
 			if(tokens->value[i] == PIPE_PROMPT)
+			{
 				tokens->type = check_pipe(tokens, data);
+				break ;
+			}
 			if (tokens->value[i] == '<' || tokens->value[i] == '>')
+			{
 				tokens->type = check_redirect(tokens, data);
+				break;
+			}
 			i++;
 		}
 		tokens = tokens->next;
@@ -107,7 +113,10 @@ t_type	check_pipe(t_token *tokens, t_data *data) //should be this token specific
 		else if (tokens->value[i] == DOUBLE_QUOTE && !in_squotes)
 			in_dquotes = !in_dquotes;
 		if (tokens->value[i] == PIPE_PROMPT && !in_squotes && !in_dquotes)
+		{
 			real_pipe(tokens, data);
+			break ;
+		}
 		i++;
 	}
 	if (tokens->value[0] == PIPE_PROMPT && tokens->value[1] == '\0')
@@ -117,60 +126,28 @@ t_type	check_pipe(t_token *tokens, t_data *data) //should be this token specific
 
 void	real_pipe(t_token *token, t_data *data)
 {
-	char	*prompt;
 	char	**split;
 	int		wpipe;
-	int		size;
-	int		j = 1;
-	t_token	*tmp;// will i have to initialize?
+	int		j;
+	t_token	*tmp;
 
-	prompt = token->value;
-	wpipe = str_chr_idx(prompt, PIPE_PROMPT);
-	if (prompt[wpipe] != 0 && prompt[wpipe + 1] != '\0')
-	{
-		split = (char **)malloc(sizeof(char *) * 4);
-		size = 3;
-	}
-	else
-	{
-		split = (char **)malloc(sizeof(char *) * 3);
-		size = 2;
-	}
-	if (wpipe == 0)
-	{
-		split[0] = ft_strdup("|");
-		split[1] = ft_substr(prompt, 1, (ft_strlen(prompt) - 1));
-	}
-	else
-	{
-		split[0] = ft_substr(prompt, 0, wpipe);
-		split[1] = ft_strdup("|");
-		if (prompt[wpipe + 1])
-		{
-			split[2] = ft_substr(prompt, (wpipe + 1), (ft_strlen(prompt) - wpipe));
-		}
-	}
-	split[size] = NULL;
+	wpipe = str_chr_idx(token->value, PIPE_PROMPT);
+	split = ft_split_red_ms(token->value, wpipe);
+	free(token->value);
 	token->value = ft_strdup(split[0]);
+	j = 1;
 	while (split[j] && token != NULL)
 	{
-		tmp = ft_new_token(split[j]);
-		tmp->prev = token;
-		if (token->next)
-		{
-			tmp->next = token->next;
-			token->next->prev = tmp;
-		}
-		else
-			tmp->next = NULL;
+		tmp = ft_new_token(split[j], &token);
 		token->next = tmp;
 		if (token->next)
 			token = token->next;
 		j++;
 	}
+	free_split(split);
 	processing(data);
 }
-t_token	*ft_new_token(char *line)
+t_token	*ft_new_token(char *line, t_token **curr)
 {
 	t_token	*new;
 
@@ -180,7 +157,13 @@ t_token	*ft_new_token(char *line)
 	new->join = TRUE;
 	new->quotes = get_if_quotes(new->value);
 	new->type = STRING;
-	new->prev = NULL;
-	new->next = NULL;
+	new->prev = *curr;
+	if ((*curr)->next)
+	{
+		new->next = (*curr)->next;
+		(*curr)->next->prev = new;
+	}
+	else
+		new->next = NULL;
 	return(new);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:45:13 by fjoestin          #+#    #+#             */
-/*   Updated: 2024/09/09 16:58:23 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/09 17:16:23 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ void	ft_free_data(t_data *data)
 	free(data->prompt);
 	free(data->line);
 	free(data->oldpwd);
+	free(data);
 }
 
 void	free_triple_tab(char ***cmd_tab, int cmd_size)

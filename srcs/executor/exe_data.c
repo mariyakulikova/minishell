@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_data.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 12:47:26 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/30 14:25:25 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/11 16:01:42 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	free_exe_data(t_exe_data *exe_data, int code)
 	if (exe_data->fd_tab)
 		free(exe_data->fd_tab);
 	free(exe_data);
-	return (code);
+	return (0);
 }
 
 static int	set_pipes(t_exe_data *exe_data)

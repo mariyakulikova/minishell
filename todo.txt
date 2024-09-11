@@ -16,6 +16,7 @@ see how to update **envp
 exit status update
 signals
 $SHLVL when ./minishell inside of minishell
+fix memory leaks in export
 
 PRompt:
 echo test>666
@@ -23,4 +24,12 @@ Return:
 minishell(74323,0x205f94c00) malloc: Double free of object 0x13fe08300
 minishell(74323,0x205f94c00) malloc: *** set a breakpoint in malloc_error_break to debug
 zsh: abort      ./minishell
+
+prompt:
+echo '> >> < * ? [ ] | ; [ ] || && ( ) & # $  <<' 
+echo 'exit_code ->$? user ->$USER home -> $HOME'
+mini output = ()
+bash output = (exit_code ->$? user ->$USER home -> $HOME)
+mini exit code = 139
+bash exit code = 0
 
