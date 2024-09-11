@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 13:12:49 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/09 15:22:32 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/11 16:43:24 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,7 @@
 int	ft_pwd(t_data *data)
 {
 	(void)data;
-	(void)data;
 	char	*pwd;
-
-
 	pwd = getcwd(NULL, 0);
 	if(!pwd)
 		return (-1);

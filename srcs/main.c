@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 11:14:30 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/09 15:21:42 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/11 15:58:26 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,6 @@ void	ft_minishell(t_data *data)
 			continue ;
 		if (executer(data))
 			continue ;
-		free_reprompt(data);
 		free_reprompt(data);
 	}
 }
