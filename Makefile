@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+         #
+#    By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:49:03 by fjoestin          #+#    #+#              #
-#    Updated: 2024/09/09 14:43:13 by fjoestin         ###   ########.fr        #
+#    Updated: 2024/09/12 17:32:00 by mkulikov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ SRC =   srcs/builtin/cd.c \
 		srcs/lexer/0_lexer.c \
 		srcs/lexer/1_lexer.c \
 		srcs/lexer/2_lexer.c \
+		srcs/lexer/3_lexer.c \
 		srcs/lexer/0_expander.c \
 		srcs/lexer/1_expander.c \
 		srcs/lexer/get.c \
