@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 14:17:38 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/09 18:04:59 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/12 16:25:13 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	execute_cmd(t_data *data, int i)
 
 	idx = get_builtin_idx(data, **(data->cmd_tab + i));
 	if (idx > -1)
-		exit((*(data->builtin_tab + idx))(data));
+		exit((*(data->builtin_tab + idx))(data, data->cmd_tab[i]));
 	else
 	{
 		cmd_path = get_cmd_path(data, i);

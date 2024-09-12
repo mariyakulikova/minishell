@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 13:13:53 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/11 16:43:38 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/12 16:22:12 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 static void	remove_from_list(t_env_lst *envlst, char *keyvar);
 
-int	ft_unset(t_data *data)
+int	ft_unset(t_data *data, char **cmd_tab)
 {
 	int	wunset;
 	int	idx;
-
+	(void)cmd_tab;
 	wunset = get_builtin_index(data->cmd_tab, "unset");
 	idx = 1;
 	if (data->cmd_tab[wunset][idx] == NULL)

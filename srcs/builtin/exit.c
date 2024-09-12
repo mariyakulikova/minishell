@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 13:14:35 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/11 16:36:05 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/12 16:22:31 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 static int	valid_exit(char	**str);
 
-int	ft_exit(t_data *data)
+int	ft_exit(t_data *data, char **cmd_tab)
 {
 	int	wexit;
 	int	exit_status;
-
+	(void)cmd_tab;
 	wexit = get_builtin_index(data->cmd_tab, "exit");
 	exit_status = 0;
 	if (data->cmd_tab[wexit][1] != NULL)

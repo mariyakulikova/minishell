@@ -3,39 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 13:12:49 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/10 18:58:30 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/12 16:16:35 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	ft_echo(t_data *data)
+int	ft_echo(t_data *data, char **cmd_tab)
 {
 	int i;
 	int	j;
-	int	wecho;
 	bool new_line;
-
-	wecho = get_builtin_index(data->cmd_tab, "echo");
+	(void)data;
 	j = 1;
 	new_line = true;
-	if (data->cmd_tab[wecho][j] == NULL)
+	if (cmd_tab[j] == NULL)
 	{
 		printf("\n");
 		return(0);
 	}
-	while (ft_strncmp(data->cmd_tab[wecho][j], "-n", 2) == 0)
+	while (ft_strncmp(cmd_tab[j], "-n", 2) == 0)
 	{
 		i = 1;
-		while (data->cmd_tab[wecho][j][i] == 'n')
+		while (cmd_tab[j][i] == 'n')
 		{
 			new_line = false;
 			i++;
 		}
-		if (data->cmd_tab[wecho][j][i] != '\0' && data->cmd_tab[wecho][j][i] != 'n')
+		if (cmd_tab[j][i] != '\0' && cmd_tab[j][i] != 'n')
 		{
 			if (j == 1)
 				new_line = true;
@@ -43,10 +41,10 @@ int	ft_echo(t_data *data)
 		}
 		j++;
 	}
-	while (data->cmd_tab[wecho][j])
+	while (cmd_tab[j])
 	{
-		printf("%s", data->cmd_tab[wecho][j]);
-		if (data->cmd_tab[wecho][j + 1] != NULL)
+		printf("%s", cmd_tab[j]);
+		if (cmd_tab[j + 1] != NULL)
 			printf(" ");
 		j++;
 	}
