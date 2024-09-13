@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   0_expander.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:52:17 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/12 15:44:11 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/13 11:13:35 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static char	*expand_single_qoutes(char *str, int *i)
 	while (str[++(*i)])
 		if (str[*i] == '\'')
 			break ;
-	if ((size_t)*i == ft_strlen(str))
+	if ((size_t)(*i) == ft_strlen(str))
 		return (str);
 	str = shift_str(str, *i, j);
 	*i -= 2;
@@ -62,7 +62,7 @@ static char	*expand_double_qoutes(char *str, int *i, t_data *data)
 		if (str[*i] == '\"')
 			break ;
 	}
-	if ((size_t)*i == ft_strlen(str))
+	if ((size_t)(*i) == ft_strlen(str))
 		return (str);
 	str = shift_str(str, *i, j);
 	*i -= 2;
@@ -73,7 +73,7 @@ void	expander(t_token *tokens, t_data *data)
 {
 	int		i;
 	t_token *curr;
-	t_token	*tmp;
+	// t_token	*tmp;
 	char	*str;
 
 	curr = tokens;
@@ -90,37 +90,38 @@ void	expander(t_token *tokens, t_data *data)
 			if (str[i] == '$')
 				str = expand_dollar(str, &i, data);
 		}
-		if (str[0] == '\0')
-		{
-			if (data->n_tokens == 1)
-				ft_exit_err("\n", data);
-			else
-			{
-				if (curr->prev)
-				{
-					tmp = curr->prev;
-					if(curr->next)
-					{
-						curr->next->prev = tmp;
-						tmp->next = curr->next;
-					}
-					else
-						tmp->next = NULL;
-					free(curr);
-					curr = tmp;
-				}
-				else
-				{
-					data->tokens = curr->next;
-					free(curr);
-					curr = data->tokens;
-					curr->prev = NULL;
-				}
-				free(str);
-			}
-		}
-		else
-			curr->value = str;
+		// if (str[0] == '\0')
+		// {
+		// 	if (data->n_tokens == 1)
+		// 		ft_exit_err("\n", data);
+		// 	else
+		// 	{
+		// 		if (curr->prev)
+		// 		{
+		// 			tmp = curr->prev;
+		// 			if(curr->next)
+		// 			{
+		// 				curr->next->prev = tmp;
+		// 				tmp->next = curr->next;
+		// 			}
+		// 			else
+		// 				tmp->next = NULL;
+		// 			free(curr);
+		// 			curr = tmp;
+		// 		}
+		// 		else
+		// 		{
+		// 			data->tokens = curr->next;
+		// 			free(curr);
+		// 			curr = data->tokens;
+		// 			curr->prev = NULL;
+		// 		}
+		// 		free(str);
+		// 	}
+		// }
+		// else
+			// curr->value = str;
+		curr->value = str;
 		curr = curr->next;
 	}
 	update_index(data->tokens, data);
