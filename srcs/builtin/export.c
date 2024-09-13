@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 13:13:40 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/12 16:22:26 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/11 16:14:20 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 static void	print_list(t_env_lst *list);
 static void	ft_export_helper(t_data *data, int wexport, int	i);
 
-int	ft_export(t_data *data, char **cmd_tab)
+int	ft_export(t_data *data)
 {
 	int	wexport;
 	int	i;
-	(void)cmd_tab;
+	
 	wexport = get_builtin_index(data->cmd_tab, "export");
 	i = 1;
 	if (data->cmd_tab[wexport][i] == NULL)
