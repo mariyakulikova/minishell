@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 14:17:38 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/12 16:25:13 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/13 12:16:40 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,20 @@ static char	*get_cmd_path(t_data *data, int i)
 	return (NULL);
 }
 
-int	execute_cmd(t_data *data, int i)
+static void	check_directory(char *path)
+{
+	struct stat	path_stat;
+
+	stat(path, &path_stat);
+	if (S_ISDIR(path_stat.st_mode))
+	{
+		write(2, path, ft_strlen(path));
+		write(2, " : Is a directory\n", 19);
+		exit(126);
+	}
+}
+
+void	execute_cmd(t_data *data, int i)
 {
 	int		idx;
 	char	*cmd_path;
@@ -76,8 +89,7 @@ int	execute_cmd(t_data *data, int i)
 			write(2, " : command not found\n", 21);
 			exit(127);
 		}
-		else
-			return (execve(cmd_path, *(data->cmd_tab + i), data->envp));
+		check_directory(cmd_path);
+		execve(cmd_path, *(data->cmd_tab + i), data->envp);
 	}
-	return (0);
 }

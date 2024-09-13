@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:59:01 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/13 10:33:52 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/13 12:09:06 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <limits.h>
 # include <stdbool.h>
 # include <sys/types.h>
+# include <sys/stat.h>
 # include <sys/wait.h>
 # include "libft/libft.h"
 # include <signal.h>
@@ -144,7 +145,7 @@ int			executer(t_data *data);
 int			init_exe_data(t_exe_data **exe_data, t_data *data);
 int			free_exe_data(t_exe_data *exe_data, int code);
 void		waitpids(t_exe_data *exe_data, t_data *data);
-int			execute_cmd(t_data *data, int i);
+void		execute_cmd(t_data *data, int i);
 int			set_fd(int *fd, t_data *data, int i);
 void		close_fd(int *fd, int size);
 int			dup_fd(int *fd_tab,  int j, int size);
