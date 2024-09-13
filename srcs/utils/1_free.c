@@ -9,7 +9,7 @@ void	free_reprompt(t_data *data)
 	data->tokens = NULL;
 	data->cmd_tab = NULL;
 	// free fd list
-	free_llist(data->fd_list_tab, data->cmd_size * 2);
+	free_llist(data->fd_list_tab, data->cmd_size);
 	data->fd_list_tab = NULL;
 	free(data->prompt);
 	data->prompt = NULL;

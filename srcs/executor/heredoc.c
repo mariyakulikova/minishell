@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:20:03 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/02 21:50:50 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/13 18:16:09 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static char	*get_fname(char *str, int i)
 {
 	char	*fname;
 	char	*idx;
+
 	idx = ft_itoa(i);
 	fname = ft_strjoin(str, idx);
 	free(idx);
@@ -52,7 +53,7 @@ static void	read_heardoc(int fd, char *limiter, t_data *data)
 		while (*(line + (++i)))
 		{
 			if (*(line + i) == '$')
-			line = expand_dollar(line, &i, data);
+				line = expand_dollar(line, &i, data);
 		}
 		write(fd, line, ft_strlen(line));
 		free(line);
@@ -61,9 +62,8 @@ static void	read_heardoc(int fd, char *limiter, t_data *data)
 
 int	handle_heredoc(t_llist *fd_list, t_data *data, int i)
 {
-	int		fd;
-
 	char	*fname;
+	int		fd;
 
 	fname = get_fname("/var/tmp/.temp", i);
 	if (!fname)
@@ -86,11 +86,40 @@ int	unlink_fd_list_tab(t_data *data)
 	t_llist	*curr;
 
 	i = -1;
-	while (++i < data->cmd_size * 2)
+	while (++i < data->cmd_size)
 	{
 		curr = *(data->fd_list_tab + i);
 		if (unlink_temp(curr))
 			return (1);
+	}
+	return (0);
+}
+
+int	execute_heredoc(t_data *data, t_exe_data *exe_data)
+{
+	int		i;
+	t_llist	*fd_list;
+	int		*fd;
+
+	i = -1;
+	while (++i < data->cmd_size)
+	{
+		fd_list = *(data->fd_list_tab + i);
+		while (fd_list)
+		{
+			if (*(t_type *)fd_list->key != HERE_DOC)
+			{
+				fd_list = fd_list->next;
+				continue ;
+			}
+			fd = exe_data->fd_tab + (i * 2);
+			if (*fd > 2)
+				close(*fd);
+			*fd = handle_heredoc(fd_list, data, i);
+			if (*fd == -1)
+				return (1);
+			fd_list = fd_list->next;
+		}
 	}
 	return (0);
 }

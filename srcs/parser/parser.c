@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 13:38:20 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/23 16:40:37 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/13 17:23:58 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	parse_tokens(t_data *data)
 	{
 		if (is_red(curr))
 		{
-			if (add_fd_list(data->fd_list_tab + (i * 2), &curr))
+			if (add_fd_list(data->fd_list_tab + (i), &curr))
 				return (222);
 		}
 		else if (curr->type == STRING)
@@ -70,21 +70,8 @@ static int	parse_tokens(t_data *data)
 // 			printf("%s ", *(cmd + j));
 // 			j++;
 // 		}
-// 		printf("\nfd_in:\n");
-// 		fd_list = *(data->fd_list_tab + (i * 2));
-// 		if (!fd_list)
-// 			printf("NO!\n");
-// 		else
-// 		{
-// 			while (fd_list)
-// 			{
-// 				printf("%s ", (char *)fd_list->value);
-// 				fd_list = fd_list->next;
-// 			}
-// 			printf("\n");
-// 		}
-// 		printf("fd_out:\n");
-// 		fd_list = *(data->fd_list_tab + (i * 2) + 1);
+// 		printf("\nfd_list:\n");
+// 		fd_list = *(data->fd_list_tab + i);
 // 		if (!fd_list)
 // 			printf("NO!\n");
 // 		else
@@ -102,10 +89,10 @@ static int	parse_tokens(t_data *data)
 int	parser(t_data *data)
 {
 	data->cmd_size = count_tokens(data->tokens, PIPE) + 1;
-	data->fd_list_tab = (t_llist **)malloc(sizeof(t_llist *) * data->cmd_size * 2);
+	data->fd_list_tab = (t_llist **)malloc(sizeof(t_llist *) * data->cmd_size);
 	if (!data->fd_list_tab)
 		return (1);
-	ft_memset(data->fd_list_tab, 0, sizeof(t_llist *) * data->cmd_size * 2);
+	ft_memset(data->fd_list_tab, 0, sizeof(t_llist *) * data->cmd_size);
 	data->cmd_tab = (char ***)malloc(sizeof(char **) * data->cmd_size);
 	if (!data->cmd_tab)
 		return (1);
