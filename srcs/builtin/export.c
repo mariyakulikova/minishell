@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 13:13:40 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/12 16:22:26 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/13 16:25:18 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	ft_export(t_data *data, char **cmd_tab)
 	{
 		if (valid_format(data->cmd_tab[wexport][i]) == 1)
 		{
-			write(2, "export: input not valid\n", 25);
+			write(2, "export : not a valid identifier\n", 33);
 			return (1);
 		}
 		i++;

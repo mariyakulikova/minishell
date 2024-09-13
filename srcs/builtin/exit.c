@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 13:14:35 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/13 13:55:13 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/13 16:27:04 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,12 @@ static int	valid_exit(char	**str)
 	{
 		if (str[2] != NULL)
 		{
-			write(2, "exit: too many arguments\n", 26);
+			write(2, "exit : too many arguments\n", 26);
 			return (1);
 		}
 		if (ft_isdigit(str[1][i]) == 0 && str[1][i] != '+' && str[1][i] != '-')
 		{
-			write(2, "exit: numeric argument required\n", 33);
+			write(2, "exit : numeric argument required\n", 33);
 			return (2);
 		}
 		i++;

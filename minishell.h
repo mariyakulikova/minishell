@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:59:01 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/13 12:09:06 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/13 16:05:48 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,6 +201,7 @@ int			get_if_quotes(char *value);
 
 //exit_err
 void	ft_exit_err(char *msg, t_data *data);
+int		err_msg(char *msg, int code);
 
 // free
 void	ft_free_data(t_data *data);
