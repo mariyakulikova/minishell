@@ -41,3 +41,8 @@ echo hi | >./outfiles/outfile01 echo bye >./test_files/invalid_permission
 
 cat <<HERE | ls
 cat <minishell.h <<HERE <missing | ls
+
+
+
+echo hi >>outfile01 >>outfile02 | echo bye
+echo hi > 2 > 5 > 6 | echo bey >3 >7

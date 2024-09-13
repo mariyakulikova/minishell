@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 12:17:11 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/13 18:33:03 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/13 19:04:55 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,10 @@ int	set_fd(int *fd_tab, t_data *data, int i)
 		if (*(t_type *)fd_list->key != HERE_DOC)
 		{
 			type = get_stream_type(*(t_type *)fd_list->key);
-			if (*(fd_tab + i + type) > 2)
-				close(*(fd_tab + i));
-			*(fd_tab + i + type) = open_file(fd_list);
-			if (*(fd_tab + i + type) == -1)
+			if (*(fd_tab + (i * 2) + type) > 2)
+				close(*(fd_tab + (i * 2)));
+			*(fd_tab + (i * 2) + type) = open_file(fd_list);
+			if (*(fd_tab + (i * 2) + type) == -1)
 			{
 				perror((char *)fd_list->value);
 				return (1);

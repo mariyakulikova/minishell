@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 11:58:26 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/13 18:31:32 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/13 19:11:13 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,11 @@ static void	child_process(t_exe_data *exe_data, t_data *data, int i)
 		exit(1);
 	// if (set_fd(exe_data->fd_tab, data, (i * 2) + 1))
 	// 	exit(1);
+	for (int i = 0; i < exe_data->pids_size * 2; i++)
+	{
+		write(2, ft_itoa(*(exe_data->fd_tab + i)), 1);
+	}
+	write(2, "\n", 1);
 	link_pipes(exe_data->pipe_tab, exe_data->fd_tab, exe_data->pids_size, i);
 	if (dup_fd(exe_data->fd_tab, (i * 2), 2))
 		exit(1);
