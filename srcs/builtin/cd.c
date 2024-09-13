@@ -3,22 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 13:13:21 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/10 18:39:08 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/12 16:22:40 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	ft_cd(t_data *data)
+int	ft_cd(t_data *data, char **cmd_tab)
 {
 	int wcd;
 	int	i;
 	char	*ch;
 	char	*new_pwd;
-
+	(void)cmd_tab;
 	wcd = get_builtin_index(data->cmd_tab, "cd");
 	i = 1;
 	if (data->cmd_tab[wcd][i] == NULL || ft_strcmp(data->cmd_tab[wcd][i], "˜") == 0) // if there are no args

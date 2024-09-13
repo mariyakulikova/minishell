@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:59:01 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/13 10:44:08 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/13 10:33:52 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ typedef struct s_exe_data
 
 typedef struct s_data	t_data;
 
-typedef int				(*t_builtin_func)(t_data *);
+typedef int				(*t_builtin_func)(t_data *, char **);
 
 struct s_data
 {
@@ -170,13 +170,13 @@ int			get_size_tab(char **tab);
 int			get_size_tab(char **tab);
 
 /* built-in/ */
-int			ft_cd(t_data *data);
-int			ft_echo(t_data *data);
-int			ft_env(t_data *data);
-int			ft_exit(t_data *data);
-int			ft_export(t_data *data);
-int			ft_pwd(t_data *data);
-int			ft_unset(t_data *data);
+int			ft_cd(t_data *data, char **cmd_tab);
+int			ft_echo(t_data *data, char **cmd_tab);
+int			ft_env(t_data *data, char **cmd_tab);
+int			ft_exit(t_data *data, char **cmd_tab);
+int			ft_export(t_data *data, char **cmd_tab);
+int			ft_pwd(t_data *data, char **cmd_tab);
+int			ft_unset(t_data *data, char **cmd_tab);
 int			get_builtin_idx(t_data *data, char *str);
 int 		get_builtin_index(char ***str, char *cmd);
 void		sort_list(t_env_lst *list);
