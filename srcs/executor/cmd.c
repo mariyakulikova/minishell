@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 14:17:38 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/13 12:16:40 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/13 12:57:17 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,23 @@ static char	**get_path_tab(t_data *data)
 	return (path_tab);
 }
 
+static int	check_permission(char *path)
+{
+	if (access(path, F_OK))
+	{
+		write(2, path, ft_strlen(path));
+		write(2, ": No such file or directory\n", 29);
+		exit(127);
+	}
+	if (access(path, X_OK))
+	{
+		write(2, path, ft_strlen(path));
+		write(2, ": Permission denied\n", 21);
+		exit(126);
+	}
+	return (0);
+}
+
 static char	*get_cmd_path(t_data *data, int i)
 {
 	int		j;
@@ -40,6 +57,8 @@ static char	*get_cmd_path(t_data *data, int i)
 	char	*cmd_path;
 	char	*temp;
 
+	if (ft_strncmp(**(data->cmd_tab + i), "./", 2) == 0)
+		check_permission(**(data->cmd_tab + i));
 	if (access(**(data->cmd_tab + i), F_OK | X_OK) == 0)
 		return (**(data->cmd_tab + i));
 	j = -1;
@@ -67,7 +86,7 @@ static void	check_directory(char *path)
 	if (S_ISDIR(path_stat.st_mode))
 	{
 		write(2, path, ft_strlen(path));
-		write(2, " : Is a directory\n", 19);
+		write(2, ": Is a directory\n", 18);
 		exit(126);
 	}
 }

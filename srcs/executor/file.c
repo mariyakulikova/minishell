@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 12:17:11 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/02 21:49:55 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/13 12:46:06 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	dup_fd(int *fd_tab, int j, int size)
 	{
 		if (*(fd_tab + i) > 2)
 		{
-			if (i % 2 == 0 )
+			if (i % 2 == 0)
 				code = dup2(*(fd_tab + i), STDIN_FILENO);
 			else
 				code = dup2(*(fd_tab + i), STDOUT_FILENO);
@@ -91,7 +91,7 @@ int	set_fd(int *fd_tab, t_data *data, int i)
 			*(fd_tab + i) = open_file(fd_list);
 		if (*(fd_tab + i) == -1)
 		{
-			perror("open");
+			perror((char *)fd_list->value);
 			return (1);
 		}
 		fd_list = fd_list->next;
