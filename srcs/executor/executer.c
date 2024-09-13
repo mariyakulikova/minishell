@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executer.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 11:58:26 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/12 16:18:33 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/13 13:05:23 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,20 @@
 static int	exe_in_parent(t_exe_data *exe_data, t_data *data, int idx)
 {
 	if (set_fd(exe_data->fd_tab, data, 0))
+	{
+		data->exit_status = 1;
 		return (1);
+	}
 	if (set_fd(exe_data->fd_tab, data, 1))
+	{
+		data->exit_status = 1;
 		return (1);
+	}
 	if (dup_fd(exe_data->fd_tab, 0, 2))
+	{
+		data->exit_status = 1;
 		return (1);
+	}
 	data->exit_status = data->builtin_tab[idx](data, data->cmd_tab[0]);
 	if (reset_std(data, exe_data->fd_tab))
 		return (1);
