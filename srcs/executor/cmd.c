@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 14:17:38 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/13 12:57:17 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/13 15:55:27 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,12 +81,17 @@ static char	*get_cmd_path(t_data *data, int i)
 static void	check_directory(char *path)
 {
 	struct stat	path_stat;
-
+	int	size;
+	
 	stat(path, &path_stat);
+	size = ft_strlen(path);
 	if (S_ISDIR(path_stat.st_mode))
 	{
 		write(2, path, ft_strlen(path));
-		write(2, ": Is a directory\n", 18);
+		if (path[size] == '/')
+			write(2, ": Is a directory\n", 18);
+		else
+			write(2, " : command not found\n", 21);
 		exit(126);
 	}
 }
