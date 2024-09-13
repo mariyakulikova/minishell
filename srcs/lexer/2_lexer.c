@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   2_lexer.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 16:20:21 by fjoestin          #+#    #+#             */
-/*   Updated: 2024/09/10 17:54:19 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/13 15:16:12 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	**ft_split_ms(char *prompt, int	red)
 	int		wred;
 	char	**split;
 	int		size;
-	
+
 	wred = str_chr_idx(prompt, red);
 	if (wred != 0 && prompt[wred + 2] != '\0')
 		size = 3;
@@ -93,7 +93,7 @@ int check_redirect_helper(t_token *tokens, t_data *data)
 	bool	in_squotes;
 	bool	in_dquotes;
 	int		entered;
-	
+
 	in_squotes = false;
 	in_dquotes = false;
 
@@ -148,7 +148,7 @@ char	**ft_split_red_ms(char *prompt, int wred)
 {
 	int		size;
 	char	**split;
-	
+
 	if (wred != 0 && prompt[wred + 1] != '\0')
 		size = 3;
 	else
@@ -179,7 +179,7 @@ void	check_types(t_data *data)
 	{
 		if (token->type == PIPE && (token->index == 0 || token->index == (data->n_tokens - 1)))
 			ft_exit_err("pipe doesn't work\n", data);
-		if (token->type != STRING && (token->index == 0 || token->index == (data->n_tokens - 1)))
+		if (token->type != STRING && ((token->index == 0 && (data->n_tokens == 1)) || token->index == (data->n_tokens - 1)))
 			ft_exit_err("unexpected syntax\n", data);
 		if (token->type == PIPE && token->next->type == PIPE)
 			ft_exit_err("2 pipes\n", data);
@@ -187,5 +187,5 @@ void	check_types(t_data *data)
 			ft_exit_err("unexpected syntax\n", data);
 		token = token->next;
 	}
-	
+
 }
