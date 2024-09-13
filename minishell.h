@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:59:01 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/12 16:23:25 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/13 10:33:52 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,6 +131,7 @@ int			check_prompt(char *prompt, int *start);
 char		**ft_split_ms(char *prompt, int	red);
 char		**ft_split_red_ms(char *prompt, int wred);
 t_env_lst	*new_env(char *new_key, char *new_value);
+void		remove_empty_tokens(t_data *data);
 
 /* parser */
 int			parser(t_data *data);

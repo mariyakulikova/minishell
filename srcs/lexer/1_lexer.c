@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 14:05:45 by fjoestin          #+#    #+#             */
-/*   Updated: 2024/09/11 19:43:46 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/12 17:33:50 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ int	lexer(t_data *data)
 	data->tokens = tokenizer(data);
 	processing(data);
 	expander(data->tokens, data);
+	remove_empty_tokens(data);
+	if (data->n_tokens == 0)
+		ft_exit_err(NULL, data);
 	// test_tokens(data->tokens);
 	return 0;
 }
