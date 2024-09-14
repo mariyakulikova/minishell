@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 13:13:40 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/14 01:30:36 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/14 16:20:59 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
 static void	print_list(t_env_lst *list);
-static void	ft_export_helper(t_data *data, int wexport, int i);
+static void	ft_export_helper(t_data *data, char **cmd_tab, int i);
 
 int	ft_export(t_data *data, char **cmd_tab)
 {
