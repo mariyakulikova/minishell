@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   1_lexer.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/31 14:05:45 by fjoestin          #+#    #+#             */
-/*   Updated: 2024/09/13 17:25:30 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/14 15:37:29 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ int	lexer(t_data *data)
 		return (perror("Error: not all quotes were closed"), 1);
 	data->tokens = tokenizer(data);
 	processing(data);
+	// test_tokens(data->tokens);
 	expander(data->tokens, data);
 	remove_empty_tokens(data);
 	if (data->n_tokens == 0)
 		ft_exit_err(NULL, data);
-	// test_tokens(data->tokens);
 	return 0;
 }
 
