@@ -6,7 +6,7 @@
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 13:13:40 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/14 16:20:59 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/14 16:31:39 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_export(t_data *data, char **cmd_tab)
 	{
 		if (valid_format(cmd_tab[i]) == 1)
 		{
-			write(2, "export: input not valid\n", 25);
+			write(2, "export : not a valid identifier\n", 33);
 			return (1);
 		}
 		i++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   2_lexer.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 16:20:21 by fjoestin          #+#    #+#             */
-/*   Updated: 2024/09/14 11:22:22 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/14 16:30:44 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,7 +184,7 @@ void	check_types(t_data *data)
 			ft_exit_err("unexpected syntax\n", data);
 		if (token->type == PIPE && token->next->type == PIPE)
 			ft_exit_err("2 pipes\n", data);
-		if (token->type != STRING && token->next->type != STRING)
+		if ((token->type != STRING && token->type != PIPE) && token->next->type != STRING)
 			ft_exit_err("unexpected syntax\n", data);
 		token = token->next;
 	}

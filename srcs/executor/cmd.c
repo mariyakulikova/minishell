@@ -6,7 +6,7 @@
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 14:17:38 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/13 15:55:27 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/13 16:51:43 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,13 @@ static int	check_permission(char *path)
 	if (access(path, F_OK))
 	{
 		write(2, path, ft_strlen(path));
-		write(2, ": No such file or directory\n", 29);
+		write(2, " : No such file or directory\n", 29);
 		exit(127);
 	}
 	if (access(path, X_OK))
 	{
 		write(2, path, ft_strlen(path));
-		write(2, ": Permission denied\n", 21);
+		write(2, " : Permission denied\n", 21);
 		exit(126);
 	}
 	return (0);
@@ -57,7 +57,7 @@ static char	*get_cmd_path(t_data *data, int i)
 	char	*cmd_path;
 	char	*temp;
 
-	if (ft_strncmp(**(data->cmd_tab + i), "./", 2) == 0)
+	if (ft_strchr(**(data->cmd_tab + i), '/'))
 		check_permission(**(data->cmd_tab + i));
 	if (access(**(data->cmd_tab + i), F_OK | X_OK) == 0)
 		return (**(data->cmd_tab + i));
@@ -88,11 +88,10 @@ static void	check_directory(char *path)
 	if (S_ISDIR(path_stat.st_mode))
 	{
 		write(2, path, ft_strlen(path));
-		if (path[size] == '/')
-			write(2, ": Is a directory\n", 18);
+		if (ft_strchr(path, '/'))
+			exit(err_msg(": Is a directory\n", 126));
 		else
-			write(2, " : command not found\n", 21);
-		exit(126);
+			exit(err_msg(" : command not found\n", 127));
 	}
 }
 
