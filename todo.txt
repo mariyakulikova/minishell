@@ -31,10 +31,23 @@ minishell(74323,0x205f94c00) malloc: *** set a breakpoint in malloc_error_break 
 zsh: abort      ./minishell
 
 prompt:
-echo '> >> < * ? [ ] | ; [ ] || && ( ) & # $  <<' 
+echo '> >> < * ? [ ] | ; [ ] || && ( ) & # $  <<'
 echo 'exit_code ->$? user ->$USER home -> $HOME'
 mini output = ()
 bash output = (exit_code ->$? user ->$USER home -> $HOME)
 mini exit code = 139
 bash exit code = 0
 
+unexpected syntax
+<< echo oi
+echo hi | >./outfiles/outfile01 echo bye >./test_files/invalid_permission
+
+
+
+cat <<HERE | ls
+cat <minishell.h <<HERE <missing | ls
+
+
+
+echo hi >>outfile01 >>outfile02 | echo bye
+echo hi > 2 > 5 > 6 | echo bey >3 >7

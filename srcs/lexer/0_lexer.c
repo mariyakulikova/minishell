@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   0_lexer.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 11:08:48 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/14 01:43:03 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/14 16:38:40 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,13 +76,21 @@ int	check_single_quote(char *prompt)
 {
 	char	*tmp;
 	int		i;
+	int		j;
 
 	tmp = prompt;
 	i = 1;
-	while (tmp[i])
+	j = 0;
+	while(tmp[i])
 	{
-		if (tmp[i] == SINGLE_QUOTE)
-			return (++i);
+		if(tmp[i] == SINGLE_QUOTE && ft_isprint(tmp[i + 1]) == FALSE)
+			return (++i) ;
+		while(tmp[i] == SINGLE_QUOTE && ft_isprint(tmp[i + 1]) == TRUE)
+		{
+			if(tmp[i + j] == '\0' || is_space(tmp[i + j]) == TRUE)
+				return(i + j);
+			j++;
+		}
 		i++;
 	}
 	return (i);

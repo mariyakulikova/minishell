@@ -6,7 +6,7 @@
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/09/14 16:34:49 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/14 16:39:28 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,10 +152,11 @@ void		close_fd(int *fd, int size);
 int			dup_fd(int *fd_tab, int j, int size);
 int			handle_heredoc(t_llist *fd_list, t_data *data, int i);
 char		*get_value(char *key, t_data *data);
-int			link_pipes(int *pipe_tab, int *fd_tab, int size, int i);
+int			link_pipes(int *pipe_tab, int size, int i);
 int			reset_std(t_data *data, int *fd);
 int			unlink_temp(t_llist *fd_list);
 int			unlink_fd_list_tab(t_data *data);
+int			execute_heredoc(t_data *data, t_exe_data *exe_data);
 
 /* utils/ */
 int			str_chr_idx(const char *str, int c);

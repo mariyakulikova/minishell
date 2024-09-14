@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:45:13 by fjoestin          #+#    #+#             */
-/*   Updated: 2024/09/12 20:39:45 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/14 16:37:17 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	ft_free_data(t_data *data)
 	free_env_lst(data->export_list);
 	free_triple_tab(data->cmd_tab, data->cmd_size);
 	free_tokens(data->tokens);
-	free_llist(data->fd_list_tab, data->cmd_size * 2);
+	free_llist(data->fd_list_tab, data->cmd_size);
 	//free built in func?how?
 	//free_tab(data->builtin_name);
 	//free_tab(data->envp);
@@ -73,7 +73,7 @@ static void	free_env_lst(t_env_lst *list)
 {
 	t_env_lst	*next;
 
-	if(!list)
+	if (!list)
 		return ;
 	while (list != NULL)
 	{

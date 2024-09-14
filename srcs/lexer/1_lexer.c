@@ -3,12 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   1_lexer.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/31 14:05:45 by fjoestin          #+#    #+#             */
-/*   Updated: 2024/09/14 01:47:45 by fjoestin         ###   ########.fr       */
+/*   Created: Invalid date        by                   #+#    #+#             */
+/*   Updated: 2024/09/14 16:37:58 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
 
 #include "../../minishell.h"
 
@@ -18,6 +20,7 @@ int	lexer(t_data *data)
 		return (perror("Error: not all quotes were closed"), 1); //!
 	data->tokens = tokenizer(data);
 	processing(data);
+	// test_tokens(data->tokens);
 	expander(data->tokens, data);
 	remove_empty_tokens(data);
 	if (data->n_tokens == 0)
