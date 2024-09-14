@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   0_expander.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:52:17 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/13 11:13:35 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/14 01:37:11 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,37 +90,6 @@ void	expander(t_token *tokens, t_data *data)
 			if (str[i] == '$')
 				str = expand_dollar(str, &i, data);
 		}
-		// if (str[0] == '\0')
-		// {
-		// 	if (data->n_tokens == 1)
-		// 		ft_exit_err("\n", data);
-		// 	else
-		// 	{
-		// 		if (curr->prev)
-		// 		{
-		// 			tmp = curr->prev;
-		// 			if(curr->next)
-		// 			{
-		// 				curr->next->prev = tmp;
-		// 				tmp->next = curr->next;
-		// 			}
-		// 			else
-		// 				tmp->next = NULL;
-		// 			free(curr);
-		// 			curr = tmp;
-		// 		}
-		// 		else
-		// 		{
-		// 			data->tokens = curr->next;
-		// 			free(curr);
-		// 			curr = data->tokens;
-		// 			curr->prev = NULL;
-		// 		}
-		// 		free(str);
-		// 	}
-		// }
-		// else
-			// curr->value = str;
 		curr->value = str;
 		curr = curr->next;
 	}

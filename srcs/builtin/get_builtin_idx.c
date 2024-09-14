@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_builtin_idx.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 13:54:45 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/19 20:38:08 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/12 20:38:30 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	get_builtin_idx(t_data *data, char *str)
 	while (++i < size)
 	{
 		if (ft_strcmp(str, *(names + i)) == 0)
-			return(i);
+			return (i);
 	}
 	return (-1);
 }

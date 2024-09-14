@@ -10,8 +10,13 @@ envp
 /* Mariia */
 
 /* Fernanda */
-create a function to clean before reprompting
-- fix built in
+cd.c OK
+echo.c OK
+env.c OK
+exit.c OK
+pwd.c OK
+0_lexer.c OK
+3_lexer.c 
 see how to update **envp
 exit status update
 signals

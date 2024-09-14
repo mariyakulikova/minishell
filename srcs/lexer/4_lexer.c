@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   4_lexer.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fjoestin <fjoestin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/03 13:14:22 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/12 20:31:46 by fjoestin         ###   ########.fr       */
+/*   Created: 2024/09/14 01:56:23 by fjoestin          #+#    #+#             */
+/*   Updated: 2024/09/14 02:11:16 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../minishell.h"
 
-int	ft_env(t_data *data, char **cmd_tab)
+t_token	*ft_new_token(char *line, t_token **curr)
 {
-	t_env_lst	*list;
+	t_token	*new;
 
-	list = data->lst;
-	if (cmd_tab[1] != NULL)
-		return (err_msg("env: Take no arguments\n", 1));
-	while (list != NULL)
+	new = (t_token *)malloc(sizeof(t_token));
+	new->value = ft_strdup(line);
+	new->index = INT_MAX;
+	new->join = TRUE;
+	new->quotes = get_if_quotes(new->value);
+	new->type = STRING;
+	new->prev = *curr;
+	if ((*curr)->next)
 	{
-		printf("%s=%s\n", list->key, list->value);
-		list = list->next;
+		new->next = (*curr)->next;
+		(*curr)->next->prev = new;
 	}
-	return (0);
+	else
+		new->next = NULL;
+	return (new);
 }

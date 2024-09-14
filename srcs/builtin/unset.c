@@ -6,7 +6,7 @@
 /*   By: fjoestin <fjoestin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 13:13:53 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/12 16:22:12 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/14 01:33:34 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	ft_unset(t_data *data, char **cmd_tab)
 {
 	int	wunset;
 	int	idx;
+
 	(void)cmd_tab;
 	wunset = get_builtin_index(data->cmd_tab, "unset");
 	idx = 1;
@@ -31,7 +32,6 @@ int	ft_unset(t_data *data, char **cmd_tab)
 		remove_from_list(data->export_list, data->cmd_tab[wunset][idx]);
 		idx++;
 	}
-	//test_list(data->export_list);
 	return (0);
 }
 

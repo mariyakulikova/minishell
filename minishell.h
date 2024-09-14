@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 10:59:01 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/13 12:09:06 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/14 01:15:01 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ struct s_data
 };
 
 /* lexer */
-void	test_tokens(t_token *tokens);
+void		test_tokens(t_token *tokens);
 int			lexer(t_data *data);
 t_token		*token_new(char *prompt, int start, int end);
 int			check_single_quote(char *prompt);
@@ -129,7 +129,7 @@ void		check_types(t_data *data);
 t_type		check_redirect(t_token *tokens, t_data *data);
 int			real_red(t_token *token, int red);
 int			check_prompt(char *prompt, int *start);
-char		**ft_split_ms(char *prompt, int	red);
+char		**ft_split_ms(char *prompt, int red);
 char		**ft_split_red_ms(char *prompt, int wred);
 t_env_lst	*new_env(char *new_key, char *new_value);
 void		remove_empty_tokens(t_data *data);
@@ -148,7 +148,7 @@ void		waitpids(t_exe_data *exe_data, t_data *data);
 void		execute_cmd(t_data *data, int i);
 int			set_fd(int *fd, t_data *data, int i);
 void		close_fd(int *fd, int size);
-int			dup_fd(int *fd_tab,  int j, int size);
+int			dup_fd(int *fd_tab, int j, int size);
 int			handle_heredoc(t_llist *fd_list, t_data *data, int i);
 char		*get_value(char *key, t_data *data);
 int			link_pipes(int *pipe_tab, int *fd_tab, int size, int i);
@@ -172,19 +172,20 @@ int			get_size_tab(char **tab);
 
 /* built-in/ */
 int			ft_cd(t_data *data, char **cmd_tab);
+void		ft_cd_helper(t_data *data, char *ch);
 int			ft_echo(t_data *data, char **cmd_tab);
+bool		ft_echo_helper(char **cmd_tab, int *j, bool new_line);
 int			ft_env(t_data *data, char **cmd_tab);
 int			ft_exit(t_data *data, char **cmd_tab);
 int			ft_export(t_data *data, char **cmd_tab);
 int			ft_pwd(t_data *data, char **cmd_tab);
 int			ft_unset(t_data *data, char **cmd_tab);
 int			get_builtin_idx(t_data *data, char *str);
-int 		get_builtin_index(char ***str, char *cmd);
+int			get_builtin_index(char ***str, char *cmd);
 void		sort_list(t_env_lst *list);
 void		update_exp_list(t_env_lst *curr, char *new_key, char *new_value);
 int			valid_format(char *str);
-int			get_exit_status(int	exit_status);
-int			get_exit_status(int	exit_status);
+int			get_exit_status(int exit_status);
 
 /* envp_lst.c */
 void		envp_lst_free(t_env_lst *lst);
@@ -200,22 +201,23 @@ void		data_init(t_data **data, char **envp);
 int			get_if_quotes(char *value);
 
 //exit_err
-void	ft_exit_err(char *msg, t_data *data);
+void		ft_exit_err(char *msg, t_data *data);
+int			err_msg(char *msg, int code);
 
 // free
-void	ft_free_data(t_data *data);
-void	free_triple_tab(char ***cmd_tab, int cmd_size);
-void	free_llist(t_llist **fd_list_tab, int size);
-void	free_tokens(t_token *tokens);
-void	free_reprompt(t_data *data);
-void	free_tab(char **tab);
+void		ft_free_data(t_data *data);
+void		free_triple_tab(char ***cmd_tab, int cmd_size);
+void		free_llist(t_llist **fd_list_tab, int size);
+void		free_tokens(t_token *tokens);
+void		free_reprompt(t_data *data);
+void		free_tab(char **tab);
 
 // signals
-void	set_signal(void);
-void	signal_handler(int sig);
+void		set_signal(void);
+void		signal_handler(int sig);
 
 //Built in
-void	update_env_list(t_env_lst *curr, char *new_key, char *new_value);
+void		update_env_list(t_env_lst *curr, char *new_key, char *new_value);
 
 /* test */
 void		test_tokens(t_token	*token);
