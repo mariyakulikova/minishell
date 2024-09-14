@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 15:00:34 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/11 22:05:15 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/14 13:54:38 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,9 @@ void	waitpids(t_exe_data *exe_data, t_data *data)
 	}
 }
 
-int	link_pipes(int *pipe_tab, int *fd_tab, int size, int i)
+int	link_pipes(int *pipe_tab, int size, int i)
 {
-	(void)fd_tab;
-	if (size ==  1)
+	if (size == 1)
 		return (0);
 	if (i == 0)
 	{
@@ -60,6 +59,23 @@ int	link_pipes(int *pipe_tab, int *fd_tab, int size, int i)
 		dup2(pipe_tab[2 * i - 2], STDIN_FILENO);
 		close(pipe_tab[2 * i + 1]);
 		close(pipe_tab[2 * i - 2]);
+	}
+	return (0);
+}
+
+int	unlink_fd_list_tab(t_data *data)
+{
+	int		i;
+	t_llist	*curr;
+
+	i = -1;
+	while (++i < data->cmd_size)
+	{
+		curr = *(data->fd_list_tab + i);
+		if (!curr)
+			continue ;
+		if (unlink_temp(curr))
+			return (1);
 	}
 	return (0);
 }

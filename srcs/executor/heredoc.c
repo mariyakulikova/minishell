@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:20:03 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/13 18:16:09 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/14 13:18:46 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,21 +78,6 @@ int	handle_heredoc(t_llist *fd_list, t_data *data, int i)
 		return (-1);
 	fd_list->value = (void *)fname;
 	return (fd);
-}
-
-int	unlink_fd_list_tab(t_data *data)
-{
-	int		i;
-	t_llist	*curr;
-
-	i = -1;
-	while (++i < data->cmd_size)
-	{
-		curr = *(data->fd_list_tab + i);
-		if (unlink_temp(curr))
-			return (1);
-	}
-	return (0);
 }
 
 int	execute_heredoc(t_data *data, t_exe_data *exe_data)

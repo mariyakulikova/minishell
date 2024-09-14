@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_data.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 12:47:26 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/11 16:01:42 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/14 12:39:26 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,18 +63,19 @@ int	init_exe_data(t_exe_data **exe_data, t_data *data)
 		return (1);
 	ft_memset((*exe_data), 0, sizeof(t_exe_data));
 	(*exe_data)->pids_size = data->cmd_size;
-	(*exe_data)->pid_tab =(pid_t *)malloc(sizeof(pid_t) * (*exe_data)->pids_size);
+	(*exe_data)->pid_tab = (pid_t *)malloc(sizeof(pid_t) * data->cmd_size);
 	if (!(*exe_data)->pid_tab)
 		return (1);
 	ft_memset((*exe_data)->pid_tab, -1, sizeof(pid_t) * (*exe_data)->pids_size);
-	(*exe_data)->fd_tab = (int *)malloc(sizeof(int) * (*exe_data)->pids_size * 2);
+	(*exe_data)->fd_tab = (int *)malloc(sizeof(int) * data->cmd_size * 2);
 	if (!(*exe_data)->fd_tab)
 		return (1);
 	set_default_fd((*exe_data)->fd_tab, (*exe_data)->pids_size * 2);
 	(*exe_data)->pipes_size = ((*exe_data)->pids_size - 1) * 2;
 	if ((*exe_data)->pipes_size == 0)
 		return (0);
-	(*exe_data)->pipe_tab = (int *)malloc(sizeof(int) * (*exe_data)->pipes_size);
+	(*exe_data)->pipe_tab = (int *)malloc(sizeof(int) * \
+		(*exe_data)->pipes_size);
 	if (!(*exe_data)->pipe_tab)
 		return (1);
 	if (set_pipes(*exe_data))
