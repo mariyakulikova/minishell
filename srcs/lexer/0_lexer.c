@@ -6,7 +6,7 @@
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 11:08:48 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/14 16:38:40 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/14 18:58:54 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	check_single_quote(char *prompt)
 	tmp = prompt;
 	i = 1;
 	j = 0;
-	while(tmp[i])
+	while (tmp[i])
 	{
 		if(tmp[i] == SINGLE_QUOTE && ft_isprint(tmp[i + 1]) == FALSE)
 			return (++i) ;

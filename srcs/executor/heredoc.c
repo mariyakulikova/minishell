@@ -6,7 +6,7 @@
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:20:03 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/14 18:41:13 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/14 18:58:13 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,17 +40,11 @@ static void	read_heardoc(int fd, char *limiter, t_data *data)
 {
 	char	*line;
 	int		i;
-	
+
 	while (1)
 	{
 		line = readline("> ");
-		if (!line)
-		{
-			free(line);
-			// printf("\n");
-			break ;
-		}
-		if (limiter_cmp(line, limiter))
+		if (!line || limiter_cmp(line, limiter))
 		{
 			free(line);
 			// printf("\n");

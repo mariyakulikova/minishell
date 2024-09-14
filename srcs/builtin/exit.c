@@ -5,11 +5,10 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/09/14 16:46:27 by fjoestin         ###   ########.fr       */
+/*   Created: 2024/09/14 18:56:45 by fjoestin          #+#    #+#             */
+/*   Updated: 2024/09/14 18:56:49 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../../minishell.h"
 

@@ -6,7 +6,7 @@
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 13:13:53 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/14 16:57:22 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/14 18:57:00 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	ft_unset(t_data *data, char **cmd_tab)
 	idx = 1;
 	if (data->cmd_tab[wunset][idx] == NULL)
 		return (0);
-	
 	while (data->cmd_tab[wunset][idx])
 	{
 		while (ft_strcmp(data->cmd_tab[wunset][idx], "_") == 0)
