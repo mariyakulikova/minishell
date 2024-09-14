@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:20:03 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/14 13:18:46 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/14 18:41:13 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@ static bool	limiter_cmp(char *line, char *limiter)
 	char	*temp;
 	int		res;
 
+	if (ft_strlen(line) != ft_strlen(limiter))
+		return (false);
 	temp = ft_strdup(line);
-	*(temp + ft_strlen(line) - 1) = '\0';
 	res = ft_strcmp(temp, limiter);
 	free(temp);
 	return (res == 0);
@@ -39,14 +40,20 @@ static void	read_heardoc(int fd, char *limiter, t_data *data)
 {
 	char	*line;
 	int		i;
-
+	
 	while (1)
 	{
-		write(1, "> ", 3);
-		line = get_next_line(0);
+		line = readline("> ");
+		if (!line)
+		{
+			free(line);
+			// printf("\n");
+			break ;
+		}
 		if (limiter_cmp(line, limiter))
 		{
 			free(line);
+			// printf("\n");
 			break ;
 		}
 		i = -1;
@@ -56,6 +63,7 @@ static void	read_heardoc(int fd, char *limiter, t_data *data)
 				line = expand_dollar(line, &i, data);
 		}
 		write(fd, line, ft_strlen(line));
+		write(fd, "\n", 1);
 		free(line);
 	}
 }
