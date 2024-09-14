@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 13:13:21 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/14 01:06:54 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/14 16:45:48 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_cd(t_data *data, char **cmd_tab)
 		printf("%s\n", data->oldpwd);
 	}
 	else if (cmd_tab[2] != NULL)
-		return (err_msg("cd: Too many arguments\n", 1));
+		return (err_msg("cd: too many arguments\n", 1));
 	else
 		ch = ft_strdup(cmd_tab[i]);
 	free(data->oldpwd);

@@ -6,7 +6,7 @@
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/09/14 16:33:33 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/14 16:46:27 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ static int	valid_exit(char	**str)
 	while (str[1][i])
 	{
 		if (str[2] != NULL)
-			return (err_msg("exit: Too many arguments\n", 1));
+			return (err_msg("exit: too many arguments\n", 1));
 		if (ft_isdigit(str[1][i]) == 0 && str[1][i] != '+' && str[1][i] != '-')
-			return (err_msg("exit: Numeric argument required\n", 2));
+			return (err_msg("exit: numeric argument required\n", 2));
 		i++;
 	}
 	return (0);
