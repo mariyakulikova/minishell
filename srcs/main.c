@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 11:14:30 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/13 17:25:05 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/14 17:35:14 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ void	ft_minishell(t_data *data)
 			printf("exit\n");
 			exit(0);
 		}
-		add_history(data->prompt);
 		if (is_only_space(data->prompt) || ft_strlen(data->prompt) == 0)
 			continue ;
+		add_history(data->prompt);
 		if (lexer(data))
 			continue ;
 		if (parser(data))
