@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 14:17:38 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/14 16:39:12 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/15 14:33:55 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,8 @@ static char	*get_cmd_path(t_data *data, int i)
 static void	check_directory(char *path)
 {
 	struct stat	path_stat;
-	int			size;
 
 	stat(path, &path_stat);
-	size = ft_strlen(path);
 	if (S_ISDIR(path_stat.st_mode))
 	{
 		write(2, path, ft_strlen(path));
