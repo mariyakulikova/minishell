@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 12:17:11 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/14 13:54:39 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/15 14:47:07 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,27 +97,6 @@ int	set_fd(int *fd_tab, t_data *data, int i)
 			}
 		}
 		fd_list = fd_list->next;
-	}
-	return (0);
-}
-
-int	unlink_temp(t_llist *fd_list)
-{
-	t_llist	*curr;
-
-	curr = fd_list;
-	while (curr)
-	{
-		if (*(t_type *)curr->key == HERE_DOC)
-		{
-			if (unlink((char *)curr->value) == -1)
-			{
-				perror("unlink");
-				return (1);
-			}
-			free(curr->value);
-		}
-		curr = curr->next;
 	}
 	return (0);
 }
