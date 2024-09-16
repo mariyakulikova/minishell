@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 10:08:07 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/16 18:32:33 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/16 19:31:59 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 # define SINGLE_QUOTE 39
 # define DOUBLE_QUOTE 34
 # define PIPE_PROMPT 124
-# define TEMP_FILE ".temp"
+# define TEMP_FILE "/var/tmp/.temp"
 
 # define TRUE 1
 # define FALSE 0
@@ -109,7 +109,6 @@ struct s_data
 };
 
 /* lexer */
-void		test_tokens(t_token *tokens);
 int			lexer(t_data *data);
 t_token		*token_new(char *prompt, int start, int end);
 int			check_single_quote(char *prompt);

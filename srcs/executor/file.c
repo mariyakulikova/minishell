@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 12:17:11 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/15 14:47:07 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/16 19:20:26 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,17 @@ int	reset_std(t_data *data, int *fd)
 	return (0);
 }
 
-static int	open_file(t_llist *list)
+static int	open_file(t_type t, char *s)
 {
 	int	fd;
 
 	fd = -1;
-	if (*(t_type *)list->key == RED_OUT)
-		fd = open((char *)list->value, O_RDWR | O_CREAT | O_TRUNC, 0644);
-	else if (*(t_type *)list->key == APPEND)
-		fd = open((char *)list->value, O_RDWR | O_CREAT | O_APPEND, 0644);
-	else if (*(t_type *)list->key == RED_IN)
-		fd = open((char *)list->value, O_RDWR, 0644);
+	if (t == RED_OUT)
+		fd = open(s, O_RDWR | O_CREAT | O_TRUNC, 0644);
+	else if (t == APPEND)
+		fd = open(s, O_RDWR | O_CREAT | O_APPEND, 0644);
+	else if (t == RED_IN || t == HERE_DOC)
+		fd = open(s, O_RDWR, 0644);
 	return (fd);
 }
 
@@ -74,6 +74,23 @@ int	dup_fd(int *fd_tab, int j, int size)
 	return (0);
 }
 
+static int	get_fd(t_llist	*fd_list, int i)
+{
+	int		fd;
+	t_type	type;
+	char	*fname;
+
+	type = *(t_type *)fd_list->key;
+	if (type == HERE_DOC)
+		fname = get_fname(TEMP_FILE, i);
+	else
+		fname = (char *)fd_list->value;
+	fd = open_file(type, fname);
+	if (type == HERE_DOC)
+		free(fname);
+	return (fd);
+}
+
 int	set_fd(int *fd_tab, t_data *data, int i)
 {
 	t_llist	*fd_list;
@@ -84,17 +101,14 @@ int	set_fd(int *fd_tab, t_data *data, int i)
 	fd_list = *(data->fd_list_tab + i);
 	while (fd_list)
 	{
-		if (*(t_type *)fd_list->key != HERE_DOC)
+		type = get_stream_type(*(t_type *)fd_list->key);
+		if (*(fd_tab + (i * 2) + type) > 2)
+			close(*(fd_tab + (i * 2 + type)));
+		*(fd_tab + (i * 2) + type) = get_fd(fd_list, i);
+		if (*(fd_tab + (i * 2) + type) == -1)
 		{
-			type = get_stream_type(*(t_type *)fd_list->key);
-			if (*(fd_tab + (i * 2) + type) > 2)
-				close(*(fd_tab + (i * 2 + type)));
-			*(fd_tab + (i * 2) + type) = open_file(fd_list);
-			if (*(fd_tab + (i * 2) + type) == -1)
-			{
-				perror((char *)fd_list->value);
-				return (1);
-			}
+			perror((char *)fd_list->value);
+			return (1);
 		}
 		fd_list = fd_list->next;
 	}

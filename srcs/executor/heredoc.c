@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:20:03 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/16 18:32:13 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/16 19:08:55 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	read_heardoc(int fd, char *limiter, t_data *data)
 	while (1)
 	{
 		line = readline("> ");
-		if (!line || limiter_cmp(line, limiter))
+		if (line && limiter_cmp(line, limiter))
 		{
 			free(line);
 			break ;
@@ -66,7 +66,7 @@ int	handle_heredoc(t_llist *fd_list, t_data *data, int i)
 	char	*fname;
 	int		fd;
 
-	fname = get_fname("/var/tmp/.temp", i);
+	fname = get_fname(TEMP_FILE, i);
 	if (!fname)
 		return (1);
 	fd = open(fname, O_CREAT | O_WRONLY | O_TRUNC, 0644);
