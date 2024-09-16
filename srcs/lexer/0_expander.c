@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   0_expander.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:52:17 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/14 01:37:11 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/16 12:49:00 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "../../minishell.h"
 
@@ -72,8 +71,7 @@ static char	*expand_double_qoutes(char *str, int *i, t_data *data)
 void	expander(t_token *tokens, t_data *data)
 {
 	int		i;
-	t_token *curr;
-	// t_token	*tmp;
+	t_token	*curr;
 	char	*str;
 
 	curr = tokens;

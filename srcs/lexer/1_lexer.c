@@ -3,24 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   1_lexer.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/09/14 16:37:58 by fjoestin         ###   ########.fr       */
+/*   Created: 2024/06/16 10:14:43 by mkulikov          #+#    #+#             */
+/*   Updated: 2024/09/16 12:50:11 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-
 
 #include "../../minishell.h"
 
 int	lexer(t_data *data)
 {
 	if (!check_open_quotes(data->prompt))
-		return (perror("Error: not all quotes were closed"), 1); //!
+		return (perror("Error: not all quotes were closed"), 1);
 	data->tokens = tokenizer(data);
 	processing(data);
-	// test_tokens(data->tokens);
 	expander(data->tokens, data);
 	remove_empty_tokens(data);
 	if (data->n_tokens == 0)
@@ -69,7 +66,7 @@ void	update_index(t_token *tokens, t_data *data)
 	data->n_tokens = i;
 }
 
-void	update_type(t_data *data)//**
+void	update_type(t_data *data)
 {
 	t_token	*tokens;
 	int		i;
@@ -96,4 +93,3 @@ void	update_type(t_data *data)//**
 		tokens = tokens->next;
 	}
 }
-

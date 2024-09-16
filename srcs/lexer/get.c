@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/02 14:29:13 by fjoestin          #+#    #+#             */
-/*   Updated: 2024/08/21 16:20:27 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/16 12:46:12 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	get_if_quotes(char *value)
 	i = 0;
 	if (value[i] == SINGLE_QUOTE && value[ft_strlen(value) - 1] == SINGLE_QUOTE)
 		return (1);
-	else if (value[i] == DOUBLE_QUOTE && value[ft_strlen(value) - 1] ==DOUBLE_QUOTE)
+	else if (value[i] == DOUBLE_QUOTE && value[ft_strlen(value) - 1] == DOUBLE_QUOTE)
 		return (2);
 	while (value[i])
 	{
@@ -40,5 +40,5 @@ int	get_if_quotes(char *value)
 		printf("value: [%s]\n", tokens->value);
 		tokens = tokens->next;
 	}
-	
+
 } */

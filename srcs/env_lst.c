@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 12:04:18 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/08/13 14:31:30 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/16 12:08:05 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ t_env_lst	*envp_lst_new(char *envp)
 		new->value = NULL;
 	}
 	new->next = NULL;
-	// printf("envp_lst_new -----> %s = %s\n", new->key, new->value);
 	return (new);
 }
 
