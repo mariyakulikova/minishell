@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 15:00:34 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/15 15:02:20 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/16 11:58:21 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	unlink_fd_list_tab(t_data *data)
 			while (curr)
 			{
 				free((char *)curr->value);
-				curr  = curr->next;
+				curr = curr->next;
 			}
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 13:38:20 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/13 17:23:58 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/16 11:59:35 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,37 +55,6 @@ static int	parse_tokens(t_data *data)
 	return (0);
 }
 
-// static void test(t_data *data)
-// {
-// 	t_llist *fd_list;
-// 	char **cmd;
-// 	int i = -1;
-// 	while (++i < data->cmd_size)
-// 	{
-// 		cmd = *(data->cmd_tab + i);
-// 		printf("cmd:\n");
-// 		int j = 0;
-// 		while (*(cmd + j))
-// 		{
-// 			printf("%s ", *(cmd + j));
-// 			j++;
-// 		}
-// 		printf("\nfd_list:\n");
-// 		fd_list = *(data->fd_list_tab + i);
-// 		if (!fd_list)
-// 			printf("NO!\n");
-// 		else
-// 		{
-// 			while (fd_list)
-// 			{
-// 				printf("%s ", (char *)fd_list->value);
-// 				fd_list = fd_list->next;
-// 			}
-// 			printf("\n");
-// 		}
-// 	}
-// }
-
 int	parser(t_data *data)
 {
 	data->cmd_size = count_tokens(data->tokens, PIPE) + 1;
@@ -99,6 +68,5 @@ int	parser(t_data *data)
 	ft_memset(data->cmd_tab, 0, sizeof(char **) * data->cmd_size);
 	if (parse_tokens(data))
 		return (1);
-	// test(data);
 	return (0);
 }
