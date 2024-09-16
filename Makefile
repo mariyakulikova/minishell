@@ -6,7 +6,7 @@
 #    By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:49:03 by fjoestin          #+#    #+#              #
-#    Updated: 2024/09/16 15:25:52 by mkulikov         ###   ########.fr        #
+#    Updated: 2024/09/16 18:35:36 by mkulikov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,7 +53,6 @@ SRC =   srcs/builtin/cd.c \
 		srcs/signals.c \
 		srcs/env_lst.c \
 		srcs/main.c \
-		srcs/test.c \
 		srcs/exit_err.c
 
 OBJ = $(patsubst %.c,$(OBJ_DIR)%.o,$(SRC))

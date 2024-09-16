@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 15:00:34 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/16 11:58:21 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/16 18:34:57 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int	unlink_fd_list_tab(t_data *data)
 {
 	int		i;
 	t_llist	*curr;
+	char	*fname;
 
 	i = -1;
 	while (++i < data->cmd_size)
@@ -74,16 +75,14 @@ int	unlink_fd_list_tab(t_data *data)
 		curr = *(data->fd_list_tab + i);
 		if (curr && *(t_type *)curr->key == HERE_DOC)
 		{
-			if (unlink((char *)curr->value) == -1)
+			fname = get_fname("/var/tmp/.temp", i);
+			if (unlink(fname) == -1)
 			{
 				perror("unlink");
+				free(fname);
 				return (1);
 			}
-			while (curr)
-			{
-				free((char *)curr->value);
-				curr = curr->next;
-			}
+			free(fname);
 		}
 	}
 	return (0);

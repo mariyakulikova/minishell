@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:20:03 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/16 11:58:39 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/16 18:32:13 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static bool	limiter_cmp(char *line, char *limiter)
 	return (res == 0);
 }
 
-static char	*get_fname(char *str, int i)
+char	*get_fname(char *str, int i)
 {
 	char	*fname;
 	char	*idx;
@@ -77,7 +77,7 @@ int	handle_heredoc(t_llist *fd_list, t_data *data, int i)
 	fd = open(fname, O_RDONLY);
 	if (fd == -1)
 		return (-1);
-	fd_list->value = (void *)fname;
+	free(fname);
 	return (fd);
 }
 

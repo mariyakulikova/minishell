@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 10:08:07 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/16 18:19:00 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/16 18:32:33 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,7 @@ int			link_pipes(int *pipe_tab, int size, int i);
 int			reset_std(t_data *data, int *fd);
 int			unlink_fd_list_tab(t_data *data);
 int			execute_heredoc(t_data *data, t_exe_data *exe_data);
+char		*get_fname(char *str, int i);
 
 /* utils/ */
 int			str_chr_idx(const char *str, int c);
