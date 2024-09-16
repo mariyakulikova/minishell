@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   2_lexer.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 16:20:21 by fjoestin          #+#    #+#             */
-/*   Updated: 2024/09/14 16:30:44 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/16 12:51:20 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,11 +125,12 @@ int	real_red(t_token *token, int red)
 {
 	char	**split;
 	int		wred;
-	int		j = 1;
+	int		j;
 	t_token	*tmp;
 
+	j = 1;
 	wred = str_chr_idx(token->value, red);
-	if(token->value[wred + 1] == red || token->value[wred + 1] == '\0')
+	if (token->value[wred + 1] == red || token->value[wred + 1] == '\0')
 		return (1);
 	split = ft_split_red_ms(token->value, wred);
 	free(token->value);
@@ -145,6 +146,7 @@ int	real_red(t_token *token, int red)
 	free_split(split);
 	return (1);
 }
+
 char	**ft_split_red_ms(char *prompt, int wred)
 {
 	int		size;
