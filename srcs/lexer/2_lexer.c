@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   2_lexer.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/21 16:20:21 by fjoestin          #+#    #+#             */
-/*   Updated: 2024/09/16 12:51:20 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/16 13:14:43 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ char	**ft_split_ms(char *prompt, int red)
 	split[size] = NULL;
 	return (split);
 }
-int	check_redirect_helper(t_token *tokens, t_data *data);
 
 t_type	check_redirect(t_token *tokens, t_data *data)
 {
@@ -82,44 +81,41 @@ t_type	check_redirect(t_token *tokens, t_data *data)
 	if ((tokens->value[0] == '>' && tokens->value[1] == '>')
 		&& tokens->value[2] == '\0')
 		return (APPEND);
-	check = check_redirect_helper(tokens, data);
+	check = check_redirect_helper(tokens, data, false, false);
 	if (check == 0)
 		return (STRING);
 	else
 		return (check_redirect(tokens, data));
 }
 
-int	check_redirect_helper(t_token *tokens, t_data *data)
+int	check_redirect_helper(t_token *tokens, t_data *data, bool in_sq, bool in_dq)
 {
 	int		i;
-	bool	in_squotes;
-	bool	in_dquotes;
 	int		entered;
+	char	*prompt;
 
-	in_squotes = false;
-	in_dquotes = false;
-	i = 0;
+	i = -1;
 	entered = 0;
-	char *prompt = ft_strdup(tokens->value);
-	while (prompt[i] != '\0')
+	prompt = ft_strdup(tokens->value);
+	while (prompt[++i] != '\0')
 	{
-		if (prompt[i] == SINGLE_QUOTE && !in_dquotes)
-			in_squotes = !in_squotes;
-		else if (prompt[i] == DOUBLE_QUOTE && !in_squotes)
-			in_dquotes = !in_dquotes;
-		if ((prompt[i] == '<' || prompt[i] == '>') && (tokens->type != APPEND && tokens->type != HERE_DOC) && !in_squotes && !in_dquotes)
+		if (prompt[i] == SINGLE_QUOTE && !in_dq)
+			in_sq = !in_sq;
+		else if (prompt[i] == DOUBLE_QUOTE && !in_sq)
+			in_dq = !in_dq;
+		if ((prompt[i] == '<' || prompt[i] == '>') && (tokens->type != APPEND
+				&& tokens->type != HERE_DOC) && !in_sq && !in_dq)
 			entered = real_red(tokens, prompt[i]);
-		if (((prompt[i] == '<' && prompt[i + 1] == '<' )||( prompt[i] == '>' && prompt[i + 1] == '>')) && !in_squotes && !in_dquotes)
+		if (((prompt[i] == '<' && prompt[i + 1] == '<' ) || (prompt[i] == '>'
+					&& prompt[i + 1] == '>')) && !in_sq && !in_dq)
 		{
 			entered = real_double(tokens, data, prompt[i]);
 			break ;
 		}
-		i++;
 	}
 	free(prompt);
 	return (entered);
 }
-
 
 int	real_red(t_token *token, int red)
 {
@@ -145,49 +141,4 @@ int	real_red(t_token *token, int red)
 	}
 	free_split(split);
 	return (1);
-}
-
-char	**ft_split_red_ms(char *prompt, int wred)
-{
-	int		size;
-	char	**split;
-
-	if (wred != 0 && prompt[wred + 1] != '\0')
-		size = 3;
-	else
-		size = 2;
-	split = (char **)malloc(sizeof(char *) * (size + 1));
-	if(wred == 0)
-	{
-		split[0] = ft_substr(prompt, 0, 1);
-		split[1] = ft_substr(prompt, (wred + 1), (ft_strlen(prompt) - wred));
-	}
-	else
-	{
-		split[0] = ft_substr(prompt, 0, wred);
-		split[1] = ft_substr(prompt, wred, 1);
-		if (size == 3)
-			split[2] = ft_substr(prompt, (wred + 1), (ft_strlen(prompt) - wred));
-	}
-	split[size] = NULL;
-	return (split);
-}
-
-void	check_types(t_data *data)
-{
-	t_token *token;
-
-	token = data->tokens;
-	while (token != NULL)
-	{
-		if (token->type == PIPE && (token->index == 0 || token->index == (data->n_tokens - 1)))
-			ft_exit_err("pipe doesn't work\n", data);
-		if (token->type != STRING && ((token->index == 0 && (data->n_tokens == 1)) || token->index == (data->n_tokens - 1)))
-			ft_exit_err("unexpected syntax\n", data);
-		if (token->type == PIPE && token->next->type == PIPE)
-			ft_exit_err("2 pipes\n", data);
-		if ((token->type != STRING && token->type != PIPE) && token->next->type != STRING)
-			ft_exit_err("unexpected syntax\n", data);
-		token = token->next;
-	}
 }

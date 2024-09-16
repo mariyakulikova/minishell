@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 10:08:07 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/16 11:57:01 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/16 13:15:49 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,8 @@ char		**ft_split_ms(char *prompt, int red);
 char		**ft_split_red_ms(char *prompt, int wred);
 t_env_lst	*new_env(char *new_key, char *new_value);
 void		remove_empty_tokens(t_data *data);
+int			check_redirect_helper(t_token *tokens, t_data *data,
+				bool in_sq, bool in_dq);
 
 /* parser */
 int			parser(t_data *data);
