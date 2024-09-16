@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:45:13 by fjoestin          #+#    #+#             */
-/*   Updated: 2024/09/16 11:10:10 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/16 12:05:36 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,42 +86,4 @@ static void	free_env_lst(t_env_lst *list)
 		free(list);
 		list = next;
 	}
-}
-
-void	free_tokens(t_token *tokens)
-{
-	if (!tokens)
-		return ;
-	while (tokens->next != NULL)
-	{
-		tokens = tokens->next;
-		free(tokens->prev->value);
-		free(tokens->prev);
-	}
-	free(tokens->value);
-	free(tokens->next);
-	free(tokens);
-}
-
-void	free_llist(t_llist **fd_list_tab, int size)
-{
-	int		i;
-	t_llist	*curr;
-	t_llist	*prev;
-
-	if (!fd_list_tab)
-		return ;
-	i = -1;
-	while (++i < size)
-	{
-		curr = *(fd_list_tab + i);
-		while (curr)
-		{
-			prev = curr;
-			curr = curr->next;
-			free(prev);
-		}
-		*(fd_list_tab + i) = NULL;
-	}
-	free(fd_list_tab);
 }
