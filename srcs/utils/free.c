@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:45:13 by fjoestin          #+#    #+#             */
-/*   Updated: 2024/09/14 16:37:17 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/16 10:28:54 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	free_triple_tab(char ***cmd_tab, int cmd_size)
 	int	i;
 	int	j;
 
-	if (!cmd_tab)
+	if (!*cmd_tab)
 		return ;
 	i = 0;
 	while (i < cmd_size)

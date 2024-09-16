@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/18 11:58:26 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/14 13:46:24 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/16 10:27:32 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ int	executer(t_data *data)
 	if (init_exe_data(&exe_data, data))
 		return (free_exe_data(exe_data, 1));
 	execute_heredoc(data, exe_data);
-	code = proceed_cmd(exe_data, data);
+	if (*data->cmd_tab)
+		code = proceed_cmd(exe_data, data);
 	close_fd(exe_data->fd_tab, exe_data->pids_size * 2);
 	close_fd(exe_data->pipe_tab, exe_data->pipes_size);
 	waitpids(exe_data, data);

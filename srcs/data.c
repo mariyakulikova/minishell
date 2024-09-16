@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   data.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 12:29:16 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/12 16:13:18 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/16 10:19:14 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,4 +50,5 @@ void	data_init(t_data **data, char **envp)
 	(*data)->envp = envp;
 	(*data)->fd_list_tab = NULL;
 	(*data)->oldpwd = NULL;
+	(*data)->cmd_tab = NULL;
 }
