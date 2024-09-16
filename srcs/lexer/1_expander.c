@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   1_expander.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/09 13:54:19 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/11 18:47:11 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/16 15:25:52 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*get_value(char *key, t_data *data)
 		return (ft_itoa(data->exit_status));
 	var = get_var_by_key(data->lst, key);
 	if (var)
-		return ((char *)var->value);
+		return (ft_strdup((char *)var->value));
 	else
 		return (NULL);
 }
@@ -88,5 +88,6 @@ char	*expand_dollar(char *str, int *i, t_data *data)
 		(*i)--;
 	}
 	free(key);
+	free(val);
 	return (str);
 }
