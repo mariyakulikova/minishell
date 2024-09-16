@@ -3,13 +3,12 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
+/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: Invalid date        by                   #+#    #+#             */
-/*   Updated: 2024/09/14 16:39:28 by fjoestin         ###   ########.fr       */
+/*   Created: 2024/06/11 10:08:07 by mkulikov          #+#    #+#             */
+/*   Updated: 2024/09/16 11:57:01 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
@@ -154,7 +153,6 @@ int			handle_heredoc(t_llist *fd_list, t_data *data, int i);
 char		*get_value(char *key, t_data *data);
 int			link_pipes(int *pipe_tab, int size, int i);
 int			reset_std(t_data *data, int *fd);
-int			unlink_temp(t_llist *fd_list);
 int			unlink_fd_list_tab(t_data *data);
 int			execute_heredoc(t_data *data, t_exe_data *exe_data);
 
