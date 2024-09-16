@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:45:13 by fjoestin          #+#    #+#             */
-/*   Updated: 2024/09/16 12:05:36 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/16 14:46:06 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,13 @@ void	ft_free_data(t_data *data)
 	free_tokens(data->tokens);
 	free_llist(data->fd_list_tab, data->cmd_size);
 	//free_tab(data->envp);
-	free(data->prompt);
-	free(data->line);
-	free(data->oldpwd);
-	free(data);
+	if (data->prompt)
+		free(data->prompt);
+	if (data->line)
+		free(data->line);
+	if (data->oldpwd)
+		free(data->oldpwd);
+	//free(data);
 }
 
 void	free_triple_tab(char ***cmd_tab, int cmd_size)

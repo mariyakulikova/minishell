@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 10:08:07 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/16 13:15:49 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/16 14:43:18 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,9 +217,7 @@ void		free_tab(char **tab);
 // signals
 void		set_signal(void);
 void		signal_handler(int sig);
-
-//Built in
-void		update_env_list(t_env_lst *curr, char *new_key, char *new_value);
+void		signals_non_interactive_handler(void);
 
 /* test */
 void		test_tokens(t_token	*token);

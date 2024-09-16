@@ -6,7 +6,7 @@
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 13:13:40 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/14 16:31:39 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/16 14:27:48 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	ft_export(t_data *data, char **cmd_tab)
 		}
 		i++;
 	}
-	ft_export_helper(data, cmd_tab, i);
+	ft_export_helper(data, cmd_tab, 0);
 	return (0);
 }
 
@@ -44,24 +44,24 @@ static void	ft_export_helper(t_data *data, char **cmd_tab, int i)
 	char	*new_value;
 	int		j;
 
-	i = 1;
-	while (cmd_tab[i] != NULL)
+	while (cmd_tab[++i] != NULL)
 	{
 		new_value = NULL;
 		if (ft_strchr(cmd_tab[i], '=') != NULL)
 		{
-			j = ((ft_strlen(cmd_tab[i])) - (ft_strlen(ft_strchr(cmd_tab[i], '='))));
+			j = ((ft_strlen(cmd_tab[i])) - 
+					(ft_strlen(ft_strchr(cmd_tab[i], '='))));
 			new_key = ft_substr(cmd_tab[i], 0, j);
 			if (cmd_tab[i][++j] != '\0')
 			{
-				new_value = ft_substr(cmd_tab[i], j, ft_strlen(ft_strchr(cmd_tab[i], '=')) - 1);
-				update_env_list(data->lst, new_key, new_value);
+				new_value = ft_substr(cmd_tab[i], j,
+						ft_strlen(ft_strchr(cmd_tab[i], '=')) - 1);
+				update_exp_list(data->lst, new_key, new_value);
 			}
 		}
 		else
 			new_key = ft_strdup(cmd_tab[i]);
 		update_exp_list(data->export_list, new_key, new_value);
-		i++;
 		free(new_key);
 		free(new_value);
 	}

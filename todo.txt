@@ -7,6 +7,45 @@ echo test >666
 heredoc in parant process
 heredoc unlink temp files
 envp
+
+prompt: echo - "" "  " hello
+prompt: echo $?
+
+==30497== 2 bytes in 1 blocks are definitely lost in loss record 1 of 71
+==30497==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30497==    by 0x4073C2: ft_itoa (ft_itoa.c:41)
+==30497==    by 0x406347: get_value (1_expander.c:42)
+==30497==    by 0x406401: expand_dollar (1_expander.c:78)
+==30497==    by 0x406044: expander (0_expander.c:89)
+==30497==    by 0x404DC9: lexer (1_lexer.c:21)
+==30497==    by 0x406E89: ft_minishell (main.c:59)
+==30497==    by 0x40709E: ft_exit_err (exit_err.c:20)
+==30497==    by 0x404DED: lexer (1_lexer.c:24)
+==30497==    by 0x406E89: ft_minishell (main.c:59)
+==30497==    by 0x406DAF: main (main.c:37)
+==30497== 
+==30497== 4 bytes in 1 blocks are definitely lost in loss record 2 of 71
+==30497==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==30497==    by 0x4073C2: ft_itoa (ft_itoa.c:41)
+==30497==    by 0x406347: get_value (1_expander.c:42)
+==30497==    by 0x406401: expand_dollar (1_expander.c:78)
+==30497==    by 0x406044: expander (0_expander.c:89)
+==30497==    by 0x404DC9: lexer (1_lexer.c:21)
+==30497==    by 0x406E89: ft_minishell (main.c:59)
+==30497==    by 0x406DAF: main (main.c:37)
+
+HEREDOC:
+ cat <minishell.h <<HERE | cat
+
+==73004== 32 bytes in 2 blocks are definitely lost in loss record 17 of 74
+==73004==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==73004==    by 0x407A74: ft_strjoin (ft_strjoin.c:21)
+==73004==    by 0x4027D7: get_fname (heredoc.c:34)
+==73004==    by 0x402704: handle_heredoc (heredoc.c:69)
+==73004==    by 0x4029A0: execute_heredoc (heredoc.c:104)
+==73004==    by 0x402AC3: executer (executer.c:77)
+==73004==    by 0x406DF0: ft_minishell (main.c:62)
+==73004==    by 0x406CFF: main (main.c:37)
 /* Mariia */
 
 /* Fernanda */

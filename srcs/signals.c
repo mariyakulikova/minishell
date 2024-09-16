@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/06 15:27:12 by fjoestin          #+#    #+#             */
-/*   Updated: 2024/09/16 12:07:44 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/16 14:58:53 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,18 @@ void	set_signal(void)
 {
 	signal(SIGINT, signal_handler);
 	signal(SIGQUIT, SIG_IGN);
+}
+
+static void	display_new_line(int sig)
+{
+	if (sig == SIGQUIT)
+		write(STDERR_FILENO, "Quit (core dumped)", 19);
+	write(STDOUT_FILENO, "\n", 1);
+	rl_on_new_line();
+}
+
+void	signals_non_interactive_handler(void)
+{
+	signal(SIGINT, display_new_line);
+	signal(SIGQUIT, display_new_line);
 }
