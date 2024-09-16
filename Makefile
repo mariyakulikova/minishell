@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+         #
+#    By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:49:03 by fjoestin          #+#    #+#              #
-#    Updated: 2024/09/14 16:22:54 by fjoestin         ###   ########.fr        #
+#    Updated: 2024/09/16 15:25:52 by mkulikov         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,8 +79,5 @@ fclean: clean
 	@$(RM) $(LIBFT)
 
 re: fclean all
-
-norm:
-	@norminette $(SRC)
 
 .PHONY: start all clean fclean re
