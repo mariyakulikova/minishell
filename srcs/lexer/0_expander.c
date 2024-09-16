@@ -6,7 +6,7 @@
 /*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:52:17 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/16 12:49:00 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/16 20:16:33 by mkulikov         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,13 @@ void	expander(t_token *tokens, t_data *data)
 	{
 		i = -1;
 		str = curr->value;
-		while (str[++i])
+		while (str && str[++i])
 		{
-			if (str[i] == '\'')
+			if (i > -1 && i < (int)ft_strlen(str) && str[i] == '\'')
 				str = expand_single_qoutes(str, &i);
-			if (str[i] == '\"')
+			if (i > -1 && i < (int)ft_strlen(str) && str[i] == '\"')
 				str = expand_double_qoutes(str, &i, data);
-			if (str[i] == '$')
+			if (i > -1 && i < (int)ft_strlen(str) && str[i] == '$')
 				str = expand_dollar(str, &i, data);
 		}
 		curr->value = str;
