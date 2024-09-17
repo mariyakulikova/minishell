@@ -6,7 +6,7 @@
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 14:45:13 by fjoestin          #+#    #+#             */
-/*   Updated: 2024/09/16 14:46:06 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/17 11:16:19 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,12 @@ void	ft_free_data(t_data *data)
 		free_triple_tab(data->cmd_tab, data->cmd_size);
 	free_tokens(data->tokens);
 	free_llist(data->fd_list_tab, data->cmd_size);
-	//free_tab(data->envp);
 	if (data->prompt)
 		free(data->prompt);
 	if (data->line)
 		free(data->line);
 	if (data->oldpwd)
 		free(data->oldpwd);
-	//free(data);
 }
 
 void	free_triple_tab(char ***cmd_tab, int cmd_size)

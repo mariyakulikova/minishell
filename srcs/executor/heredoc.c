@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   heredoc.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/16 16:20:03 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/16 19:08:55 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/17 13:25:14 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	read_heardoc(int fd, char *limiter, t_data *data)
 	while (1)
 	{
 		line = readline("> ");
-		if (line && limiter_cmp(line, limiter))
+		if (!line || limiter_cmp(line, limiter))
 		{
 			free(line);
 			break ;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   3_lexer.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: fjoestin <fjoestin@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/12 17:30:54 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/14 02:17:25 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/17 12:38:31 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	remove_empty_tokens(t_data *data)
 	curr = data->tokens;
 	while (curr)
 	{
-		if (curr->value[0] == '\0')
+		if (curr->value[0] == '\0' && curr->quotes == 0)
 		{
 			curr = remove_token(curr, data);
 			data->n_tokens -= 1;

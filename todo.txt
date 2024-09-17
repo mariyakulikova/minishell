@@ -90,3 +90,35 @@ cat <minishell.h <<HERE <missing | ls
 
 echo hi >>outfile01 >>outfile02 | echo bye
 echo hi > 2 > 5 > 6 | echo bey >3 >7
+
+
+CHECK illegal flags!!!
+
+echo -n hello
+export HELLO=123
+env
+export
+export HELLO="fernanda linda"
+env
+minishell$ echo $HELLO
+fernanda linda
+minishell$ unset HELLO
+minishell$ echo $HELLO
+
+minishell$ export
+minishell$ cd obj
+minishell$ echo $PWD $OLDPWD
+/home/fjoestin/minishell/obj /home/fjoestin/minishell
+minishell$ echo $?
+0
+minishell$ doesntexit
+==60485== 1 bytes in 1 blocks are definitely lost in loss record 1 of 97
+==60485==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==60485==    by 0x48A9BAC: xmalloc (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==60485==    by 0x4887694: readline_internal_teardown (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==60485==    by 0x4891D2A: readline (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==60485==    by 0x406E0F: ft_minishell (main.c:46)
+==60485==    by 0x406DDF: main (main.c:37)
+==60485== 
+==60485== LEAK SUMMARY:
+==60485==    definitely lost: 1 bytes in 1 blocks

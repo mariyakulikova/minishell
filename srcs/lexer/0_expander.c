@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   0_expander.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/08 12:52:17 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/16 20:16:33 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/17 12:38:12 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,10 @@ void	expander(t_token *tokens, t_data *data)
 			if (i > -1 && i < (int)ft_strlen(str) && str[i] == '\"')
 				str = expand_double_qoutes(str, &i, data);
 			if (i > -1 && i < (int)ft_strlen(str) && str[i] == '$')
+			{
 				str = expand_dollar(str, &i, data);
+				curr->quotes = 0;
+			}
 		}
 		curr->value = str;
 		curr = curr->next;

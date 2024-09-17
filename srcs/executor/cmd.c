@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mkulikov <mkulikov@student.42berlin.de>    +#+  +:+       +#+        */
+/*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/19 14:17:38 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/15 14:33:55 by mkulikov         ###   ########.fr       */
+/*   Updated: 2024/09/17 12:41:27 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ void	execute_cmd(t_data *data, int i)
 		{
 			write(2, **(data->cmd_tab + i), ft_strlen(**(data->cmd_tab + i)));
 			write(2, " : command not found\n", 21);
+			free(data->prompt);
 			exit(127);
 		}
 		check_directory(cmd_path);
