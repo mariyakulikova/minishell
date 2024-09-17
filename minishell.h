@@ -6,7 +6,7 @@
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/11 10:08:07 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/17 12:50:37 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/17 13:41:12 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,6 +217,5 @@ void		free_tab(char **tab);
 // signals
 void		set_signal(void);
 void		signal_handler(int sig);
-void		signals_non_interactive_handler(void);
 
 #endif

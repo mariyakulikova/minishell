@@ -6,7 +6,7 @@
 /*   By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 11:14:30 by mkulikov          #+#    #+#             */
-/*   Updated: 2024/09/17 13:24:19 by fjoestin         ###   ########.fr       */
+/*   Updated: 2024/09/17 13:39:58 by fjoestin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ void	ft_minishell(t_data *data)
 			printf("exit\n");
 			exit(0);
 		}
-		signals_non_interactive_handler();
 		if (is_only_space(data->prompt) || ft_strlen(data->prompt) == 0)
 			continue ;
 		add_history(data->prompt);

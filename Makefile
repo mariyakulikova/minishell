@@ -6,7 +6,7 @@
 #    By: fjoestin <fjoestin@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/03 14:49:03 by fjoestin          #+#    #+#              #
-#    Updated: 2024/09/17 13:01:53 by fjoestin         ###   ########.fr        #
+#    Updated: 2024/09/17 13:32:07 by fjoestin         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ LIBFT = ./libft/libft.a
 INC = inc/
 OBJ_DIR = obj/
 CC = cc
-FLAGS = -g -Wall -Wextra -Werror -I
+FLAGS = -Wall -Wextra -Werror -I
 READFLAG = -lreadline
 RM = rm -f
 SRC =   srcs/builtin/cd.c \
